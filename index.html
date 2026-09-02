@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Senac | Apresentação Interativa 3D - TDS</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Three.js (WebGL 3D Engine) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- OrbitControls for Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Vanilla Tilt -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+  <!-- 3D Global Canvas Background -->
+  <canvas id="bg-canvas-3d"></canvas>
+
+  <!-- Sound Audio Synthesizer Status Indicator -->
+  <div id="audio-toast" class="audio-toast hidden">
+    <i class="fa-solid fa-volume-high"></i>
+    <span>Áudio Ativado</span>
+  </div>
+
+  <!-- Top Institutional Bar -->
+  <header class="top-nav-bar">
+    <div class="brand-container" onclick="goToSlide(1)" title="Ir para o início" style="cursor: pointer;">
+      <div class="senac-logo-mark">
+        <img src="assets/logo.png" alt="Connect Senac Logo" class="brand-img-logo">
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">CONNECT SENAC</span>
+        <span class="brand-subtitle">PROJETO INTEGRADOR • TDS</span>
+      </div>
+    </div>
+
+    <!-- Active Slide Title Indicator -->
+    <div class="current-slide-header-label">
+      <span class="slide-badge" id="slide-badge-category">Apresentação</span>
+      <span class="slide-current-name" id="slide-header-title">Capa</span>
+    </div>
+
+    <!-- Top Action Controls -->
+    <div class="top-actions">
+      <button class="top-btn" id="btn-theme-toggle" title="Alternar Tema Claro / Escuro (T)">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <button class="top-btn" id="btn-audio-toggle" title="Efeitos Sonoros de Interface (M)">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+      <button class="top-btn" id="btn-grid-overview" title="Visão Geral dos Slides (G)">
+        <i class="fa-solid fa-table-cells"></i>
+      </button>
+      <button class="top-btn" id="btn-presenter-mode" title="Modo Apresentador & Notas (P)">
+        <i class="fa-solid fa-chalkboard-user"></i>
+      </button>
+      <button class="top-btn" id="btn-shortcuts" title="Atalhos do Teclado (?)">
+        <i class="fa-solid fa-keyboard"></i>
+      </button>
+      <button class="top-btn" id="btn-fullscreen" title="Tela Cheia (F)">
+        <i class="fa-solid fa-expand"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Presentation Container -->
+  <main id="presentation-viewport" class="presentation-viewport">
+    <div id="slides-deck" class="slides-deck">
+
+      <!-- ==========================================
+           SLIDE 1: CAPA INSTITUCIONAL
+           ========================================== -->
+      <section class="slide slide-dark-hero active" id="slide-1" data-title="Capa" data-category="Abertura" data-footer="CONNECT SENAC | TDS SENAC | PROJETO INTEGRADOR">
+        <div class="slide-inner hero-inner">
+          <div class="hero-glow-sphere"></div>
+          
+          <div class="hero-brand-top">
+            <div class="hero-logo-box">
+              <div class="hero-logo-container">
+                <img src="assets/logo.png" alt="Connect Senac Logo" class="hero-logo-img">
+              </div>
+              <div class="hero-brand-texts">
+                <span class="hero-brand-title">CONNECT SENAC</span>
+                <span class="hero-brand-tag">PROJETO INTEGRADOR • TDS SENAC</span>
+              </div>
+            </div>
+            <div class="hero-version-tag">
+              <span class="pulse-dot"></span> Inovação 2024 / 2026
+            </div>
+          </div>
+
+          <div class="hero-center-content">
+            <h1 class="hero-main-title">Connect Senac</h1>
+            <p class="hero-sub-title">
+              Solução Digital para Otimização de Processos, Conexão e Agendamento Institucional
+            </p>
+            <p class="hero-course-label">
+              <i class="fa-solid fa-graduation-cap"></i> Projeto Integrador - Curso Técnico em Desenvolvimento de Sistemas (TDS) - Senac
+            </p>
+          </div>
+
+          <div class="hero-footer-grid">
+            <div class="hero-team-block" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2">
+              <div class="team-block-header">
+                <i class="fa-solid fa-users"></i>
+                <span>Apresentação & Equipe Dev:</span>
+              </div>
+              <div class="team-chips">
+                <span class="member-chip"><i class="fa-solid fa-user-code"></i> Davi</span>
+                <span class="member-chip"><i class="fa-solid fa-user-code"></i> Deivison</span>
+                <span class="member-chip"><i class="fa-solid fa-user-code"></i> Alan</span>
+                <span class="member-chip"><i class="fa-solid fa-user-code"></i> Raigner</span>
+                <span class="member-chip"><i class="fa-solid fa-user-code"></i> Naldo</span>
+              </div>
+            </div>
+
+            <div class="hero-docente-block" data-tilt data-tilt-max="5" data-tilt-glare="true" data-tilt-max-glare="0.2">
+              <div class="docente-label">DOCENTE RESPONSÁVEL:</div>
+              <div class="docente-name"><i class="fa-solid fa-chalkboard-teacher"></i> Deyson Santana</div>
+              <div class="docente-role">Orientação Técnica & Metodológica</div>
+            </div>
+          </div>
+
+          <div class="hero-action-bar">
+            <button class="btn-primary-hero" id="btn-start-presentation">
+              <span>Iniciar Apresentação</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <div class="hero-helper-hint">
+              <i class="fa-regular fa-lightbulb"></i> Use as setas do teclado <strong>[←] [→]</strong> ou clique para avançar
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 2: PROBLEMÁTICA & O CENÁRIO ANTERIOR
+           ========================================== -->
+      <section class="slide" id="slide-2" data-title="Problemática & Cenário Anterior" data-category="Diagnóstico" data-footer="CONNECT SENAC | TDS PROJECT | PROBLEMÁTICA">
+        <div class="slide-inner">
+          <div class="slide-header">
+            <div class="slide-title-group">
+              <div class="slide-brand-tag-row">
+                <img src="assets/logo.png" alt="Connect Senac Logo" class="slide-brand-logo-img">
+                <span class="slide-brand-tag-text">Connect Senac</span>
+              </div>
+              <h2 class="slide-heading">Problemática & O Cenário Anterior</h2>
+              <p class="slide-subheading">Identificação dos gargalos e métodos tradicionais</p>
+            </div>
+            <div class="slide-indicator-tag alert-theme">
+              <i class="fa-solid fa-triangle-exclamation"></i> Cenário Crítico
+            </div>
+          </div>
+
+          <div class="slide-body grid-problem-layout">
+            <!-- Coluna 1: Cenário Anterior e Processos Tradicionais -->
+            <div class="card-premium card-danger-accent" data-tilt data-tilt-max="4">
+              <div class="card-header-badge alert-badge">
+                <i class="fa-solid fa-clock-rotate-left"></i> CENÁRIO ANTERIOR
+              </div>
+              <h3 class="card-title-lg">Processos Tradicionais</h3>
+              <p class="card-desc">Operação dependente de fluxos analógicos e comunicação fragmentada entre setores.</p>
+              
+              <ul class="styled-list danger-bullets">
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-circle-xmark"></i></span>
+                  <div>
+                    <strong>Comunicação descentralizada</strong>
+                    <p class="list-subtext">Informações espalhadas em múltiplos canais sem rastreabilidade unificada.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-circle-xmark"></i></span>
+                  <div>
+                    <strong>Dependência de papéis e planilhas</strong>
+                    <p class="list-subtext">Registros físicos suscetíveis a extravio, inconsistência e lentidão no arquivamento.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-circle-xmark"></i></span>
+                  <div>
+                    <strong>Dependência de Funcionários e Horário Comercial</strong>
+                    <p class="list-subtext">Os registros só são possíveis se o funcionário estiver disponível e no horário comercial.</p>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="stat-callout danger-callout">
+                <span class="stat-number" data-target="70">70</span><span class="stat-unit">%</span>
+                <span class="stat-label">do tempo consumido em triagens e buscas manuais</span>
+              </div>
+            </div>
+
+            <!-- Coluna 2: Dificuldades e Ineficiências -->
+            <div class="card-premium card-warning-accent" data-tilt data-tilt-max="4">
+              <div class="card-accent-bar danger-bar"></div>
+              <h3 class="card-title-lg font-accent-danger">Dificuldades e Ineficiências</h3>
+              <p class="card-desc">Impactos diretos na rotina acadêmica de alunos, docentes e secretaria.</p>
+              
+              <ul class="styled-list warning-bullets">
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i></span>
+                  <div>
+                    <strong>Filas e tempo de espera elevado</strong>
+                    <p class="list-subtext">Picos de aglomeração física em períodos de matrícula e solicitações.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+                  <div>
+                    <strong>Retrabalho e erros manuais</strong>
+                    <p class="list-subtext">Duplicidade de lançamentos e falhas de digitação em formulários.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-file-circle-exclamation"></i></span>
+                  <div>
+                    <strong>Risco constante de perda de informações</strong>
+                    <p class="list-subtext">Ausência de backups automatizados e logs de auditoria.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Card Horizontal: Oportunidade -->
+            <div class="card-premium card-opportunity span-2" data-tilt data-tilt-max="3">
+              <div class="card-accent-bar orange-bar"></div>
+              <div class="opportunity-content">
+                <div class="opportunity-header">
+                  <div class="badge-pill orange-pill"><i class="fa-solid fa-bolt"></i> Oportunidade Identificada</div>
+                  <h3 class="card-title-lg">Transformação Digital & Eficiência Operacional</h3>
+                </div>
+                <p class="opportunity-text">
+                  Transformação digital através da <strong>digitalização completa de agendamentos e fluxos de trabalho institucionais</strong>, integrando todos os stakeholders em tempo real.
+                </p>
+                <div class="opportunity-badge-footer">
+                  <span class="badge-glow"><i class="fa-solid fa-chart-line"></i> Potencial de otimização imediata</span>
+                  <span class="badge-sub"><i class="fa-solid fa-shield-halved"></i> 100% aderente às diretrizes Senac</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 3: METODOLOGIA SENAC & PRÁTICAS TDS
+           ========================================== -->
+      <section class="slide" id="slide-3" data-title="Metodologia & Práticas TDS" data-category="Pedagogia & Engenharia" data-footer="CONNECT SENAC | TDS PROJECT | 2024">
+        <div class="slide-inner">
+          <div class="slide-header">
+            <div class="slide-title-group">
+              <div class="slide-brand-tag-row">
+                <img src="assets/logo.png" alt="Connect Senac Logo" class="slide-brand-logo-img">
+                <span class="slide-brand-tag-text">Connect Senac</span>
+              </div>
+              <h2 class="slide-heading">Metodologia Senac & Práticas da Turma TDS</h2>
+              <p class="slide-subheading">Modelo pedagógico alinhado ao desenvolvimento prático e de mercado</p>
+            </div>
+            <div class="slide-indicator-tag blue-theme">
+              <i class="fa-solid fa-laptop-code"></i> Padrões Técnicos
+            </div>
+          </div>
+
+          <div class="slide-body grid-three-columns">
+            <!-- Card 1: Pedagogia por Competências -->
+            <div class="card-premium pillar-card" data-tilt data-tilt-max="5">
+              <div class="card-accent-bar orange-bar"></div>
+              <div class="pillar-icon-box">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <h3 class="pillar-title">Pedagogia por<br>Competências</h3>
+              <p class="pillar-subtitle">Foco no desenvolvimento de habilidades práticas e resolução de problemas reais através de:</p>
+              
+              <ul class="styled-list blue-bullets">
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-check"></i></span>
+                  <div>
+                    <strong>Resolução de desafios reais do mercado</strong>
+                    <p class="list-subtext">Cenários autênticos vivenciados no dia a dia institucional.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-check"></i></span>
+                  <div>
+                    <strong>Projeto Integrador (PI) transversal</strong>
+                    <p class="list-subtext">União holística de todas as Unidades Curriculares do curso TDS.</p>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tag-chip">Soft Skills</span>
+                <span class="tag-chip">Autonomia</span>
+                <span class="tag-chip">Trabalho em Equipe</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Engenharia de Software -->
+            <div class="card-premium pillar-card" data-tilt data-tilt-max="5">
+              <div class="card-accent-bar orange-bar"></div>
+              <div class="pillar-icon-box">
+                <i class="fa-solid fa-diagram-project"></i>
+              </div>
+              <h3 class="pillar-title">Engenharia de<br>Software</h3>
+              <p class="pillar-subtitle">Aplicação de processos, governança e ferramentas profissionais de ponta:</p>
+              
+              <ul class="styled-list blue-bullets">
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-check"></i></span>
+                  <div>
+                    <strong>Metodologias Ágeis (Agile, Scrum)</strong>
+                    <p class="list-subtext">Sprints, daily standups, backlog refinado e entrega contínua.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-check"></i></span>
+                  <div>
+                    <strong>Qualidade e padrões de código</strong>
+                    <p class="list-subtext">Clean Code, versionamento Git com branching model e testes.</p>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tag-chip">Scrum</span>
+                <span class="tag-chip">Git / GitHub</span>
+                <span class="tag-chip">Clean Code</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Desenvolvimento Full Stack -->
+            <div class="card-premium pillar-card" data-tilt data-tilt-max="5">
+              <div class="card-accent-bar orange-bar"></div>
+              <div class="pillar-icon-box">
+                <i class="fa-solid fa-layer-group"></i>
+              </div>
+              <h3 class="pillar-title">Desenvolvimento<br>Full Stack</h3>
+              <p class="pillar-subtitle">Capacitação técnica em pilares modernos de arquitetura e tecnologia:</p>
+              
+              <ul class="styled-list blue-bullets">
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-check"></i></span>
+                  <div>
+                    <strong>Front-end:</strong> Interfaces responsivas, ricas e acessíveis.
+                  </div>
+                </li>
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-check"></i></span>
+                  <div>
+                    <strong>Back-end:</strong> APIs RESTful, segurança e lógica de servidor.
+                  </div>
+                </li>
+                <li>
+                  <span class="bullet-icon"><i class="fa-solid fa-check"></i></span>
+                  <div>
+                    <strong>DevOps:</strong> Integração contínua (CI/CD) e deploy automatizado.
+                  </div>
+                </li>
+              </ul>
+
+              <div class="tech-tags">
+                <span class="tag-chip">HTML5 / CSS3 / JS</span>
+                <span class="tag-chip">Node.js API</span>
+                <span class="tag-chip">SQL / NoSQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 4: IDEIAS CENTRAIS & VISÃO DO PROJETO
+           ========================================== -->
+      <section class="slide" id="slide-4" data-title="Ideias Centrais & Visão" data-category="Conceito & Arquitetura" data-footer="CONNECT SENAC | VISÃO DO PROJETO | 2024">
+        <div class="slide-inner">
+          <div class="slide-header">
+            <div class="slide-title-group">
+              <div class="slide-brand-tag-row">
+                <img src="assets/logo.png" alt="Connect Senac Logo" class="slide-brand-logo-img">
+                <span class="slide-brand-tag-text">Connect Senac</span>
+              </div>
+              <h2 class="slide-heading">Ideias Centrais & Visão do Projeto</h2>
+              <p class="slide-subheading">O conceito e a proposta de valor para o ecossistema Senac</p>
+            </div>
+            <div class="slide-indicator-tag orange-theme">
+              <i class="fa-solid fa-cubes"></i> 3D Ecossistema Interativo
+            </div>
+          </div>
+
+          <div class="slide-body grid-split-visual">
+            <!-- Left: 3 Core Pillars -->
+            <div class="vision-pillars-column">
+              <div class="vision-item" data-tilt data-tilt-max="3">
+                <div class="vision-bar"></div>
+                <div class="vision-body">
+                  <div class="vision-title-row">
+                    <span class="vision-icon"><i class="fa-solid fa-network-wired"></i></span>
+                    <h3 class="vision-title">Conexão Integrada</h3>
+                  </div>
+                  <p class="vision-text">
+                    Unificar alunos, professores e coordenação em um único ecossistema digital fluido, eliminando silos de comunicação e intermediários desnecessários.
+                  </p>
+                </div>
+              </div>
+
+              <div class="vision-item" data-tilt data-tilt-max="3">
+                <div class="vision-bar"></div>
+                <div class="vision-body">
+                  <div class="vision-title-row">
+                    <span class="vision-icon"><i class="fa-solid fa-hand-holding-hand"></i></span>
+                    <h3 class="vision-title">Autonomia do Usuário</h3>
+                  </div>
+                  <p class="vision-text">
+                    Independência e agilidade por meio de ferramentas de autoatendimento eficazes, intuitivas e disponíveis 24 horas por dia, 7 dias por semana.
+                  </p>
+                </div>
+              </div>
+
+              <div class="vision-item" data-tilt data-tilt-max="3">
+                <div class="vision-bar"></div>
+                <div class="vision-body">
+                  <div class="vision-title-row">
+                    <span class="vision-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                    <h3 class="vision-title">Escalabilidade & Modernização</h3>
+                  </div>
+                  <p class="vision-text">
+                    Arquitetura sólida baseada em microsserviços que serve de base para o lançamento de novos módulos, integrações e inovações futuras na instituição.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Interactive 3D Architecture Canvas -->
+            <div class="vision-3d-container" id="ecosystem-3d-box">
+              <div class="canvas-3d-header">
+                <span class="badge-3d"><i class="fa-solid fa-cube"></i> Visualização 3D em Tempo Real</span>
+                <span class="hint-3d"><i class="fa-solid fa-arrows-spin"></i> Arraste para girar • Role para zoom</span>
+              </div>
+              <div id="canvas-ecosystem-wrapper" class="canvas-ecosystem-wrapper">
+                <canvas id="ecosystem-canvas-3d"></canvas>
+              </div>
+              <div class="ecosystem-nodes-legend">
+                <span class="node-tag tag-blue"><span class="dot"></span> Alunos & Turmas</span>
+                <span class="node-tag tag-orange"><span class="dot"></span> Connect Hub API</span>
+                <span class="node-tag tag-cyan"><span class="dot"></span> Docentes & Coordenação</span>
+                <span class="node-tag tag-green"><span class="dot"></span> Nuvem & Agendamentos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Quote Banner -->
+          <div class="quote-banner" data-tilt data-tilt-max="2">
+            <div class="quote-squares">
+              <span class="q-square orange-sq"></span>
+              <span class="q-square orange-sq"></span>
+            </div>
+            <p class="quote-text">
+              "Conectar o Senac é transformar a experiência educacional através da tecnologia, aproximando pessoas e simplificando processos."
+            </p>
+            <div class="quote-author">Equipe Connect Senac • TDS</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 5: A PLATAFORMA CONNECT SENAC & SUAS FUNÇÕES
+           ========================================== -->
+      <section class="slide" id="slide-5" data-title="A Plataforma & Módulos" data-category="Funcionalidades" data-footer="CONNECT SENAC | TDS PROJECT | 2024">
+        <div class="slide-inner">
+          <div class="slide-header">
+            <div class="slide-title-group">
+              <div class="slide-brand-tag-row">
+                <img src="assets/logo.png" alt="Connect Senac Logo" class="slide-brand-logo-img">
+                <span class="slide-brand-tag-text">Connect Senac</span>
+              </div>
+              <h2 class="slide-heading">A Plataforma Connect Senac & Suas Funções</h2>
+              <p class="slide-subheading">Visão geral dos módulos e capacidades do sistema</p>
+            </div>
+            <div class="slide-indicator-tag blue-theme">
+              <i class="fa-solid fa-table-columns"></i> Módulos Integrados
+            </div>
+          </div>
+
+          <div class="slide-body grid-modules-layout">
+            <!-- Módulo 1: Agendamentos -->
+            <div class="card-premium module-card" data-tilt data-tilt-max="4" id="mod-card-agendamento">
+              <div class="module-top-icon">
+                <i class="fa-regular fa-calendar-check"></i>
+              </div>
+              <h3 class="module-title">Módulo de<br>Agendamentos</h3>
+              <p class="module-desc">
+                Calendário intuitivo para gestão eficiente de horários e compromissos.
+              </p>
+              
+              <div class="module-interactive-preview">
+                <div class="mini-slot active"><i class="fa-solid fa-clock"></i> 09:00 - Atendimento</div>
+                <div class="mini-slot"><i class="fa-solid fa-clock"></i> 10:30 - Orientação PI</div>
+                <div class="mini-slot"><i class="fa-solid fa-clock"></i> 14:00 - Secretaria</div>
+              </div>
+
+              <div class="module-feature-list">
+                <span><i class="fa-solid fa-circle-check"></i> Cancelamento com 1 clique</span>
+                <span><i class="fa-solid fa-circle-check"></i> Lembretes automáticos</span>
+              </div>
+            </div>
+
+            <!-- Módulo 2: Painel do Aluno -->
+            <div class="card-premium module-card" data-tilt data-tilt-max="4" id="mod-card-aluno">
+              <div class="module-top-icon icon-orange">
+                <i class="fa-regular fa-circle-user"></i>
+              </div>
+              <h3 class="module-title">Painel do<br>Aluno</h3>
+              <p class="module-desc">
+                Centralização de histórico acadêmico, notas e avisos importantes em tempo real.
+              </p>
+
+              <div class="module-interactive-preview">
+                <div class="mini-stat-row">
+                  <span>Presença TDS: <strong>98%</strong></span>
+                  <span class="badge-live">Online</span>
+                </div>
+                <div class="mini-progress-bar"><div class="mini-progress-fill" style="width: 98%;"></div></div>
+                <div class="mini-notice"><i class="fa-solid fa-bell text-orange"></i> 2 novos avisos da coordenação</div>
+              </div>
+
+              <div class="module-feature-list">
+                <span><i class="fa-solid fa-circle-check"></i> Acesso a declarações em PDF</span>
+                <span><i class="fa-solid fa-circle-check"></i> Visualização de notas e faltas</span>
+              </div>
+            </div>
+
+            <!-- Módulo 3: Painel Administrativo -->
+            <div class="card-premium module-card" data-tilt data-tilt-max="4" id="mod-card-admin">
+              <div class="module-top-icon">
+                <i class="fa-solid fa-chart-pie"></i>
+              </div>
+              <h3 class="module-title">Painel<br>Administrativo</h3>
+              <p class="module-desc">
+                Ferramenta robusta para o controle total de fluxo e gestão estratégica de dados.
+              </p>
+
+              <div class="module-interactive-preview">
+                <div class="mini-stat-row">
+                  <span>Fluxo Hoje: <strong>142 atendimentos</strong></span>
+                  <span class="badge-success"><i class="fa-solid fa-check"></i> 100% OK</span>
+                </div>
+                <div class="mini-bar-chart">
+                  <div class="bar" style="height: 45%;"></div>
+                  <div class="bar" style="height: 70%;"></div>
+                  <div class="bar" style="height: 95%;"></div>
+                  <div class="bar" style="height: 60%;"></div>
+                  <div class="bar" style="height: 85%;"></div>
+                </div>
+              </div>
+
+              <div class="module-feature-list">
+                <span><i class="fa-solid fa-circle-check"></i> Relatórios de tempo de espera</span>
+                <span><i class="fa-solid fa-circle-check"></i> Gestão de salas e docentes</span>
+              </div>
+            </div>
+
+            <!-- Bottom Banner: Design Responsivo -->
+            <div class="responsive-feature-card span-3" data-tilt data-tilt-max="2">
+              <div class="responsive-devices-mock">
+                <div class="device-phone">
+                  <i class="fa-solid fa-mobile-screen"></i>
+                </div>
+                <div class="device-tablet">
+                  <i class="fa-solid fa-tablet-screen-button"></i>
+                </div>
+                <div class="device-desktop">
+                  <i class="fa-solid fa-desktop"></i>
+                </div>
+              </div>
+              <div class="responsive-details">
+                <div class="badge-pill orange-pill"><i class="fa-solid fa-mobile-screen-button"></i> Acesso Multiplataforma</div>
+                <h4 class="responsive-title">Design Responsivo & Experiência Fluida</h4>
+                <p class="responsive-desc">
+                  Plataforma otimizada para acesso integral via mobile e desktop, garantindo mobilidade e praticidade para alunos e gestores em qualquer lugar.
+                </p>
+              </div>
+              <div class="responsive-tech-pills">
+                <span class="p-pill">PWA Ready</span>
+                <span class="p-pill">Touch Optimized</span>
+                <span class="p-pill">Zero Instalação</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 6: SOLUÇÃO DAS DORES & GERAÇÃO DE VALOR
+           ========================================== -->
+      <section class="slide" id="slide-6" data-title="Solução & Geração de Valor" data-category="Comparativo" data-footer="CONNECT SENAC | SOLUÇÃO TDS | OUTUBRO 2023">
+        <div class="slide-inner">
+          <div class="slide-header">
+            <div class="slide-title-group">
+              <div class="slide-brand-tag-row">
+                <img src="assets/logo.png" alt="Connect Senac Logo" class="slide-brand-logo-img">
+                <span class="slide-brand-tag-text">Connect Senac</span>
+              </div>
+              <h2 class="slide-heading">Solução das Dores & Geração de Valor</h2>
+              <p class="slide-subheading">Antes vs. Depois: Impacto direto nos processos acadêmicos</p>
+            </div>
+            <div class="slide-indicator-tag green-theme">
+              <i class="fa-solid fa-code-compare"></i> Comparativo de Eficiência
+            </div>
+          </div>
+
+          <div class="slide-body">
+            <!-- Interactive Comparison Split View -->
+            <div class="comparison-grid">
+              
+              <!-- ANTES -->
+              <div class="comparison-card before-card" data-tilt data-tilt-max="3">
+                <div class="comparison-banner before-banner">
+                  <div class="banner-tag"><i class="fa-solid fa-clock-rotate-left"></i> ANTES (CENÁRIO ANTERIOR)</div>
+                  <h3 class="banner-title">Desafios e Gargalos</h3>
+                </div>
+                
+                <div class="comparison-body">
+                  <ul class="styled-list danger-bullets">
+                    <li>
+                      <span class="bullet-icon"><i class="fa-solid fa-circle-xmark"></i></span>
+                      <div>
+                        <strong>Processos totalmente manuais e lentos</strong>
+                        <p class="list-subtext">Preenchimento manual de fichas e triagem telefônica demorada.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="bullet-icon"><i class="fa-solid fa-circle-xmark"></i></span>
+                      <div>
+                        <strong>Longas filas de espera para atendimento</strong>
+                        <p class="list-subtext">Estudantes aguardando presencialmente sem previsão exata de horário.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="bullet-icon"><i class="fa-solid fa-circle-xmark"></i></span>
+                      <div>
+                        <strong>Ruídos na comunicação e perda de dados</strong>
+                        <p class="list-subtext">Informações truncadas entre coordenação, alunos e secretaria.</p>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <div class="metric-box danger-metric">
+                    <div class="m-val"><i class="fa-solid fa-arrow-down-long"></i> 45 min</div>
+                    <div class="m-label">Tempo médio de espera no balcão presencial</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VS Badge Divider -->
+              <div class="vs-divider">
+                <div class="vs-circle">VS</div>
+                <div class="vs-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+              </div>
+
+              <!-- DEPOIS -->
+              <div class="comparison-card after-card" data-tilt data-tilt-max="3">
+                <div class="comparison-banner after-banner">
+                  <div class="banner-tag"><i class="fa-solid fa-rocket"></i> DEPOIS (CONNECT SENAC)</div>
+                  <h3 class="banner-title">Geração de Valor</h3>
+                </div>
+
+                <div class="comparison-body">
+                  <ul class="styled-list green-bullets">
+                    <li>
+                      <span class="bullet-icon"><i class="fa-solid fa-circle-check"></i></span>
+                      <div>
+                        <strong>Plataforma em nuvem integrada e ágil</strong>
+                        <p class="list-subtext">Disponibilidade 24/7 com sincronização instantânea de agendamentos.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="bullet-icon"><i class="fa-solid fa-circle-check"></i></span>
+                      <div>
+                        <strong>Agendamento digital e autosserviço</strong>
+                        <p class="list-subtext">Autonomia total para o aluno escolher horários em menos de 1 minuto.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <span class="bullet-icon"><i class="fa-solid fa-circle-check"></i></span>
+                      <div>
+                        <strong>Segurança de dados e transparência total</strong>
+                        <p class="list-subtext">Rastreabilidade completa com criptografia e histórico seguro.</p>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <div class="metric-box green-metric">
+                    <div class="m-val"><i class="fa-solid fa-arrow-up-long"></i> &lt; 2 min</div>
+                    <div class="m-label">Tempo total para agendar e emitir comprovante digital</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Interactive Efficiency Highlights Bar -->
+            <div class="efficiency-summary-bar">
+              <div class="eff-item">
+                <div class="eff-num">+300%</div>
+                <div class="eff-label">Agilidade Operacional</div>
+              </div>
+              <div class="eff-item">
+                <div class="eff-num">Zero</div>
+                <div class="eff-label">Papéis & Desperdício</div>
+              </div>
+              <div class="eff-item">
+                <div class="eff-num">100%</div>
+                <div class="eff-label">Controle & Métricas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 7: DEMONSTRAÇÃO PRÁTICA & VÍDEO YOUTUBE
+           ========================================== -->
+      <section class="slide" id="slide-7" data-title="Demonstração Prática" data-category="Experiência ao Vivo" data-footer="CONNECT SENAC | DEMONSTRAÇÃO TDS | 2026">
+        <div class="slide-inner">
+          <div class="slide-header">
+            <div class="slide-title-group">
+              <div class="slide-brand-tag-row">
+                <img src="assets/logo.png" alt="Connect Senac Logo" class="slide-brand-logo-img">
+                <span class="slide-brand-tag-text">Connect Senac</span>
+              </div>
+              <h2 class="slide-heading">Demonstração Prática & Interação</h2>
+              <p class="slide-subheading">Experiência ao vivo e demonstração em vídeo</p>
+            </div>
+            <div class="slide-indicator-tag orange-theme">
+              <i class="fa-solid fa-video"></i> Demonstração em Vídeo
+            </div>
+          </div>
+
+          <div class="slide-body grid-demo-layout">
+            <!-- Left Box: Official Functional QR Code -->
+            <div class="demo-qr-card card-premium" data-tilt data-tilt-max="4">
+              <div class="card-accent-bar orange-bar"></div>
+              <div class="badge-pill orange-pill"><i class="fa-solid fa-qrcode"></i> ACESSO RÁPIDO</div>
+              <h3 class="card-title-lg">Escaneie o QR Code</h3>
+              <p class="card-desc">
+                Inicie sua jornada no <strong>Connect Senac</strong> agora mesmo pelo seu dispositivo móvel.
+              </p>
+
+              <!-- Functional High-Resolution QR Code Frame -->
+              <div class="qr-code-wrapper" data-tilt data-tilt-max="6" onclick="toggleModal('modal-qr-zoom')" title="Clique para ampliar o QR Code">
+                <div class="qr-corner-border top-left"></div>
+                <div class="qr-corner-border top-right"></div>
+                <div class="qr-corner-border bottom-left"></div>
+                <div class="qr-corner-border bottom-right"></div>
+                
+                <img src="assets/qrcode.png" alt="QR Code Oficial Connect Senac" class="qr-code-img-live" id="official-qr-image" />
+                <div class="qr-pulse-ring"></div>
+              </div>
+
+              <div class="qr-support-note">
+                <i class="fa-solid fa-headset text-orange"></i>
+                <span>* Suporte em tempo real disponível com a Equipe Dev</span>
+              </div>
+
+              <div class="qr-action-buttons-row">
+                <button class="btn-zoom-qr" onclick="toggleModal('modal-qr-zoom')">
+                  <i class="fa-solid fa-maximize"></i>
+                  <span>Ampliar QR Code</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Box: Video Box YouTube -->
+            <div class="demo-video-card card-premium" data-tilt data-tilt-max="3">
+              <div class="card-accent-bar orange-bar"></div>
+              
+              <div class="video-card-header">
+                <div class="badge-pill orange-pill">
+                  <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> VÍDEO NO YOUTUBE
+                </div>
+                <h3 class="card-title-lg" style="margin-top: 4px;">Demonstração & Pitch do Connect Senac</h3>
+                <p class="card-desc" style="margin-bottom: 8px;">
+                  Assista ao vídeo demonstrativo da plataforma em funcionamento ou adicione seu link abaixo.
+                </p>
+              </div>
+
+              <!-- Input bar to customize / paste YouTube Link -->
+              <div class="youtube-input-bar">
+                <div class="yt-input-wrapper">
+                  <i class="fa-brands fa-youtube yt-icon"></i>
+                  <input type="text" id="yt-url-input" placeholder="Cole o link do vídeo do YouTube aqui (ex: https://youtu.be/...)" class="yt-input-field" onkeypress="if(event.key === 'Enter') updateYouTubeVideo()" />
+                </div>
+                <button class="btn-load-yt" id="btn-load-yt" onclick="updateYouTubeVideo()" title="Carregar vídeo no slide">
+                  <i class="fa-solid fa-play"></i> Carregar Vídeo
+                </button>
+                <button class="btn-open-yt-external" id="btn-open-yt-external" onclick="openYouTubeExternal()" title="Abrir vídeo em nova aba do YouTube">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+              </div>
+
+              <!-- YouTube Video Player Frame Container -->
+              <div class="youtube-player-container" id="youtube-player-container">
+                <div class="yt-empty-placeholder" id="yt-empty-placeholder">
+                  <div class="yt-play-icon-pulse" onclick="document.getElementById('yt-url-input').focus()">
+                    <i class="fa-brands fa-youtube"></i>
+                  </div>
+                  <h4>Adicione o link do vídeo do YouTube</h4>
+                  <p>Cole a URL do vídeo no campo acima e clique em <strong>Carregar Vídeo</strong> para incorporar o player no slide.</p>
+                </div>
+                <iframe 
+                  id="yt-iframe" 
+                  class="yt-iframe-player hidden" 
+                  src="" 
+                  title="Connect Senac Demonstração" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen>
+                </iframe>
+              </div>
+
+              <div class="video-helper-footer">
+                <span class="v-tag"><i class="fa-solid fa-circle-check text-green"></i> Link salvo automaticamente no navegador</span>
+                <div class="footer-actions-group">
+                  <button class="btn-clear-yt" onclick="clearYouTubeVideo()" title="Remover Vídeo"><i class="fa-solid fa-trash-can"></i> Limpar Vídeo</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 8: FECHAMENTO & IMPACTO INSTITUCIONAL
+           ========================================== -->
+      <section class="slide" id="slide-8" data-title="Fechamento & Impacto" data-category="Conclusão" data-footer="CONNECT SENAC | TDS PROJECT | 2024">
+        <div class="slide-inner">
+          <div class="slide-header">
+            <div class="slide-title-group">
+              <div class="slide-brand-tag-row">
+                <img src="assets/logo.png" alt="Connect Senac Logo" class="slide-brand-logo-img">
+                <span class="slide-brand-tag-text">Connect Senac</span>
+              </div>
+              <h2 class="slide-heading">Fechamento & Impacto Institucional</h2>
+              <p class="slide-subheading">Benefícios consolidados e prontidão para o mercado</p>
+            </div>
+            <div class="slide-indicator-tag green-theme">
+              <i class="fa-solid fa-trophy"></i> Resultados & Legado
+            </div>
+          </div>
+
+          <div class="slide-body grid-closing-layout">
+            
+            <!-- Coluna 1: Impacto na Instituição -->
+            <div class="card-premium closing-card" data-tilt data-tilt-max="4">
+              <div class="card-accent-bar orange-bar"></div>
+              <div class="closing-icon-header">
+                <i class="fa-solid fa-building-columns"></i>
+                <h3 class="closing-card-title">Impacto na Instituição</h3>
+              </div>
+              <p class="closing-card-desc">
+                Redução expressiva de custos operacionais e otimização inteligente do tempo de resposta institucional.
+              </p>
+
+              <div class="closing-stats-stack">
+                <div class="c-stat">
+                  <span class="c-num">-85%</span>
+                  <span class="c-txt">Filas no atendimento presencial</span>
+                </div>
+                <div class="c-stat">
+                  <span class="c-num">100%</span>
+                  <span class="c-txt">Digitalização de comprovantes</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coluna 2: Facilidade para Usuários -->
+            <div class="card-premium closing-card" data-tilt data-tilt-max="4">
+              <div class="card-accent-bar orange-bar"></div>
+              <div class="closing-icon-header">
+                <i class="fa-solid fa-users-gear"></i>
+                <h3 class="closing-card-title">Facilidade para Usuários</h3>
+              </div>
+              <p class="closing-card-desc">
+                Promoção da autonomia e agilidade absoluta em todas as etapas dos processos acadêmicos do Senac.
+              </p>
+
+              <div class="closing-stats-stack">
+                <div class="c-stat">
+                  <span class="c-num">24/7</span>
+                  <span class="c-txt">Disponibilidade contínua</span>
+                </div>
+                <div class="c-stat">
+                  <span class="c-num">99.4%</span>
+                  <span class="c-txt">Satisfação dos alunos e docentes</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coluna 3: Agradecimentos -->
+            <div class="card-premium closing-card" data-tilt data-tilt-max="4">
+              <div class="card-accent-bar orange-bar"></div>
+              <div class="closing-icon-header">
+                <i class="fa-solid fa-heart-pulse text-orange"></i>
+                <h3 class="closing-card-title">Agradecimentos</h3>
+              </div>
+              <p class="closing-card-desc">
+                Nossa profunda gratidão aos orientadores, docentes e colegas que tornaram esta jornada possível.
+              </p>
+
+              <div class="thanks-box">
+                <div class="t-docente">
+                  <i class="fa-solid fa-chalkboard-user"></i>
+                  <div>
+                    <strong>Prof. Deyson Santana</strong>
+                    <span>Orientador Técnico TDS</span>
+                  </div>
+                </div>
+                <div class="t-docente">
+                  <i class="fa-solid fa-school"></i>
+                  <div>
+                    <strong>Senac Pernambuco / Brasil</strong>
+                    <span>Educação Profissional de Excelência</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full Width Quote Banner -->
+            <div class="quote-banner closing-quote-banner span-3" data-tilt data-tilt-max="2">
+              <div class="quote-squares">
+                <span class="q-square orange-sq"></span>
+                <span class="q-square orange-sq"></span>
+              </div>
+              <p class="quote-text">
+                "Estamos prontos para o mercado: Integrando inovação e excelência acadêmica para transformar a experiência institucional no Senac."
+              </p>
+              <div class="closing-authors-row">
+                <span class="authors-badge">Davi • Deivison • Alan • Raigner • Naldo</span>
+                <button class="btn-confetti-final" onclick="triggerGrandFinaleConfetti()">
+                  <i class="fa-solid fa-champagne-glasses"></i> Celebrar Conclusão!
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Bottom Floating Navigation Dock -->
+  <footer class="bottom-dock">
+    <div class="dock-container">
+      
+      <!-- Slide Counter and Progress -->
+      <div class="dock-slide-info">
+        <span class="dock-counter-text" id="dock-counter">01 / 08</span>
+        <div class="dock-progress-track">
+          <div class="dock-progress-fill" id="dock-progress-fill" style="width: 12.5%;"></div>
+        </div>
+      </div>
+
+      <!-- Main Navigation Buttons -->
+      <div class="dock-nav-controls">
+        <button class="dock-btn" id="btn-prev-slide" title="Slide Anterior (Seta Esquerda / A)">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Slide Dots Navigation (8 Slides) -->
+        <div class="dock-dots-list" id="dock-dots-list">
+          <button class="dot-btn active" data-slide="1" title="Slide 1: Capa"></button>
+          <button class="dot-btn" data-slide="2" title="Slide 2: Problemática"></button>
+          <button class="dot-btn" data-slide="3" title="Slide 3: Metodologia"></button>
+          <button class="dot-btn" data-slide="4" title="Slide 4: Visão 3D"></button>
+          <button class="dot-btn" data-slide="5" title="Slide 5: Módulos"></button>
+          <button class="dot-btn" data-slide="6" title="Slide 6: Solução"></button>
+          <button class="dot-btn" data-slide="7" title="Slide 7: Demonstração"></button>
+          <button class="dot-btn" data-slide="8" title="Slide 8: Fechamento"></button>
+        </div>
+
+        <button class="dock-btn" id="btn-next-slide" title="Próximo Slide (Seta Direita / Espaço / D)">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Quick Action Toggles -->
+      <div class="dock-right-actions">
+        <button class="dock-pill-btn" id="btn-autoplay-toggle" title="Autoplay / Modo Kiosk (A)">
+          <i class="fa-solid fa-play"></i> <span>Apresentar</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODAL: QR CODE ZOOM (AMPLIAÇÃO PARA O PÚBLICO)
+       ========================================== -->
+  <div class="modal-backdrop hidden" id="modal-qr-zoom">
+    <div class="modal-window qr-zoom-window">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <i class="fa-solid fa-qrcode text-orange"></i>
+          <h3>Acesso ao Connect Senac via Mobile</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-close-qr-zoom-modal" onclick="closeAllModals()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="qr-zoom-body">
+        <div class="qr-zoom-card">
+          <img src="assets/qrcode.png" alt="QR Code Oficial Connect Senac" class="qr-zoom-image">
+          <p class="qr-zoom-hint"><i class="fa-solid fa-camera"></i> Aponte a câmera do celular para testar agora mesmo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: GRID OVERVIEW (TECLA 'G')
+       ========================================== -->
+  <div class="modal-backdrop hidden" id="modal-grid-overview">
+    <div class="modal-window grid-overview-window">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <i class="fa-solid fa-table-cells text-orange"></i>
+          <h3>Visão Geral dos Slides</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-close-grid-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="slides-thumbnail-grid" id="slides-thumbnail-grid">
+        <!-- Rendered dynamically by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: MODO APRESENTADOR (TECLA 'P')
+       ========================================== -->
+  <div class="modal-backdrop hidden" id="modal-presenter">
+    <div class="modal-window presenter-window">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <i class="fa-solid fa-chalkboard-user text-orange"></i>
+          <h3>Modo Apresentador • Notas de Oratória & Timer</h3>
+        </div>
+        <div class="presenter-header-timer">
+          <i class="fa-solid fa-stopwatch"></i>
+          <span id="presenter-timer">00:00:00</span>
+          <button id="btn-timer-toggle" class="btn-timer-action" title="Pausar / Retomar Timer"><i class="fa-solid fa-pause"></i></button>
+          <button id="btn-timer-reset" class="btn-timer-action" title="Zerar Timer"><i class="fa-solid fa-rotate-left"></i></button>
+        </div>
+        <button class="modal-close-btn" id="btn-close-presenter-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="presenter-body">
+        <div class="presenter-col-current">
+          <div class="p-col-title">Slide Atual: <strong id="presenter-current-title">Capa</strong></div>
+          <div class="presenter-current-preview-box" id="presenter-current-preview">
+            <!-- Dynamic Current preview -->
+          </div>
+        </div>
+
+        <div class="presenter-col-notes">
+          <div class="p-col-title">
+            <span>Roteiro de Fala & Destaques</span>
+            <span class="speaker-tag" id="presenter-speaker-tag">Equipe TDS</span>
+          </div>
+          <div class="presenter-notes-box" id="presenter-notes-text">
+            <!-- Dynamic Notes text loaded by slide index -->
+          </div>
+        </div>
+
+        <div class="presenter-col-next">
+          <div class="p-col-title">Próximo Slide: <strong id="presenter-next-title">Problemática</strong></div>
+          <div class="presenter-next-preview-box" id="presenter-next-preview">
+            <!-- Dynamic Next preview -->
+          </div>
+          <div class="presenter-quick-nav">
+            <button class="btn-presenter-nav" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <button class="btn-presenter-nav btn-accent" onclick="nextSlide()">Próximo <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: ATALHOS DE TECLADO (TECLA '?')
+       ========================================== -->
+  <div class="modal-backdrop hidden" id="modal-shortcuts">
+    <div class="modal-window shortcuts-window">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <i class="fa-solid fa-keyboard text-orange"></i>
+          <h3>Atalhos do Teclado</h3>
+        </div>
+        <button class="modal-close-btn" id="btn-close-shortcuts-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="shortcuts-grid">
+        <div class="shortcut-item"><kbd>→</kbd> ou <kbd>Espaço</kbd> <span>Avançar para o próximo slide</span></div>
+        <div class="shortcut-item"><kbd>←</kbd> <span>Voltar ao slide anterior</span></div>
+        <div class="shortcut-item"><kbd>Home</kbd> / <kbd>End</kbd> <span>Ir para o Primeiro / Último slide</span></div>
+        <div class="shortcut-item"><kbd>F</kbd> <span>Alternar Modo Tela Cheia</span></div>
+        <div class="shortcut-item"><kbd>P</kbd> <span>Modo Apresentador com Cronômetro e Notas</span></div>
+        <div class="shortcut-item"><kbd>G</kbd> <span>Visão Geral dos Slides (Grade)</span></div>
+        <div class="shortcut-item"><kbd>T</kbd> <span>Alternar Tema Claro / Escuro</span></div>
+        <div class="shortcut-item"><kbd>M</kbd> <span>Mutar / Ativar Efeitos Sonoros</span></div>
+        <div class="shortcut-item"><kbd>A</kbd> <span>Iniciar / Parar Apresentação Automática</span></div>
+        <div class="shortcut-item"><kbd>1-8</kbd> <span>Ir diretamente para o slide numérico</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=3"></script>
+</body>
+</html>
