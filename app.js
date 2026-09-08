@@ -1,11 +1,11 @@
 /* =========================================================
-   CONNECT SENAC — INTERACTIVE PRESENTATION ENGINE (10 SLIDES)
+   CONNECT SENAC — INTERACTIVE PRESENTATION ENGINE (9 SLIDES)
    WebGL 3D Engine, Audio FX, Presenter Mode & Power Script
    ========================================================= */
 
 const PresentationState = {
   currentSlide: 1,
-  totalSlides: 10,
+  totalSlides: 9,
   isAutoplay: false,
   autoplayInterval: null,
   autoplayDelay: 9000,
@@ -19,7 +19,7 @@ const PresentationState = {
 };
 
 /* =========================================================
-   POWER SCRIPT & SLIDES METADATA (10 SLIDES)
+   POWER SCRIPT & SLIDES METADATA (9 SLIDES)
    Storytelling & Pitch de Vendas (Y Combinator Style)
    4 Integrantes | Meta de Tempo: 26 min (25-30 min)
    ========================================================= */
@@ -34,11 +34,12 @@ const SlideData = [
     keyQuote: "Mais do que agendar. Conectar pessoas, transformar aprendizado e orquestrar a operação pedagógica.",
     script: `
       <div class="script-section-tag">FALA DE ABERTURA — APRESENTADOR 1</div>
-      <p>"Bom dia / Boa noite aos ilustres professores, membros da banca examinadora e a todos os presentes.</p>
-      <p>Nós somos a equipe de desenvolvimento do <strong>Connect Senac</strong>. Estamos aqui hoje não apenas para apresentar mais um software acadêmico, mas para defender um produto desenhado para solucionar uma das maiores dores operacionais e pedagógicas das instituições de ensino profissionalizante.</p>
-      <p>Desenvolvido como Projeto Integrador no <strong>SENAC Santo Antônio de Jesus - BA</strong> por uma equipe de 4 integrantes, o Connect Senac nasceu para substituir a fragmentação da comunicação por uma governança digital completa."</p>
+      <p>"Bom dia a todos os presentes.</p>
+      <p>Nós somos a <strong>Turma de Desenvolvimento de Sistemas</strong>.</p>
+      <p>Estamos aqui hoje não apenas para apresentar um software acadêmico, mas para defender um produto desenhado para solucionar uma das maiores dores operacionais e pedagógicas da instituição que fazemos parte.</p>
+      <p>Nosso projeto durou meses de pesquisa, validação e desenvolvimento. A apresentação tem como objetivo demonstrar como identificamos uma dor real, desenvolvemos uma aplicação escalável e entregamos uma solução pronta para o uso diário."</p>
       <div class="script-section-tag">TRANSIÇÃO DRAMÁTICA</div>
-      <p><em>"E para que a banca sinta o impacto real da nossa solução, convido todos a mergulharem no cenário tradicional que encontramos na rotina prática."</em></p>
+      <p><em>"E para que vocês sintam o real valor do que construímos, convido todos a mergulhar no cenário que encontramos antes de criarmos a plataforma."</em></p>
     `
   },
   {
@@ -48,7 +49,7 @@ const SlideData = [
     category: "O Desafio",
     speaker: "Apresentador 1",
     targetTime: "2:30 min",
-    keyQuote: "Mensagens dispersas em múltiplos celulares, planilhas desincronizadas, no-show sem aviso prévio e perda de horas práticas.",
+    keyQuote: "O problema não é apenas marcar um horário. É o atrito, o estresse e a falta de sincronização que corroem o tempo de aprendizado.",
     script: `
       <div class="script-section-tag">NARRATIVA HUMANA (PERSONAS) — APRESENTADOR 1</div>
       <p>"Imaginem três pessoas no dia a dia da unidade:</p>
@@ -69,7 +70,7 @@ const SlideData = [
     category: "O Desafio",
     speaker: "Apresentador 1",
     targetTime: "2:00 min",
-    keyQuote: "Cada bancada vazia representa uma competência prática que o aluno deixou de exercitar para o mercado de trabalho.",
+    keyQuote: "O verdadeiro custo da desorganização não é financeiro. É pedagógico: cada bancada vazia é uma oportunidade formativa que não volta mais.",
     script: `
       <div class="script-section-tag">IMPACTO EDUCACIONAL — APRESENTADOR 1</div>
       <p>"Vejam a cadeia de ruptura quando a comunicação falha:</p>
@@ -90,7 +91,7 @@ const SlideData = [
     category: "A Solução",
     speaker: "Apresentador 2",
     targetTime: "2:30 min",
-    keyQuote: "De horas de espera e incerteza no WhatsApp para uma experiência simples, transparente e acolhedora.",
+    keyQuote: "Uma experiência acolhedora que aproxima a comunidade da instituição com total transparência.",
     script: `
       <div class="script-section-tag">JORNADA SEM FRICÇÃO — APRESENTADOR 2</div>
       <p>"Obrigado, Apresentador 1. No Connect Senac, desenhamos uma jornada 100% mobile-first para a comunidade:</p>
@@ -124,39 +125,17 @@ const SlideData = [
         <li><strong>5. Criar Colaborador</strong>: Controle de acesso institucional por papéis (RBAC)."</li>
       </ul>
       <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 3</div>
-      <p><em>"E agora o Apresentador 3 vai detalhar a governança de dados e o salto qualitativo alcançado."</em></p>
+      <p><em>"E agora o Apresentador 3 vai detalhar a evolução da rotina e o salto qualitativo alcançado com a plataforma."</em></p>
     `
   },
   {
     id: 6,
-    title: "Slide 06 — Segurança & Governança",
-    heading: "Segurança, LGPD & Governança em Saúde — Proteção jurídica, termo de imagem e triagem clínica preventiva.",
-    category: "Governança",
-    speaker: "Apresentador 3",
-    targetTime: "2:30 min",
-    keyQuote: "Alunos e professores amparados por protocolos claros, com conformidade jurídica e segurança total de dados.",
-    script: `
-      <div class="script-section-tag">BLINDAGEM INSTITUCIONAL — APRESENTADOR 3</div>
-      <p>"Obrigado, Apresentador 2. Para garantir segurança jurídica à instituição, o Connect Senac foi construído sobre 4 pilares:</p>
-      <ul>
-        <li><strong>1. Conformidade Rigorosa com a LGPD</strong>: Dados pessoais sensíveis armazenados de forma criptografada em banco relacional seguro (PostgreSQL/Supabase) com consentimento digital registrado.</li>
-        <li><strong>2. Termo Digital de Uso de Imagem</strong>: Aceite formal gravado com carimbo de data/hora para fotos pedagógicas de 'Antes e Depois'.</li>
-        <li><strong>3. Triagem Preventiva de Saúde</strong>: Questionário obrigatório para rastrear alergias a tinturas capilares, henna e contraindicações dermatológicas.</li>
-        <li><strong>4. Controle de Acesso RBAC</strong>: Perfis isolados com tokens JWT e rastreabilidade total de logs de auditoria."</li>
-      </ul>
-      <div class="script-highlight-quote">
-        "Com o Connect Senac, professores e alunos operam protegidos por governança e conformidade absolutas."
-      </div>
-    `
-  },
-  {
-    id: 7,
-    title: "Slide 07 — Antes vs Depois",
+    title: "Slide 06 — Antes vs Depois",
     heading: "Antes vs. Depois: O Salto de Maturidade Operacional — Da fragmentação à sincronização digital em tempo real.",
     category: "Transformação",
     speaker: "Apresentador 3",
     targetTime: "2:30 min",
-    keyQuote: "Não estamos apenas digitalizando um agendamento. Estamos resgatando o tempo pedagógico e a governança institucional da unidade.",
+    keyQuote: "Devolvemos o foco dos professores e alunos para o que realmente importa: a excelência do aprendizado prático.",
     script: `
       <div class="script-section-tag">O SALTO QUALITATIVO — APRESENTADOR 3</div>
       <p>"Vejam o impacto comparativo direto na rotina da unidade:</p>
@@ -172,8 +151,8 @@ const SlideData = [
     `
   },
   {
-    id: 8,
-    title: "Slide 08 — Teste ao Vivo",
+    id: 7,
+    title: "Slide 07 — Teste ao Vivo",
     heading: "📱 Teste ao Vivo: Experimente Agora — QR Code interativo e credenciais de teste para a banca examinadora.",
     category: "Demonstração Prática",
     speaker: "Apresentador 4",
@@ -194,13 +173,13 @@ const SlideData = [
     `
   },
   {
-    id: 9,
-    title: "Slide 09 — Adoção & Escala",
+    id: 8,
+    title: "Slide 08 — Adoção & Escala",
     heading: "Estratégia de Adoção & Escalabilidade — Implantação no SENAC Santo Antônio de Jesus e expansão em rede.",
     category: "Visão de Futuro",
     speaker: "Apresentador 4",
     targetTime: "2:00 min",
-    keyQuote: "Do laboratório de práticas da nossa unidade para todo o ecossistema de cursos técnicos do Senac.",
+    keyQuote: "O Connect Senac foi concebido para transformar a nossa unidade e escalar com segurança para toda a rede Senac.",
     script: `
       <div class="script-section-tag">VIABILIDADE TÉCNICA E FUTURO — APRESENTADOR 4</div>
       <p>"Para assegurar que o Connect Senac seja perene e sustentável, estruturamos o projeto em três pilares de escala:</p>
@@ -215,13 +194,13 @@ const SlideData = [
     `
   },
   {
-    id: 10,
-    title: "Slide 10 — Fechamento & Conexão",
+    id: 9,
+    title: "Slide 09 — Fechamento & Conexão",
     heading: "Mais do que agendar. Conectar — Uma experiência integrada com reconhecimento especial aos mestres orientadores.",
     category: "Conclusão",
     speaker: "Apresentador 4",
     targetTime: "2:00 min",
-    keyQuote: "Connect Senac — Conectando pessoas e elevando o padrão pedagógico. Agradecimento especial a Deyson Santana e Tais!",
+    keyQuote: "Connect Senac — Mais do que agendar. Conectar. Muito obrigado a todos e abrimos agora para as considerações da banca examinadora!",
     script: `
       <div class="script-section-tag">FECHAMENTO TRIUNFAL & GRATIDÃO — APRESENTADOR 4</div>
       <p>"Para encerrar a nossa defesa:</p>
@@ -229,7 +208,7 @@ const SlideData = [
       O Aluno pratica com bancadas cheias e formação plena.<br>
       A Gestão gerencia com pauta em tempo real e governança.<br>
       E o <strong>Connect Senac conecta todas essas pontas em uma experiência fluida e moderna</strong>.</p>
-      <p>Nosso agradecimento mais que especial aos nossos professores e mentores <strong>Deyson Santana</strong> e <strong>Tais</strong>, cuja orientação técnica e pedagógica foi indispensável para transformar essa ideia em realidade.</p>
+      <p>Nosso agradecimento mais que especial aos nossos professores e mentores <strong>Deyson Santana</strong> e <strong>Tais</strong>, cuja orientação técnica e pedagógica foi indispensável para transformar essa ideia em realidade."</p>
       <div class="script-highlight-quote">
         "Connect Senac — Mais do que agendar. Conectar. Muito obrigado a todos e abrimos agora para as considerações da banca examinadora!"
       </div>
@@ -955,11 +934,6 @@ function setupEventListeners() {
 
       case 'Escape':
         closeAllModals();
-        break;
-
-      case '0':
-        e.preventDefault();
-        goToSlide(10);
         break;
 
       default:
