@@ -1506,6 +1506,96 @@ html, body {
   gap: 8px;
 }
 
+/* Test Credentials Card on Slide 08 */
+.test-credentials-card {
+  background: linear-gradient(135deg, rgba(0, 69, 128, 0.08), rgba(243, 112, 33, 0.08));
+  border: 1.5px solid var(--senac-orange);
+  border-radius: var(--border-radius-md);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 4px 16px rgba(243, 112, 33, 0.12);
+}
+.test-cred-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.test-cred-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cred-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card-elevated);
+  border: 1px solid var(--card-border);
+  padding: 5px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+.cred-tag {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.cred-value {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--senac-blue-primary);
+  background: rgba(0, 69, 128, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  user-select: all;
+}
+[data-theme="dark"] .cred-value {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+}
+
+/* Modal Test Credentials */
+.modal-test-credentials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 69, 128, 0.06);
+  border: 1px dashed var(--senac-orange);
+  border-radius: 12px;
+  padding: 8px 14px;
+  width: 100%;
+}
+.m-cred-badge {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--senac-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.m-cred-pill {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+.m-cred-pill strong {
+  font-family: var(--font-mono);
+  color: var(--senac-blue-primary);
+  background: rgba(0, 69, 128, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+[data-theme="dark"] .m-cred-pill strong {
+  color: #38bdf8;
+}
+
 /* Simulator Sub-Components */
 .demo-story-header {
   display: flex;
@@ -2062,13 +2152,26 @@ html, body {
 kbd { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; background: var(--bg-card-elevated); border: 1px solid var(--card-border); padding: 2px 6px; border-radius: 4px; }
 
 /* =========================================================
-   RESPONSIVE ENGINE (MOBILE & TABLET ADAPTATIONS)
+   RESPONSIVE ENGINE (MOBILE, TABLET & DESKTOP ADAPTATIONS)
    ========================================================= */
 
+/* Tablets & Small Laptops (<= 1024px) */
 @media (max-width: 1024px) {
-  :root { --header-height: 58px; --dock-height: 64px; }
-  .slide { padding: 14px 20px; align-items: flex-start; }
-  .slide-inner { max-height: none; height: auto; min-height: 100%; justify-content: flex-start; }
+  :root {
+    --header-height: 58px;
+    --dock-height: 64px;
+  }
+  .slide {
+    padding: 14px 18px;
+    align-items: flex-start;
+  }
+  .slide-inner {
+    max-height: none;
+    height: auto;
+    min-height: 100%;
+    justify-content: flex-start;
+    padding-bottom: 20px;
+  }
   .speakers-grid { grid-template-columns: repeat(2, 1fr); }
   .grid-three-columns, .grid-split-visual { grid-template-columns: 1fr 1fr; }
   .solution-triad-layout { grid-template-columns: 1fr; }
@@ -2081,51 +2184,304 @@ kbd { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; backg
   .presenter-body { grid-template-columns: 1fr; }
 }
 
+/* Mobile Devices & Small Tablets (<= 768px) */
 @media (max-width: 768px) {
-  :root { --header-height: 54px; --dock-height: 60px; }
-  .presentation-viewport { padding-top: var(--header-height); padding-bottom: calc(var(--dock-height) + 8px); }
-  .slide { padding: 10px 12px; }
-  .top-nav-bar { padding: 0 10px; }
+  :root {
+    --header-height: 54px;
+    --dock-height: 58px;
+    --border-radius-lg: 14px;
+    --border-radius-md: 10px;
+  }
+
+  /* Presentation Viewport with Safe Areas */
+  .presentation-viewport {
+    padding-top: calc(var(--header-height) + 4px);
+    padding-bottom: calc(var(--dock-height) + 10px);
+  }
+
+  .slide {
+    padding: 10px 12px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    align-items: flex-start;
+  }
+
+  .slide-inner {
+    max-height: none;
+    height: auto;
+    min-height: calc(100% - 10px);
+    justify-content: flex-start;
+    gap: 10px;
+    padding-bottom: 24px;
+  }
+
+  /* Top Navigation Bar */
+  .top-nav-bar {
+    padding: 0 12px;
+    height: var(--header-height);
+  }
+  .senac-logo-mark { height: 30px; }
+  .brand-img-logo { max-height: 28px; }
   .brand-title { font-size: 0.85rem; }
-  .brand-subtitle, .slide-badge, #btn-shortcuts { display: none; }
+  .brand-subtitle { display: none; }
+  .current-slide-header-label { display: none; }
   .btn-label-desktop { display: none; }
-  .btn-qr-highlight, .btn-presenter-highlight { width: 36px; padding: 0; justify-content: center; }
+  #btn-shortcuts { display: none; }
 
-  .hero-main-title { font-size: clamp(2rem, 8vw, 2.6rem); }
-  .hero-sub-title { font-size: 1rem; }
-  .speakers-grid { grid-template-columns: 1fr; }
-  .hero-action-bar { flex-direction: column; align-items: stretch; text-align: center; }
-  .btn-primary-hero { width: 100%; }
+  .top-actions { gap: 4px; }
+  .top-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 0.84rem;
+    border-radius: 8px;
+  }
+  .btn-qr-highlight, .btn-presenter-highlight {
+    width: 34px;
+    padding: 0;
+    justify-content: center;
+  }
 
-  .grid-three-columns, .grid-split-visual { grid-template-columns: 1fr; }
-  .risk-timeline-steps { grid-template-columns: 1fr; }
-  .risk-arrow { transform: rotate(90deg); text-align: center; }
-  .ana-journey-grid { grid-template-columns: 1fr; }
-  .comparison-grid { grid-template-columns: 1fr; }
-  .vs-divider { flex-direction: row; margin: 4px 0; }
-  .vs-arrow { transform: rotate(90deg); }
+  /* Slide Headings & Tags */
+  .slide-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .slide-brand-tag-row { padding: 1px 8px; margin-bottom: 2px; }
+  .slide-brand-logo-img { height: 16px; }
+  .slide-brand-tag-text { font-size: 0.68rem; }
+  .slide-heading { font-size: clamp(1.2rem, 5vw, 1.45rem); line-height: 1.2; }
+  .slide-subheading { font-size: 0.8rem; margin-top: 1px; }
+  .slide-indicator-tag { font-size: 0.68rem; padding: 3px 8px; }
 
-  .dock-container { width: calc(100vw - 16px); max-width: 380px; padding: 4px 10px; gap: 6px; }
+  /* Slide 01: Hero */
+  .hero-inner { gap: 12px; }
+  .hero-brand-top { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .hero-version-tag { font-size: 0.7rem; padding: 3px 10px; }
+  .hero-center-content { margin: 4px 0; }
+  .hero-main-title { font-size: clamp(1.8rem, 7.5vw, 2.3rem); }
+  .hero-sub-title { font-size: 0.95rem; }
+  .hero-complement-text { font-size: 0.78rem; }
+  .hero-speakers-bar { padding: 12px; }
+  .speakers-header { font-size: 0.74rem; }
+  .speakers-grid { grid-template-columns: 1fr; gap: 6px; }
+  .speaker-card { padding: 8px 10px; }
+  .s-num { width: 26px; height: 26px; font-size: 0.9rem; }
+  .s-info strong { font-size: 0.8rem; }
+  .s-info span { font-size: 0.7rem; }
+  .hero-action-bar { flex-direction: column; align-items: stretch; gap: 8px; text-align: center; }
+  .btn-primary-hero { width: 100%; justify-content: center; height: 44px; font-size: 0.88rem; }
+  .hero-helper-hint { font-size: 0.72rem; }
+
+  /* Slide 02: O Drama Atual */
+  .grid-three-columns, .grid-split-visual { grid-template-columns: 1fr; gap: 10px; }
+  .crisis-card { padding: 12px 14px; gap: 6px; }
+  .crisis-icon-box { width: 34px; height: 34px; font-size: 1rem; }
+  .persona-tag { font-size: 0.68rem; }
+  .crisis-title { font-size: 0.92rem; }
+  .crisis-pain-quote { font-size: 0.76rem; padding: 6px 10px; }
+  .danger-bullets li { font-size: 0.76rem; }
+  .qualitative-metric-bar { flex-direction: column; gap: 6px; padding: 10px 12px; }
+  .metric-divider { width: 100%; height: 1px; margin: 2px 0; }
+  .m-kpi-badge { font-size: 0.7rem; }
+  .m-kpi-value { font-size: 0.8rem; }
+
+  /* Slide 03: Pedagogia em Risco */
+  .pedagogy-risk-layout { gap: 10px; }
+  .risk-card-large { padding: 12px; }
+  .risk-timeline-steps { grid-template-columns: 1fr; gap: 8px; }
+  .risk-step { flex-direction: row; text-align: left; gap: 10px; padding: 8px; }
+  .r-badge-num { width: 22px; height: 22px; font-size: 0.74rem; }
+  .r-icon { width: 32px; height: 32px; font-size: 0.95rem; }
+  .r-content h4 { font-size: 0.88rem; }
+  .r-content p { font-size: 0.74rem; }
+  .risk-arrow { transform: rotate(90deg); margin: 0 auto; font-size: 1.1rem; }
+  .risk-quote-banner { padding: 10px 12px; flex-direction: column; text-align: center; gap: 4px; }
+  .risk-quote-text strong { font-size: 0.7rem; }
+  .risk-quote-text span { font-size: 0.82rem; }
+
+  /* Slide 04: A Revelação */
+  .solution-triad-layout { grid-template-columns: 1fr; gap: 8px; }
+  .triad-card { padding: 12px; gap: 4px; }
+  .triad-header { font-size: 0.92rem; }
+  .triad-card p { font-size: 0.76rem; }
+  .triad-center-hub { padding: 16px 12px; order: -1; }
+  .hub-center-logo { height: 36px; }
+  .triad-center-hub h3 { font-size: 1.15rem; }
+  .hub-center-desc { font-size: 0.76rem; }
+  .bottom-coordenacao-pill { font-size: 0.76rem; padding: 8px 10px; flex-direction: column; align-items: flex-start; gap: 3px; }
+  .solution-impact-footer { font-size: 0.78rem; padding: 8px 10px; }
+
+  /* Slide 05: A Jornada da Ana */
+  .ana-journey-grid { grid-template-columns: 1fr; gap: 8px; }
+  .ana-stage-card { padding: 10px 12px; gap: 4px; }
+  .stage-step-badge { font-size: 0.66rem; }
+  .stage-icon { font-size: 1.1rem; }
+  .stage-title { font-size: 0.88rem; }
+  .stage-desc { font-size: 0.75rem; }
+  .stage-mini-mock { font-size: 0.7rem; padding: 4px 6px; }
+  .ana-summary-callout { font-size: 0.78rem; padding: 8px 12px; }
+
+  /* Slide 06: Painel da Gestão */
+  .gestao-panel-card { padding: 12px; }
+  .g-panel-header h4 { font-size: 0.95rem; }
+  .g-mock-pauta { font-size: 0.72rem; overflow-x: auto; }
+  .g-pauta-row { padding: 6px 8px; gap: 6px; }
+  .g-btn-check { font-size: 0.68rem; padding: 3px 8px; }
+  .g-metrics-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .g-metric-val { font-size: 1.1rem; }
+  .g-metric-lbl { font-size: 0.66rem; }
+  .g-panel-footer { font-size: 0.72rem; }
+  .gestao-slogan-bar { font-size: 0.78rem; padding: 8px 10px; text-align: center; }
+
+  /* Slide 07: Antes vs Depois */
+  .comparison-grid { grid-template-columns: 1fr; gap: 8px; }
+  .comparison-banner { padding: 10px 12px; }
+  .banner-title { font-size: 0.98rem; }
+  .comparison-body { padding: 10px 12px; gap: 8px; }
+  .vs-divider { flex-direction: row; margin: 4px auto; gap: 6px; }
+  .vs-circle { width: 30px; height: 30px; font-size: 0.78rem; }
+  .vs-arrow { transform: rotate(90deg); font-size: 0.95rem; }
+  .metric-box { padding: 6px 10px; }
+  .metric-box .m-val { font-size: 0.95rem; }
+  .m-label { font-size: 0.68rem; }
+  .contrast-punchline { font-size: 0.78rem; padding: 8px 12px; }
+
+  /* Slide 08: Teste ao Vivo & Simulador */
+  .demo-main-mode-switcher { flex-direction: column; gap: 6px; }
+  .mode-tab-btn { font-size: 0.78rem; padding: 8px 10px; justify-content: flex-start; }
+  .audience-test-container { padding: 12px; }
+  .audience-grid-split { grid-template-columns: 1fr; gap: 12px; }
+  .audience-qr-side { gap: 8px; }
+  .qr-scanner-card { padding: 8px; }
+  .audience-qr-image { width: 150px; height: 150px; margin: 0 auto; }
+  .btn-zoom-qr-action { font-size: 0.76rem; padding: 6px 14px; }
+  .audience-info-side { gap: 8px; }
+  .audience-header-tag { font-size: 0.66rem; }
+  .audience-main-title { font-size: 1.05rem; line-height: 1.25; }
+  .audience-desc { font-size: 0.78rem; }
+  .audience-steps-list { gap: 6px; }
+  .a-step-item { padding: 6px 10px; gap: 8px; }
+  .a-step-badge { width: 20px; height: 20px; font-size: 0.7rem; }
+  .a-step-text strong { font-size: 0.76rem; }
+  .a-step-text span { font-size: 0.68rem; }
+  .test-credentials-card { padding: 8px 10px; gap: 4px; }
+  .test-cred-header { font-size: 0.7rem; }
+  .test-cred-badges { flex-direction: column; gap: 4px; }
+  .cred-badge-item { width: 100%; justify-content: space-between; padding: 4px 8px; font-size: 0.72rem; }
+  .cred-value { font-size: 0.8rem; }
+  .audience-footer-callout { font-size: 0.74rem; }
+
+  .demo-story-header { padding: 6px 10px; gap: 6px; font-size: 0.72rem; }
+  .demo-steps-sequence { font-size: 0.68rem; gap: 4px; }
+  .demo-frame-navbar { flex-direction: column; align-items: stretch; gap: 6px; padding: 6px 8px; }
+  .demo-address-bar { font-size: 0.68rem; padding: 2px 8px; text-align: center; }
+  .demo-role-switcher { justify-content: center; gap: 2px; }
+  .role-btn { font-size: 0.66rem; padding: 3px 6px; }
+  .d-cards-row { grid-template-columns: 1fr; gap: 6px; }
+  .d-course-card { padding: 10px; }
+  .d-pauta-table { font-size: 0.7rem; overflow-x: auto; }
+  .pauta-row { padding: 6px 8px; gap: 4px; }
+  .d-coord-grid { grid-template-columns: 1fr; gap: 6px; }
+
+  /* Slide 09: Adoção & Escala */
+  .scale-card { padding: 12px; gap: 6px; }
+  .scale-icon { width: 34px; height: 34px; font-size: 1rem; }
+  .scale-title { font-size: 0.9rem; }
+  .scale-desc { font-size: 0.76rem; }
+  .scale-pill { font-size: 0.68rem; }
+  .scale-footer-banner { font-size: 0.78rem; padding: 8px 12px; }
+
+  /* Slide 10: Fechamento */
+  .final-synthesis-grid { grid-template-columns: 1fr; gap: 6px; }
+  .synthesis-card { padding: 10px 12px; }
+  .s-card-badge { font-size: 0.68rem; }
+  .synthesis-card h3 { font-size: 1.05rem; }
+  .synthesis-card p { font-size: 0.74rem; }
+  .s-connector-arrow { transform: rotate(0deg); text-align: center; font-size: 0.9rem; }
+  .grand-finale-banner { flex-direction: column; text-align: center; gap: 8px; padding: 12px; }
+  .finale-brand-row { flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+  .finale-logo { height: 30px; }
+  .finale-texts strong { font-size: 0.88rem; }
+  .finale-texts span { font-size: 0.74rem; }
+  .btn-confetti-final { width: 100%; justify-content: center; font-size: 0.82rem; padding: 8px 14px; }
+
+  /* Bottom Dock Controls */
+  .bottom-dock { padding-bottom: max(6px, env(safe-area-inset-bottom)); }
+  .dock-container {
+    width: calc(100vw - 16px);
+    max-width: 390px;
+    padding: 4px 10px;
+    gap: 6px;
+    justify-content: space-between;
+  }
+  .dock-slide-info { gap: 4px; }
+  .dock-counter-text { font-size: 0.72rem; }
   .dock-progress-track { display: none; }
+  .dock-nav-controls { gap: 4px; }
+  .dock-btn { width: 34px; height: 34px; font-size: 0.82rem; }
   .dock-dots-list { gap: 2px; }
-  .dot-btn { width: 4px; height: 4px; }
-  .dot-btn.active { width: 10px; }
+  .dot-btn { width: 5px; height: 5px; }
+  .dot-btn.active { width: 12px; }
+  .dock-pill-btn { padding: 4px 8px; border-radius: 50%; width: 34px; height: 34px; justify-content: center; }
   .dock-pill-btn span { display: none; }
-  .dock-pill-btn { padding: 4px 8px; border-radius: 50%; }
 
-  .slides-thumbnail-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Modals on Mobile */
+  .modal-window {
+    width: 95vw;
+    max-height: 88vh;
+    margin: auto;
+    border-radius: var(--border-radius-md);
+  }
+  .modal-header { padding: 10px 14px; }
+  .modal-header h3 { font-size: 0.92rem; }
+  .presenter-window { width: 96vw; max-height: 92vh; }
+  .presenter-body { grid-template-columns: 1fr; gap: 10px; padding: 12px; }
+  .presenter-header-timer { font-size: 0.78rem; gap: 4px; }
+  .timer-target-tag { display: none; }
+  .presenter-script-content { min-height: 160px; padding: 12px; font-size: 0.86rem; line-height: 1.5; }
+  .qr-zoom-window { width: 92vw; max-width: 360px; }
+  .qr-zoom-body { padding: 14px; }
+  .qr-zoom-card { padding: 14px; gap: 10px; }
+  .qr-zoom-image { max-width: 200px; }
+  .qr-zoom-hint { font-size: 0.74rem; }
+  .slides-thumbnail-grid { grid-template-columns: repeat(2, 1fr); padding: 12px; gap: 8px; }
+  .slide-thumb-card { padding: 8px 10px; }
+  .thumb-title { font-size: 0.78rem; }
+  .shortcuts-grid { padding: 12px; gap: 6px; }
 }
 
+/* Very Small Mobile Screens (<= 480px) */
 @media (max-width: 480px) {
+  :root {
+    --header-height: 50px;
+    --dock-height: 54px;
+  }
   .slide { padding: 6px 8px; }
-  .card-premium { padding: 14px; }
-  .hero-main-title { font-size: 1.85rem; }
+  .card-premium { padding: 10px 12px; }
+  .hero-main-title { font-size: 1.7rem; }
+  .dock-dots-list { display: none; } /* Focus on Counter and Prev/Next */
   .slides-thumbnail-grid { grid-template-columns: 1fr; }
 }
 
+/* Landscape Mobile Orientation */
 @media (max-height: 550px) {
-  :root { --header-height: 46px; --dock-height: 50px; }
-  .slide { padding: 6px 14px; align-items: flex-start; }
+  :root {
+    --header-height: 44px;
+    --dock-height: 46px;
+  }
+  .slide {
+    padding: 4px 12px;
+    align-items: flex-start;
+  }
+  .slide-inner {
+    height: auto;
+    max-height: none;
+    padding-bottom: 16px;
+  }
   .hero-center-content { margin: 2px 0; }
-  .hero-main-title { font-size: 1.75rem; }
+  .hero-main-title { font-size: 1.6rem; }
+  .hero-speakers-bar { display: none; }
 }
+

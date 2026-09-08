@@ -181,7 +181,10 @@ const SlideData = [
       <p>"Obrigado, Apresentador 3. Senhores avaliadores e presentes: acreditamos tanto na robustez e facilidade do Connect Senac que <strong>queremos convidar todos vocês a pegarem seus smartphones agora</strong>.</p>
       <p>1. Apontem a câmera do celular para o QR Code exibido na tela (pressionem [Q] no telão para ampliar se necessário);<br>
       2. O sistema abrirá diretamente no navegador do seu smartphone, sem instalar nada;<br>
-      3. Escolham uma aula prática de Estética ou Beleza e realizem um agendamento teste em menos de 30 segundos!</p>
+      3. <strong>Para acessar a aplicação, utilizem a conta de teste exibida na tela:</strong><br>
+      &nbsp;&nbsp;• <strong>Login:</strong> <code>teste@gmail.com</code><br>
+      &nbsp;&nbsp;• <strong>Senha:</strong> <code>123456</code><br>
+      4. Escolham uma aula prática de Estética ou Beleza e realizem um agendamento teste em menos de 30 segundos!</p>
       <p>Vocês verão na palma da mão a geração imediata do protocolo digital e a facilidade de navegação mobile-first que projetamos."</p>
       <div class="script-section-tag">SIMULADOR GUIADO DE 6 PASSOS</div>
       <p><em>(O apresentador pode alternar para a aba '2. A Jornada da Ana' e navegar pelos 6 passos reais na tela para demonstrar o fluxo completo em sincronia).</em></p>
