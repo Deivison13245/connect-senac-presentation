@@ -1,191 +1,314 @@
-/**
- * ====================================================================
- * CONNECT SENAC - INTERACTIVE 3D PRESENTATION SYSTEM
- * Core Engine: Three.js 3D Visualizer, Audio Synthesis,
- * Slide Controller, Presenter Mode, Simulator & UI Mechanics
- * ====================================================================
- */
+/* =========================================================
+   CONNECT SENAC — INTERACTIVE PRESENTATION ENGINE (10 SLIDES)
+   WebGL 3D Engine, Audio FX, Presenter Mode & Power Script
+   ========================================================= */
 
-// Global State
 const PresentationState = {
   currentSlide: 1,
-  totalSlides: 8,
+  totalSlides: 10,
   isAutoplay: false,
   autoplayInterval: null,
-  autoplayDuration: 8000,
-  audioEnabled: true,
-  theme: 'light',
-  presenterTimerSeconds: 0,
-  presenterTimerInterval: null,
-  presenterTimerRunning: false,
-  selectedService: 'Secretaria Acadêmica',
-  selectedSlot: '14:00'
+  autoplayDelay: 9000,
+  isMuted: false,
+  currentTheme: 'light',
+  timerSeconds: 0,
+  timerInterval: null,
+  timerIsRunning: false,
+  currentDemoStep: 1,
+  currentDemoRole: 'modelo'
 };
 
-// Slide Meta & Speaker Notes Data
+/* =========================================================
+   POWER SCRIPT & SLIDES METADATA (10 SLIDES)
+   Storytelling & Pitch de Vendas (Y Combinator Style)
+   4 Integrantes | Meta de Tempo: 26 min (25-30 min)
+   ========================================================= */
 const SlideData = [
   {
-    index: 1,
-    title: 'Capa Institucional',
-    category: 'Abertura',
-    speaker: 'Davi & Equipe',
-    notes: '• <strong>Abertura Oficial:</strong> Cumprimentar a banca, docentes, colegas e o orientador Deyson Santana.<br>• <strong>Visão Geral:</strong> Apresentar o propósito do <em>Connect Senac</em> como a resposta definitiva para conectar os processos e as pessoas no ecossistema Senac.<br>• <strong>Destaque:</strong> Projeto Integrador do curso Técnico em Desenvolvimento de Sistemas (TDS).'
+    id: 1,
+    title: "Slide 01 — Abertura Épica",
+    heading: "CONNECT SENAC — Transformando o atendimento prático em uma experiência digital fluida.",
+    category: "Abertura",
+    speaker: "Apresentador 1",
+    targetTime: "1:30 min",
+    keyQuote: "Mais do que agendar. Conectar pessoas, transformar aprendizado e eliminar o caos operacional.",
+    script: `
+      <div class="script-section-tag">FALA DE ABERTURA — APRESENTADOR 1</div>
+      <p>"Bom dia / Boa noite aos ilustres professores, membros da banca examinadora e a todos os presentes.</p>
+      <p>Nós somos a equipe de desenvolvimento do <strong>Connect Senac</strong>. Estamos aqui hoje não apenas para apresentar mais um software acadêmico, mas para defender um produto desenhado para solucionar uma das maiores dores operacionais e pedagógicas das instituições de ensino técnico e profissionalizante.</p>
+      <p>Nosso projeto durou meses de pesquisa, validação e desenvolvimento em equipe composta por 4 pessoas, e nossa apresentação está estruturada para demonstrar como identificamos uma dor real, concebemos uma arquitetura escalável e entregamos uma solução pronta para o uso diário."</p>
+      <div class="script-section-tag">TRANSIÇÃO DRAMÁTICA</div>
+      <p><em>"E para que vocês sintam o real valor do que construímos, convido a banca a mergulhar no cenário que encontramos antes de criarmos a plataforma."</em></p>
+    `
   },
   {
-    index: 2,
-    title: 'Problemática & Cenário Anterior',
-    category: 'Diagnóstico',
-    speaker: 'Deivison',
-    notes: '• <strong>Diagnóstico:</strong> Evidenciar as dores reais do modelo tradicional (filas presenciais, papéis soltos, planilhas dispersas e dependência de funcionários/horário comercial).<br>• <strong>Impacto:</strong> 70% do tempo gasto em processos manuais e alto risco de ruído na comunicação.<br>• <strong>A Oportunidade:</strong> Digitalizar e integrar o atendimento em uma única plataforma moderna com disponibilidade contínua.'
+    id: 2,
+    title: "Slide 02 — O Drama do Cenário Atual",
+    heading: "O Drama do Cenário Tradicional — Três personagens reais enfrentando o vilão invisível: o caos manual.",
+    category: "O Problema",
+    speaker: "Apresentador 1",
+    targetTime: "2:30 min",
+    keyQuote: "O custo da desorganização: Ana com medo de perder a viagem, Lucas sem modelo para treinar e a Gestão afundada em papéis.",
+    script: `
+      <div class="script-section-tag">NARRATIVA HUMANA (PERSONAS) — APRESENTADOR 1</div>
+      <p>"Imaginem três pessoas na rotina do Senac:</p>
+      <ul>
+        <li>Primeiro, a <strong>Ana</strong>: uma cliente da comunidade que deseja fazer um design de sobrancelhas ou um corte de cabelo. Ela manda mensagem no WhatsApp oficial, espera horas ou dias por uma resposta sem saber se sua vaga está garantida e tem medo de ir até a unidade e perder a viagem.</li>
+        <li>Em segundo lugar, o <strong>Lucas</strong>: nosso aluno de curso prático. Ele chegou cedo, esterilizou seus instrumentos, montou sua bancada com todo o cuidado... mas a modelo que estava agendada informalmente desmarcou 10 minutos antes. O resultado? Horas de aula prática perdidas olhando para uma cadeira vazia.</li>
+        <li>E, no centro de tudo, a <strong>Coordenação e os Docentes</strong>: sobrecarregados por pilhas de pranchetas de papel, conversas perdidas em celulares e zero visibilidade em tempo real sobre quem realmente compareceu."</li>
+      </ul>
+      <div class="script-highlight-quote">
+        "O problema não é apenas marcar um horário no relógio. É o atrito, o estresse e a falta de comunicação que desgastam todas as pessoas envolvidas."
+      </div>
+      <div class="script-section-tag">TRANSIÇÃO</div>
+      <p><em>"E o pior: esse atrito não gera apenas atraso operacional. Ele atinge diretamente o coração do Senac: a pedagogia."</em></p>
+    `
   },
   {
-    index: 3,
-    title: 'Metodologia Senac & Práticas TDS',
-    category: 'Pedagogia & Engenharia',
-    speaker: 'Alan',
-    notes: '• <strong>Pedagogia por Competências:</strong> Foco em desafios reais do mercado aplicados na prática.<br>• <strong>Engenharia de Software:</strong> Metodologias Ágeis (Scrum/Sprints) e boas práticas de Clean Code.<br>• <strong>Full Stack:</strong> Front-end responsivo, APIs robustas em Node.js e práticas DevOps de entrega contínua.'
+    id: 3,
+    title: "Slide 03 — A Pedagogia em Risco",
+    heading: "A Pedagogia em Risco — Quando a operação falha, o aprendizado prático é o maior prejudicado.",
+    category: "O Problema",
+    speaker: "Apresentador 1",
+    targetTime: "2:00 min",
+    keyQuote: "Cada bancada vazia representa uma competência prática que o aluno deixou de exercitar para o mercado.",
+    script: `
+      <div class="script-section-tag">IMPACTO EDUCACIONAL — APRESENTADOR 1</div>
+      <p>"Vejam a gravidade da cadeia de ruptura:</p>
+      <p>1. O agendamento é feito de forma descentralizada e manual;<br>
+      2. Sem lembretes automáticos e sem confirmação digital, a taxa de <em>no-show</em> (falta sem aviso) explode;<br>
+      3. Quando a modelo falta, o aluno não tem como treinar as competências curriculares daquela aula."</p>
+      <div class="script-highlight-quote">
+        "O verdadeiro custo do caos manual não é financeiro. É pedagógico: cada cadeira vazia é uma oportunidade de aprendizado que nunca mais volta."
+      </div>
+      <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 2</div>
+      <p><em>"E para estancar essa sangria e devolver a previsibilidade para o laboratório, nós criamos o Connect Senac. Passo a palavra para o Apresentador 2 nos guiar pela solução."</em></p>
+    `
   },
   {
-    index: 4,
-    title: 'Ideias Centrais & Visão do Projeto',
-    category: 'Conceito & Arquitetura',
-    speaker: 'Raigner',
-    notes: '• <strong>Conexão Integrada:</strong> Unificar alunos, professores e coordenação em tempo real.<br>• <strong>Autonomia:</strong> Autosserviço inteligente acessível 24/7.<br>• <strong>3D Ecossistema:</strong> Demonstrar como a arquitetura em microsserviços interconecta todos os nós da instituição.'
+    id: 4,
+    title: "Slide 04 — A Revelação da Solução",
+    heading: "A Revelação: Connect Senac — A ponte digital que une a demanda da comunidade com o aprendizado do aluno.",
+    category: "A Solução",
+    speaker: "Apresentador 2",
+    targetTime: "2:30 min",
+    keyQuote: "Não é apenas digitalizar um horário. É orquestrar o processo humano de ponta a ponta com previsibilidade.",
+    script: `
+      <div class="script-section-tag">A REVELAÇÃO DO PRODUTO — APRESENTADOR 2</div>
+      <p>"Obrigado, Apresentador 1. O <strong>Connect Senac</strong> nasce exatamente como o herói libertador dessa jornada.</p>
+      <p>Ele não é um simples formulário web; ele é uma tríade integrada onde cada ponta alimenta a outra em tempo real:</p>
+      <ul>
+        <li><strong>A Cliente (Ana)</strong> entra no pilar <em>AGENDAR</em>: descobre os cursos práticos abertos, escolhe a data e recebe confirmação com protocolo na hora.</li>
+        <li><strong>O Aluno (Lucas)</strong> atua no pilar <em>ACOMPANHAR</em>: abre a pauta da sua aula no celular ou tablet, sabe exatamente quem vai atender e valida a presença em um clique.</li>
+        <li><strong>A Coordenação</strong> governa no pilar <em>GERENCIAR</em>: abre turmas, distribui vagas e monitora a ocupação com dados 100% íntegros."</li>
+      </ul>
+      <div class="script-highlight-quote">
+        "Com o Connect Senac, uma única ação de um usuário gera clareza e previsibilidade instantânea para todos os demais."
+      </div>
+    `
   },
   {
-    index: 5,
-    title: 'A Plataforma Connect Senac & Suas Funções',
-    category: 'Funcionalidades',
-    speaker: 'Naldo',
-    notes: '• <strong>Módulos Centrais:</strong><br>  1. <em>Agendamentos:</em> Gestão de horários com confirmação instantânea.<br>  2. <em>Painel do Aluno:</em> Histórico acadêmico e avisos em tempo real.<br>  3. <em>Painel Administrativo:</em> Gestão de fluxo de atendimento e métricas.<br>• <strong>Responsividade:</strong> Experiência mobile-first e desktop fluida.'
+    id: 5,
+    title: "Slide 05 — A Jornada da Ana",
+    heading: "A Jornada da Ana: Experiência Sem Atrito — Do primeiro clique no celular ao atendimento com nota máxima.",
+    category: "A Solução",
+    speaker: "Apresentador 2",
+    targetTime: "2:30 min",
+    keyQuote: "De horas de espera e incerteza para uma experiência simples, transparente e acolhedora.",
+    script: `
+      <div class="script-section-tag">A JORNADA DO ALÍVIO — APRESENTADOR 2</div>
+      <p>"Vejamos como a vida da Ana se transformou:</p>
+      <ol>
+        <li><strong>Descoberta Ágil</strong>: Pelo navegador do celular, sem precisar baixar apps pesados, a Ana acessa o catálogo do Senac e vê os procedimentos de estética disponíveis.</li>
+        <li><strong>Escolha Transparente</strong>: Ela escolhe a data e o horário com vagas reais sincronizadas em tempo real.</li>
+        <li><strong>Protocolo Seguro</strong>: Recebe na hora seu comprovante digital com instruções de chegada e orientações do procedimento.</li>
+        <li><strong>Atendimento & Avaliação</strong>: Ao chegar no laboratório, Lucas já a esperava com tudo pronto. Ao final, Ana avalia o atendimento com 5 estrelas!"</li>
+      </ol>
+      <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 3</div>
+      <p><em>"E agora o Apresentador 3 vai mostrar o que acontece no lado da gestão e o salto qualitativo que conquistamos."</em></p>
+    `
   },
   {
-    index: 6,
-    title: 'Solução das Dores & Geração de Valor',
-    category: 'Comparativo',
-    speaker: 'Davi & Alan',
-    notes: '• <strong>Antes vs Depois:</strong> Comparação direta de impacto.<br>• <strong>Ganhos:</strong> Redução de 45 minutos de fila para menos de 2 minutos no app digital.<br>• <strong>Eficiência:</strong> +300% de agilidade operacional e 100% de transparência e segurança.'
+    id: 6,
+    title: "Slide 06 — O Painel de Controle da Gestão",
+    heading: "O Painel de Controle da Gestão — A pauta do docente e o dashboard da coordenação em tempo real.",
+    category: "Produto & Gestão",
+    speaker: "Apresentador 3",
+    targetTime: "2:30 min",
+    keyQuote: "O modelo agenda. O aluno/docente acompanha. A coordenação gerencia.",
+    script: `
+      <div class="script-section-tag">ORQUESTRAÇÃO & CONTROLE — APRESENTADOR 3</div>
+      <p>"Obrigado, Apresentador 2. Do ponto de vista operacional, o Connect Senac resolve o pesadelo das pranchetas:</p>
+      <p>Para o <strong>Docente e o Aluno</strong>, a tela de Pauta substitui as anotações manuais. O professor visualiza a fila da turma, vê o status 'Confirmada' da Ana e clica em 'Validar Presença' em menos de 3 segundos.</p>
+      <p>Para a <strong>Coordenação</strong>, o dashboard apresenta métricas de ocupação em tempo real, garantia de zero conflito de salas físicas e segurança por controle de papéis (RBAC)."</p>
+      <div class="script-highlight-quote">
+        "O modelo agenda. O aluno acompanha. A coordenação gerencia. Cada perfil tem exatamente a ferramenta necessária, sem ruídos."
+      </div>
+    `
   },
   {
-    index: 7,
-    title: 'Demonstração Prática & Vídeo',
-    category: 'Experiência ao Vivo',
-    speaker: 'Toda a Equipe',
-    notes: '• <strong>Ao Vivo:</strong> Convidar os avaliadores a apontar a câmera do celular para o QR Code funcional.<br>• <strong>Vídeo Demonstrativo:</strong> Apresentar o pitch em vídeo no player ao lado exibindo a aplicação em funcionamento real.<br>• <strong>Autonomia:</strong> Testes em tempo real na palma da mão.'
+    id: 7,
+    title: "Slide 07 — Antes vs Depois",
+    heading: "Antes vs. Depois: O Salto Qualitativo — O contraste dramático entre o modelo arcaico e a eficiência integrada.",
+    category: "O Salto Qualitativo",
+    speaker: "Apresentador 3",
+    targetTime: "2:30 min",
+    keyQuote: "Não estamos apenas digitalizando um agendamento. Estamos resgatando o tempo pedagógico de alunos e professores.",
+    script: `
+      <div class="script-section-tag">O SALTO QUALITATIVO — APRESENTADOR 3</div>
+      <p>"Vejam o impacto no dia a dia da instituição quando colocamos os dois mundos lado a lado:</p>
+      <ul>
+        <li><strong>No Passado (Manual)</strong>: Esperas de horas ou dias por mensagem, alto índice de faltas surpresa, bancadas ociosas e pilhas de folhas de papel sujeitas a extravio.</li>
+        <li><strong>Com o Connect Senac</strong>: Confirmação em segundos com protocolo digital, agenda previsível com turmas 100% cheias e histórico acadêmico centralizado no banco de dados.</li>
+      </ul>
+      <div class="script-highlight-quote">
+        "Não eliminamos apenas o papel; devolvemos o foco dos professores e alunos para o que realmente importa: a excelência do aprendizado."
+      </div>
+      <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 4</div>
+      <p><em>"E para provar que tudo isso é real e funcional, passo a palavra ao Apresentador 4 para a demonstração ao vivo com a banca."</em></p>
+    `
   },
   {
-    index: 8,
-    title: 'Fechamento & Impacto Institucional',
-    category: 'Conclusão',
-    speaker: 'Davi & Toda a Equipe',
-    notes: '• <strong>Legado do Projeto:</strong> Impacto institucional consolidado (redução de 85% nas filas, 99.4% de satisfação).<br>• <strong>Agradecimentos:</strong> Prof. Deyson Santana e Senac Pernambuco.<br>• <strong>Encerramento:</strong> Prontidão para o mercado e abertura para perguntas da banca.'
+    id: 8,
+    title: "Slide 08 — 📱 Teste ao Vivo & Simulador",
+    heading: "📱 Teste ao Vivo: Experimente Agora — A melhor forma de comprovar o produto é colocando-o nas mãos da banca e da plateia.",
+    category: "Demonstração Prática",
+    speaker: "Apresentador 4",
+    targetTime: "3:30 min",
+    keyQuote: "Peguem seus celulares agora e façam um agendamento teste em 30 segundos pelo QR Code!",
+    script: `
+      <div class="script-section-tag">CHAMADA AO VIVO PARA A BANCA — APRESENTADOR 4</div>
+      <p>"Obrigado, Apresentador 3. Senhores avaliadores e presentes: acreditamos tanto na robustez e facilidade do Connect Senac que <strong>queremos convidar todos vocês a pegarem seus smartphones agora</strong>.</p>
+      <p>1. Apontem a câmera do celular para o QR Code exibido na tela (pressionem [Q] no telão para ampliar se necessário);<br>
+      2. O sistema abrirá diretamente no navegador do seu smartphone, sem instalar nada;<br>
+      3. Escolham uma aula prática de Estética ou Beleza e realizem um agendamento teste em menos de 30 segundos!</p>
+      <p>Vocês verão na palma da mão a geração imediata do protocolo digital e a facilidade de navegação mobile-first que projetamos."</p>
+      <div class="script-section-tag">SIMULADOR GUIADO DE 6 PASSOS</div>
+      <p><em>(O apresentador pode alternar para a aba '2. A Jornada da Ana' e navegar pelos 6 passos reais na tela para demonstrar o fluxo completo em sincronia).</em></p>
+    `
+  },
+  {
+    id: 9,
+    title: "Slide 09 — Adoção & Escala",
+    heading: "Estratégia de Adoção & Escala — Integração fluida na rotina da unidade com arquitetura pronta para crescer.",
+    category: "Visão de Futuro",
+    speaker: "Apresentador 4",
+    targetTime: "2:00 min",
+    keyQuote: "Do laboratório de estética da nossa unidade para todos os cursos práticos do ecossistema Senac.",
+    script: `
+      <div class="script-section-tag">VIABILIDADE TÉCNICA E FUTURO — APRESENTADOR 4</div>
+      <p>"Para garantir que essa solução seja viável e perene na instituição, baseamos o projeto em três pilares:</p>
+      <ul>
+        <li><strong>Zero Fricção de Treinamento</strong>: Interface autoexplicativa que não exige cursos complexos de capacitação para professores ou alunos.</li>
+        <li><strong>Arquitetura Web Escalável</strong>: Backend em Node.js/Express com API REST desacoplada e PostgreSQL/Supabase, permitindo integrar novos cursos com facilidade.</li>
+        <li><strong>Segurança e Governança</strong>: Autenticação segura JWT, senhas com hash bcrypt e controle de perfis RBAC, protegendo dados de clientes e da unidade."</li>
+      </ul>
+      <div class="script-highlight-quote">
+        "O Connect Senac foi concebido para começar na nossa unidade e escalar com segurança para toda a rede Senac."
+      </div>
+    `
+  },
+  {
+    id: 10,
+    title: "Slide 10 — Fechamento & Impacto",
+    heading: "Mais do que agendar. Conectar — Uma experiência integrada para todos os envolvidos no processo pedagógico.",
+    category: "Conclusão",
+    speaker: "Apresentador 4",
+    targetTime: "2:00 min",
+    keyQuote: "Connect Senac — A ponte que une pessoas e tecnologia para elevar a qualidade do ensino prático. Muito obrigado!",
+    script: `
+      <div class="script-section-tag">FECHAMENTO TRIUNFAL — APRESENTADOR 4</div>
+      <p>"Para encerrar nossa apresentação:</p>
+      <p>A Cliente participa com facilidade e segurança.<br>
+      O Aluno pratica com bancadas cheias e aproveitamento total.<br>
+      A Gestão gerencia com dados claros e sem papelada.<br>
+      E o <strong>Connect Senac conecta todas essas pontas em uma experiência fluida e moderna</strong>.</p>
+      <p>Agradecemos profundamente aos nossos professores, orientadores e a cada um dos membros da banca examinadora pelo tempo e pela atenção.</p>
+      <div class="script-highlight-quote">
+        "Connect Senac — Mais do que agendar. Conectar. Muito obrigado e abrimos agora para as considerações da banca!"
+      </div>
+    `
   }
 ];
 
-/* ====================================================================
-   WEB AUDIO API SYNTHESIZER (UI Sounds)
-   ==================================================================== */
-class SoundEngine {
-  constructor() {
-    this.ctx = null;
-  }
-
+/* =========================================================
+   AUDIO FX SYNTHESIZER (WEB AUDIO API)
+   ========================================================= */
+const Sound = {
+  ctx: null,
   init() {
     if (!this.ctx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) {
-        this.ctx = new AudioContext();
-      }
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) this.ctx = new AudioCtx();
     }
-  }
-
+  },
   playWhoosh() {
-    if (!PresentationState.audioEnabled) return;
+    if (PresentationState.isMuted) return;
     this.init();
     if (!this.ctx) return;
 
     try {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
-
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(440, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(180, this.ctx.currentTime + 0.18);
-
+      osc.frequency.setValueAtTime(320, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(140, this.ctx.currentTime + 0.18);
       gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.18);
-
       osc.connect(gain);
       gain.connect(this.ctx.destination);
-
       osc.start();
       osc.stop(this.ctx.currentTime + 0.18);
-    } catch (e) {
-      console.log('Audio note error:', e);
-    }
-  }
-
+    } catch (e) {}
+  },
   playClick() {
-    if (!PresentationState.audioEnabled) return;
+    if (PresentationState.isMuted) return;
     this.init();
     if (!this.ctx) return;
 
     try {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
-
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(800, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.04);
-
+      osc.frequency.setValueAtTime(600, this.ctx.currentTime);
       gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
-
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
-
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.04);
+      osc.stop(this.ctx.currentTime + 0.08);
     } catch (e) {}
-  }
-
-  playChime() {
-    if (!PresentationState.audioEnabled) return;
+  },
+  playCelebration() {
+    if (PresentationState.isMuted) return;
     this.init();
     if (!this.ctx) return;
 
     try {
-      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      const notes = [523.25, 659.25, 783.99, 1046.50];
       notes.forEach((freq, idx) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
-        const startTime = this.ctx.currentTime + (idx * 0.06);
-
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, startTime);
-
-        gain.gain.setValueAtTime(0.07, startTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.35);
-
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.09);
+        gain.gain.setValueAtTime(0.08, this.ctx.currentTime + idx * 0.09);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.09 + 0.3);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
-
-        osc.start(startTime);
-        osc.stop(startTime + 0.35);
+        osc.start(this.ctx.currentTime + idx * 0.09);
+        osc.stop(this.ctx.currentTime + idx * 0.09 + 0.3);
       });
     } catch (e) {}
   }
-}
+};
 
-const Sound = new SoundEngine();
-
-/* ====================================================================
-   THREE.JS 3D BACKGROUND SYSTEM
-   ==================================================================== */
+/* =========================================================
+   3D WEBGL GLOBAL BACKGROUND ENGINE (THREE.JS)
+   ========================================================= */
 class Global3DBackground {
   constructor() {
     this.canvas = document.getElementById('bg-canvas-3d');
-    if (!this.canvas) return;
+    if (!this.canvas || typeof THREE === 'undefined') return;
 
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -199,33 +322,28 @@ class Global3DBackground {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    this.particles = null;
-    this.polyhedra = [];
-    this.mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-
-    this.initParticles();
-    this.initFloatingObjects();
-    this.initLights();
+    this.initObjects();
     this.bindEvents();
+    this.animate = this.animate.bind(this);
     this.animate();
   }
 
-  initParticles() {
-    const particleCount = 180;
+  initObjects() {
+    // Floating Connected Nodes Grid
+    const particleCount = 140;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const colorBlue = new THREE.Color(0x004580);
-    const colorOrange = new THREE.Color(0xf37021);
-    const colorCyan = new THREE.Color(0x38bdf8);
+    const color1 = new THREE.Color(0x004580); // Senac Blue
+    const color2 = new THREE.Color(0xf37021); // Senac Orange
 
     for (let i = 0; i < particleCount; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 160;
       positions[i * 3 + 1] = (Math.random() - 0.5) * 120;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
 
-      const mixedColor = Math.random() > 0.6 ? colorOrange : (Math.random() > 0.5 ? colorCyan : colorBlue);
+      const mixedColor = color1.clone().lerp(color2, Math.random());
       colors[i * 3] = mixedColor.r;
       colors[i * 3 + 1] = mixedColor.g;
       colors[i * 3 + 2] = mixedColor.b;
@@ -235,299 +353,65 @@ class Global3DBackground {
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 2.2,
+      size: 2.8,
       vertexColors: true,
       transparent: true,
-      opacity: 0.55
+      opacity: 0.75
     });
 
     this.particles = new THREE.Points(geometry, material);
     this.scene.add(this.particles);
-  }
 
-  initFloatingObjects() {
-    const geometries = [
-      new THREE.IcosahedronGeometry(4.5, 0),
-      new THREE.DodecahedronGeometry(3.8, 0),
-      new THREE.TorusGeometry(3.5, 1.2, 16, 32),
-      new THREE.OctahedronGeometry(4, 0)
-    ];
-
-    const materials = [
-      new THREE.MeshStandardMaterial({
-        color: 0x004580,
-        metalness: 0.2,
-        roughness: 0.3,
-        transparent: true,
-        opacity: 0.35,
-        wireframe: true
-      }),
-      new THREE.MeshStandardMaterial({
-        color: 0xf37021,
-        metalness: 0.3,
-        roughness: 0.2,
-        transparent: true,
-        opacity: 0.45,
-        wireframe: true
-      }),
-      new THREE.MeshStandardMaterial({
-        color: 0x38bdf8,
-        metalness: 0.1,
-        roughness: 0.4,
-        transparent: true,
-        opacity: 0.3,
-        wireframe: true
-      })
-    ];
-
-    for (let i = 0; i < 6; i++) {
-      const geo = geometries[i % geometries.length];
-      const mat = materials[i % materials.length];
-      const mesh = new THREE.Mesh(geo, mat);
-
-      mesh.position.x = (Math.random() - 0.5) * 140;
-      mesh.position.y = (Math.random() - 0.5) * 90;
-      mesh.position.z = (Math.random() - 0.5) * 50 - 20;
-
-      mesh.rotation.x = Math.random() * Math.PI;
-      mesh.rotation.y = Math.random() * Math.PI;
-
-      mesh.userData = {
-        rotSpeedX: (Math.random() - 0.5) * 0.008,
-        rotSpeedY: (Math.random() - 0.5) * 0.008,
-        floatSpeed: 0.001 + Math.random() * 0.002,
-        floatOffset: Math.random() * Math.PI * 2
-      };
-
-      this.polyhedra.push(mesh);
-      this.scene.add(mesh);
-    }
-  }
-
-  initLights() {
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-    this.scene.add(ambientLight);
-
-    const dirLight1 = new THREE.DirectionalLight(0xf37021, 1.2);
-    dirLight1.position.set(50, 40, 50);
-    this.scene.add(dirLight1);
-
-    const dirLight2 = new THREE.DirectionalLight(0x004580, 1.5);
-    dirLight2.position.set(-50, -40, 30);
-    this.scene.add(dirLight2);
+    // Subtle Torus Wireframe (Digital Ecosystem)
+    const torusGeo = new THREE.TorusGeometry(38, 1.2, 16, 100);
+    const torusMat = new THREE.MeshBasicMaterial({
+      color: 0x004580,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.12
+    });
+    this.torus = new THREE.Mesh(torusGeo, torusMat);
+    this.scene.add(this.torus);
   }
 
   bindEvents() {
     window.addEventListener('resize', () => {
+      if (!this.renderer || !this.camera) return;
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
+    let mouseX = 0;
+    let mouseY = 0;
     window.addEventListener('mousemove', (e) => {
-      this.mouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
-      this.mouse.targetY = -(e.clientY / window.innerHeight - 0.5) * 2;
-    });
-  }
-
-  animate() {
-    requestAnimationFrame(() => this.animate());
-
-    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
-    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
-
-    if (this.particles) {
-      this.particles.rotation.y += 0.0008;
-      this.particles.position.x = this.mouse.x * 6;
-      this.particles.position.y = this.mouse.y * 6;
-    }
-
-    const time = performance.now();
-    this.polyhedra.forEach((mesh) => {
-      mesh.rotation.x += mesh.userData.rotSpeedX;
-      mesh.rotation.y += mesh.userData.rotSpeedY;
-      mesh.position.y += Math.sin(time * mesh.userData.floatSpeed + mesh.userData.floatOffset) * 0.03;
-    });
-
-    this.camera.position.x = this.mouse.x * 4;
-    this.camera.position.y = this.mouse.y * 4;
-    this.camera.lookAt(0, 0, 0);
-
-    this.renderer.render(this.scene, this.camera);
-  }
-}
-
-/* ====================================================================
-   THREE.JS SLIDE 4 ECOSYSTEM 3D VISUALIZER
-   ==================================================================== */
-class Ecosystem3DVisualizer {
-  constructor() {
-    this.canvas = document.getElementById('ecosystem-canvas-3d');
-    if (!this.canvas) return;
-
-    this.container = document.getElementById('canvas-ecosystem-wrapper');
-    this.width = this.container.clientWidth || 400;
-    this.height = this.container.clientHeight || 280;
-
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 0.1, 100);
-    this.camera.position.set(0, 18, 28);
-
-    this.renderer = new THREE.WebGLRenderer({
-      canvas: this.canvas,
-      alpha: true,
-      antialias: true
-    });
-    this.renderer.setSize(this.width, this.height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.enableDamping = true;
-    this.controls.dampingFactor = 0.05;
-    this.controls.autoRotate = true;
-    this.controls.autoRotateSpeed = 1.2;
-    this.controls.maxDistance = 45;
-    this.controls.minDistance = 14;
-
-    this.nodes = [];
-    this.curves = [];
-    this.dataPackets = [];
-
-    this.initEcosystem();
-    this.initLights();
-    this.bindEvents();
-    this.animate();
-  }
-
-  initEcosystem() {
-    // Central Hub Node: Connect Senac Core
-    const hubGeo = new THREE.CylinderGeometry(2.4, 2.4, 1.2, 32);
-    const hubMat = new THREE.MeshStandardMaterial({
-      color: 0xf37021,
-      metalness: 0.5,
-      roughness: 0.2,
-      emissive: 0xd6590f,
-      emissiveIntensity: 0.4
-    });
-    const hubMesh = new THREE.Mesh(hubGeo, hubMat);
-    hubMesh.position.set(0, 0, 0);
-    this.scene.add(hubMesh);
-
-    // Glowing Pulse Ring around Central Hub
-    const ringGeo = new THREE.RingGeometry(3.2, 3.6, 32);
-    const ringMat = new THREE.MeshBasicMaterial({
-      color: 0xf37021,
-      side: THREE.DoubleSide,
-      transparent: true,
-      opacity: 0.6
-    });
-    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-    ringMesh.rotation.x = Math.PI / 2;
-    this.scene.add(ringMesh);
-    this.pulseRing = ringMesh;
-
-    // Outer Satellite Nodes
-    const satelliteConfig = [
-      { name: 'Alunos', color: 0x0288d1, pos: [-10, 2, 4], size: 1.4 },
-      { name: 'Docentes', color: 0x00bcd4, pos: [10, 3, -4], size: 1.4 },
-      { name: 'Coordenação', color: 0x004580, pos: [6, 1, 9], size: 1.3 },
-      { name: 'Cloud API', color: 0x10b981, pos: [-8, -2, -8], size: 1.5 },
-      { name: 'Agendamentos', color: 0xff9533, pos: [-2, 4, 11], size: 1.2 }
-    ];
-
-    satelliteConfig.forEach((cfg) => {
-      const nodeGeo = new THREE.SphereGeometry(cfg.size, 24, 24);
-      const nodeMat = new THREE.MeshStandardMaterial({
-        color: cfg.color,
-        roughness: 0.3,
-        metalness: 0.4,
-        emissive: cfg.color,
-        emissiveIntensity: 0.3
-      });
-      const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
-      nodeMesh.position.set(cfg.pos[0], cfg.pos[1], cfg.pos[2]);
-      this.scene.add(nodeMesh);
-      this.nodes.push(nodeMesh);
-
-      // Connection Curve from Node to Hub
-      const p1 = new THREE.Vector3(cfg.pos[0], cfg.pos[1], cfg.pos[2]);
-      const pMid = new THREE.Vector3(cfg.pos[0] * 0.5, cfg.pos[1] + 2.5, cfg.pos[2] * 0.5);
-      const p2 = new THREE.Vector3(0, 0.6, 0);
-
-      const curve = new THREE.QuadraticBezierCurve3(p1, pMid, p2);
-      this.curves.push(curve);
-
-      const points = curve.getPoints(30);
-      const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
-      const lineMat = new THREE.LineBasicMaterial({
-        color: cfg.color,
-        transparent: true,
-        opacity: 0.5
-      });
-      const line = new THREE.Line(lineGeo, lineMat);
-      this.scene.add(line);
-
-      // Animated Energy Packet
-      const packetGeo = new THREE.SphereGeometry(0.35, 12, 12);
-      const packetMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-      const packet = new THREE.Mesh(packetGeo, packetMat);
-      this.scene.add(packet);
-
-      this.dataPackets.push({
-        mesh: packet,
-        curve: curve,
-        progress: Math.random(),
-        speed: 0.008 + Math.random() * 0.006
-      });
-    });
-  }
-
-  initLights() {
-    const amb = new THREE.AmbientLight(0xffffff, 0.9);
-    this.scene.add(amb);
-
-    const dir = new THREE.DirectionalLight(0xffffff, 1.2);
-    dir.position.set(15, 20, 15);
-    this.scene.add(dir);
-  }
-
-  bindEvents() {
-    window.addEventListener('resize', () => {
-      if (!this.container) return;
-      this.width = this.container.clientWidth;
-      this.height = this.container.clientHeight;
-      if (this.width > 0 && this.height > 0) {
-        this.camera.aspect = this.width / this.height;
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize(this.width, this.height);
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+      if (this.camera) {
+        this.camera.position.x += (mouseX * 5 - this.camera.position.x) * 0.05;
+        this.camera.position.y += (mouseY * 5 - this.camera.position.y) * 0.05;
       }
     });
   }
 
   animate() {
-    requestAnimationFrame(() => this.animate());
-
-    this.controls.update();
-
-    if (this.pulseRing) {
-      const scale = 1 + Math.sin(performance.now() * 0.004) * 0.15;
-      this.pulseRing.scale.set(scale, scale, 1);
+    requestAnimationFrame(this.animate);
+    if (this.particles) {
+      this.particles.rotation.y += 0.0012;
+      this.particles.rotation.x += 0.0006;
     }
-
-    this.dataPackets.forEach((pkt) => {
-      pkt.progress += pkt.speed;
-      if (pkt.progress > 1) pkt.progress = 0;
-      const pt = pkt.curve.getPoint(pkt.progress);
-      pkt.mesh.position.set(pt.x, pt.y, pt.z);
-    });
-
+    if (this.torus) {
+      this.torus.rotation.z += 0.002;
+      this.torus.rotation.x += 0.001;
+    }
     this.renderer.render(this.scene, this.camera);
   }
 }
 
-/* ====================================================================
-   PRESENTATION CONTROLLER & NAVIGATION
-   ==================================================================== */
+/* =========================================================
+   NAVIGATION & SLIDES ENGINE (10 SLIDES)
+   ========================================================= */
+
 function goToSlide(targetSlide) {
   if (targetSlide < 1 || targetSlide > PresentationState.totalSlides) return;
   if (targetSlide === PresentationState.currentSlide) return;
@@ -540,7 +424,7 @@ function goToSlide(targetSlide) {
   if (prevSlideEl) {
     prevSlideEl.classList.remove('active');
     prevSlideEl.classList.add('prev');
-    setTimeout(() => prevSlideEl.classList.remove('prev'), 500);
+    setTimeout(() => prevSlideEl.classList.remove('prev'), 450);
   }
 
   if (nextSlideEl) {
@@ -550,377 +434,377 @@ function goToSlide(targetSlide) {
 
   PresentationState.currentSlide = targetSlide;
   updateUIState();
-  triggerSlideAnimations(targetSlide);
 }
 
 function nextSlide() {
   if (PresentationState.currentSlide < PresentationState.totalSlides) {
     goToSlide(PresentationState.currentSlide + 1);
   } else {
-    goToSlide(1); // loop
+    goToSlide(1); // loop back
   }
 }
 
 function prevSlide() {
   if (PresentationState.currentSlide > 1) {
     goToSlide(PresentationState.currentSlide - 1);
+  } else {
+    goToSlide(PresentationState.totalSlides);
   }
 }
 
 function updateUIState() {
-  const currentIdx = PresentationState.currentSlide;
-  const currentData = SlideData[currentIdx - 1];
+  const current = PresentationState.currentSlide;
+  const total = PresentationState.totalSlides;
+  const slideInfo = SlideData[current - 1] || SlideData[0];
 
-  // Header updates
-  const headerBadge = document.getElementById('slide-badge-category');
+  // Update Top Navigation Bar Labels
   const headerTitle = document.getElementById('slide-header-title');
-  if (headerBadge) headerBadge.innerText = currentData.category;
-  if (headerTitle) headerTitle.innerText = currentData.title;
+  const badgeCategory = document.getElementById('slide-badge-category');
+  const speakerPill = document.getElementById('slide-speaker-pill');
 
-  // Dock updates
-  const dockCounter = document.getElementById('dock-counter');
-  const dockProgress = document.getElementById('dock-progress-fill');
-  if (dockCounter) dockCounter.innerText = `0${currentIdx} / 0${PresentationState.totalSlides}`;
-  if (dockProgress) {
-    const pct = ((currentIdx) / PresentationState.totalSlides) * 100;
-    dockProgress.style.width = `${pct}%`;
+  if (headerTitle) headerTitle.textContent = slideInfo.title;
+  if (badgeCategory) badgeCategory.textContent = slideInfo.category;
+  if (speakerPill) speakerPill.innerHTML = `<i class="fa-solid fa-user"></i> ${slideInfo.speaker}`;
+
+  // Update Bottom Dock Counter and Progress
+  const counterEl = document.getElementById('dock-counter');
+  const progressFill = document.getElementById('dock-progress-fill');
+
+  if (counterEl) {
+    const padCurrent = current < 10 ? `0${current}` : current;
+    const padTotal = total < 10 ? `0${total}` : total;
+    counterEl.textContent = `${padCurrent} / ${padTotal}`;
   }
 
-  // Dots
+  if (progressFill) {
+    const percentage = (current / total) * 100;
+    progressFill.style.width = `${percentage}%`;
+  }
+
+  // Update Dock Navigation Dots
   const dots = document.querySelectorAll('.dot-btn');
-  dots.forEach((dot, idx) => {
-    if (idx + 1 === currentIdx) {
+  dots.forEach((dot, index) => {
+    if (index + 1 === current) {
       dot.classList.add('active');
     } else {
       dot.classList.remove('active');
     }
   });
 
-  // Presenter Modal Sync
-  updatePresenterModalContent();
+  // Update Modals Content if open
+  updatePresenterModal();
+  updateGridOverviewHighlight();
 }
 
-function triggerSlideAnimations(slideIndex) {
-  // Animate numeric counters in active slide
-  const activeSlide = document.getElementById(`slide-${slideIndex}`);
-  if (!activeSlide) return;
+/* =========================================================
+   INTERACTIVE DEMO SIMULATOR & AUDIENCE MODE (SLIDE 8)
+   ========================================================= */
 
-  const countEls = activeSlide.querySelectorAll('[data-target]');
-  countEls.forEach((el) => {
-    const target = parseInt(el.getAttribute('data-target'), 10) || 0;
-    let count = 0;
-    const step = Math.ceil(target / 25);
-    const timer = setInterval(() => {
-      count += step;
-      if (count >= target) {
-        el.innerText = target;
-        clearInterval(timer);
-      } else {
-        el.innerText = count;
-      }
-    }, 25);
-  });
+function switchDemoMainMode(mode) {
+  Sound.playClick();
+  const btnStory = document.getElementById('btn-mode-story');
+  const btnAudience = document.getElementById('btn-mode-audience');
+  const panelStory = document.getElementById('demo-panel-story');
+  const panelAudience = document.getElementById('demo-panel-audience');
+
+  if (mode === 'story') {
+    if (btnStory) btnStory.classList.add('active');
+    if (btnAudience) btnAudience.classList.remove('active');
+    if (panelStory) panelStory.classList.add('active');
+    if (panelAudience) panelAudience.classList.remove('active');
+  } else {
+    if (btnAudience) btnAudience.classList.add('active');
+    if (btnStory) btnStory.classList.remove('active');
+    if (panelAudience) panelAudience.classList.add('active');
+    if (panelStory) panelStory.classList.remove('active');
+  }
 }
 
-/* ====================================================================
-   CONFETTI CELEBRATIONS
-   ==================================================================== */
+function goToDemoStep(stepNumber) {
+  PresentationState.currentDemoStep = stepNumber;
+  Sound.playClick();
+
+  // Update step sequence tabs
+  for (let i = 1; i <= 6; i++) {
+    const tab = document.getElementById(`d-seq-${i}`);
+    const screen = document.getElementById(`demo-screen-${i}`);
+    if (tab) {
+      if (i === stepNumber) tab.classList.add('active');
+      else tab.classList.remove('active');
+    }
+    if (screen) {
+      if (i === stepNumber) screen.classList.add('active');
+      else screen.classList.remove('active');
+    }
+  }
+
+  // Update address bar text
+  const addr = document.getElementById('demo-address-bar');
+  if (addr) {
+    switch (stepNumber) {
+      case 1: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/catalogo'; break;
+      case 2: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/procedimento/sobrancelhas'; break;
+      case 3: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/confirmacao/ANA-2026'; break;
+      case 4: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/profissional/pauta-do-dia'; break;
+      case 5: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/coordenacao/dashboard'; break;
+      case 6: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/avaliacao/concluido'; break;
+    }
+  }
+
+  // Update Role Switcher button active state
+  if (stepNumber <= 3) setDemoRole('modelo', false);
+  else if (stepNumber === 4) setDemoRole('prof', false);
+  else if (stepNumber >= 5) setDemoRole('coord', false);
+}
+
+function setDemoRole(role, changeScreen = true) {
+  PresentationState.currentDemoRole = role;
+  const btnModelo = document.getElementById('role-btn-modelo');
+  const btnProf = document.getElementById('role-btn-prof');
+  const btnCoord = document.getElementById('role-btn-coord');
+
+  if (btnModelo) btnModelo.classList.toggle('active', role === 'modelo');
+  if (btnProf) btnProf.classList.toggle('active', role === 'prof');
+  if (btnCoord) btnCoord.classList.toggle('active', role === 'coord');
+
+  if (changeScreen) {
+    if (role === 'modelo') goToDemoStep(1);
+    else if (role === 'prof') goToDemoStep(4);
+    else if (role === 'coord') goToDemoStep(5);
+  }
+}
+
 function triggerConfettiReward() {
-  Sound.playChime();
+  Sound.playCelebration();
   if (typeof confetti === 'function') {
     confetti({
       particleCount: 80,
       spread: 70,
-      origin: { y: 0.65 },
-      colors: ['#004580', '#f37021', '#10b981', '#38bdf8']
+      origin: { y: 0.6 }
     });
   }
 }
 
 function triggerGrandFinaleConfetti() {
-  Sound.playChime();
+  Sound.playCelebration();
   if (typeof confetti === 'function') {
-    const end = Date.now() + 2.5 * 1000;
-    const colors = ['#004580', '#f37021', '#10b981', '#ffffff', '#ffb703'];
+    const duration = 3.5 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
-    (function frame() {
-      confetti({
-        particleCount: 5,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 },
-        colors: colors
-      });
-      confetti({
-        particleCount: 5,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 },
-        colors: colors
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
       }
-    })();
+      const particleCount = 50 * (timeLeft / duration);
+      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+    }, 250);
   }
 }
 
-/* ====================================================================
-   QR CODE INITIALIZER
-   ==================================================================== */
-function initQRCode() {
-  // Uses official functional QR code asset from user (assets/qrcode.png)
-  const qrImg = document.getElementById('official-qr-image');
-  if (qrImg) {
-    qrImg.onerror = () => {
-      console.warn('QR code asset loading fallback');
-    };
-  }
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
 }
 
-/* ====================================================================
-   YOUTUBE VIDEO PLAYER CONTROLLER (SLIDE 7)
-   ==================================================================== */
-function parseYouTubeID(url) {
-  if (!url) return '';
-  const trimmed = url.trim();
+/* =========================================================
+   PRESENTER MODE & STOPWATCH TIMER
+   ========================================================= */
 
-  // Support shorts: youtube.com/shorts/VIDEO_ID
-  const shortsMatch = trimmed.match(/(?:shorts\/)([a-zA-Z0-9_-]{11})/);
-  if (shortsMatch && shortsMatch[1]) return shortsMatch[1];
+function updatePresenterModal() {
+  const current = PresentationState.currentSlide;
+  const total = PresentationState.totalSlides;
+  const slideInfo = SlideData[current - 1] || SlideData[0];
+  const nextSlideInfo = current < total ? SlideData[current] : SlideData[0];
 
-  // Support standard, youtu.be, embed, watch?v=
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  const match = trimmed.match(regExp);
-  if (match && match[2] && match[2].length === 11) {
-    return match[2];
-  }
+  const speakerBadge = document.getElementById('presenter-speaker-badge');
+  const slideTitleLarge = document.getElementById('presenter-slide-title-large');
+  const slideTime = document.getElementById('presenter-slide-time');
+  const scriptText = document.getElementById('presenter-script-text');
+  const quoteBox = document.getElementById('presenter-quote-box');
+  const nextBox = document.getElementById('presenter-next-box');
 
-  // If raw 11-char ID is passed directly
-  if (trimmed.length === 11 && !trimmed.includes('/') && !trimmed.includes('.')) {
-    return trimmed;
-  }
-  return '';
-}
+  if (speakerBadge) speakerBadge.textContent = slideInfo.speaker;
+  if (slideTitleLarge) slideTitleLarge.textContent = slideInfo.title;
+  if (slideTime) slideTime.textContent = slideInfo.targetTime;
+  if (scriptText) scriptText.innerHTML = slideInfo.script;
+  if (quoteBox) quoteBox.innerHTML = `"${slideInfo.keyQuote}"`;
 
-function updateYouTubeVideo() {
-  const input = document.getElementById('yt-url-input');
-  const iframe = document.getElementById('yt-iframe');
-  const placeholder = document.getElementById('yt-empty-placeholder');
-  if (!input) return;
-
-  const rawUrl = input.value;
-  const videoId = parseYouTubeID(rawUrl);
-
-  if (videoId) {
-    localStorage.setItem('connect_senac_yt_url', rawUrl);
-    if (iframe) {
-      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
-      iframe.classList.remove('hidden');
-    }
-    if (placeholder) {
-      placeholder.style.display = 'none';
-    }
-    Sound.playChime();
-  } else {
-    alert('Por favor, insira um link ou ID válido do YouTube (ex: https://youtu.be/... ou https://www.youtube.com/watch?v=...)');
-  }
-}
-
-function clearYouTubeVideo() {
-  const input = document.getElementById('yt-url-input');
-  const iframe = document.getElementById('yt-iframe');
-  const placeholder = document.getElementById('yt-empty-placeholder');
-
-  localStorage.removeItem('connect_senac_yt_url');
-  if (input) input.value = '';
-  if (iframe) {
-    iframe.src = '';
-    iframe.classList.add('hidden');
-  }
-  if (placeholder) {
-    placeholder.style.display = 'flex';
-  }
-  Sound.playClick();
-}
-
-function openYouTubeExternal() {
-  const input = document.getElementById('yt-url-input');
-  if (!input) return;
-  const rawUrl = input.value.trim();
-  const videoId = parseYouTubeID(rawUrl);
-  if (videoId) {
-    window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
-  } else if (rawUrl.startsWith('http')) {
-    window.open(rawUrl, '_blank');
-  } else {
-    alert('Insira um link do YouTube para abrir em nova aba.');
-  }
-}
-
-function initYouTubePlayer() {
-  const saved = localStorage.getItem('connect_senac_yt_url');
-  if (saved) {
-    const input = document.getElementById('yt-url-input');
-    if (input) input.value = saved;
-    updateYouTubeVideo();
-  }
-}
-
-/* ====================================================================
-   PRESENTER MODE & TIMER ENGINE
-   ==================================================================== */
-function updatePresenterModalContent() {
-  const currentIdx = PresentationState.currentSlide;
-  const currentData = SlideData[currentIdx - 1];
-  const nextData = SlideData[currentIdx] || SlideData[0];
-
-  const pCurTitle = document.getElementById('presenter-current-title');
-  const pNextTitle = document.getElementById('presenter-next-title');
-  const pSpeaker = document.getElementById('presenter-speaker-tag');
-  const pNotes = document.getElementById('presenter-notes-text');
-  const pCurPrev = document.getElementById('presenter-current-preview');
-  const pNextPrev = document.getElementById('presenter-next-preview');
-
-  if (pCurTitle) pCurTitle.innerText = `Slide ${currentIdx}: ${currentData.title}`;
-  if (pNextTitle) pNextTitle.innerText = `Slide ${nextData.index}: ${nextData.title}`;
-  if (pSpeaker) pSpeaker.innerText = currentData.speaker;
-  if (pNotes) pNotes.innerHTML = currentData.notes;
-
-  if (pCurPrev) {
-    pCurPrev.innerHTML = `
-      <div style="font-weight:700; color:var(--senac-blue-primary); margin-bottom:4px;">${currentData.title}</div>
-      <div style="font-size:0.8rem; color:var(--text-secondary);">${currentData.category}</div>
-    `;
-  }
-
-  if (pNextPrev) {
-    pNextPrev.innerHTML = `
-      <div style="font-weight:700; color:var(--senac-orange); margin-bottom:4px;">${nextData.title}</div>
-      <div style="font-size:0.8rem; color:var(--text-secondary);">${nextData.category}</div>
+  if (nextBox) {
+    nextBox.innerHTML = `
+      <strong>${nextSlideInfo.title}</strong>
+      <span>${nextSlideInfo.speaker} • Tempo: ${nextSlideInfo.targetTime}</span>
     `;
   }
 }
 
 function startPresenterTimer() {
-  if (PresentationState.presenterTimerRunning) return;
-  PresentationState.presenterTimerRunning = true;
-  PresentationState.presenterTimerInterval = setInterval(() => {
-    PresentationState.presenterTimerSeconds++;
+  if (PresentationState.timerIsRunning) return;
+  PresentationState.timerIsRunning = true;
+  PresentationState.timerInterval = setInterval(() => {
+    PresentationState.timerSeconds++;
     renderPresenterTimer();
   }, 1000);
+  updateTimerButton();
 }
 
 function pausePresenterTimer() {
-  PresentationState.presenterTimerRunning = false;
-  clearInterval(PresentationState.presenterTimerInterval);
+  PresentationState.timerIsRunning = false;
+  clearInterval(PresentationState.timerInterval);
+  updateTimerButton();
 }
 
 function resetPresenterTimer() {
   pausePresenterTimer();
-  PresentationState.presenterTimerSeconds = 0;
+  PresentationState.timerSeconds = 0;
   renderPresenterTimer();
 }
 
 function renderPresenterTimer() {
+  const totalSec = PresentationState.timerSeconds;
+  const hrs = Math.floor(totalSec / 3600);
+  const mins = Math.floor((totalSec % 3600) / 60);
+  const secs = totalSec % 60;
+
+  const pad = (n) => (n < 10 ? `0${n}` : n);
+  const formatted = `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
+
   const timerEl = document.getElementById('presenter-timer');
-  if (!timerEl) return;
-
-  const total = PresentationState.presenterTimerSeconds;
-  const hrs = Math.floor(total / 3600).toString().padStart(2, '0');
-  const mins = Math.floor((total % 3600) / 60).toString().padStart(2, '0');
-  const secs = (total % 60).toString().padStart(2, '0');
-
-  timerEl.innerText = `${hrs}:${mins}:${secs}`;
+  if (timerEl) timerEl.textContent = formatted;
 }
 
-/* ====================================================================
-   GRID OVERVIEW THUMBNAILS GENERATOR
-   ==================================================================== */
-function buildGridOverview() {
+function updateTimerButton() {
+  const btn = document.getElementById('btn-timer-toggle');
+  if (btn) {
+    if (PresentationState.timerIsRunning) {
+      btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      btn.title = 'Pausar Cronômetro';
+    } else {
+      btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      btn.title = 'Iniciar / Retomar Cronômetro';
+    }
+  }
+}
+
+/* =========================================================
+   GRID OVERVIEW THUMBNAILS (10 SLIDES)
+   ========================================================= */
+
+function renderGridThumbnails() {
   const grid = document.getElementById('slides-thumbnail-grid');
   if (!grid) return;
 
   grid.innerHTML = '';
   SlideData.forEach((slide) => {
-    const card = document.createElement('div');
-    card.className = `slide-thumb-card ${slide.index === PresentationState.currentSlide ? 'active' : ''}`;
-    card.innerHTML = `
-      <div class="thumb-num">SLIDE 0${slide.index}</div>
-      <div class="thumb-title">${slide.title}</div>
-      <div class="thumb-category"><i class="fa-solid fa-tag"></i> ${slide.category}</div>
-    `;
-    card.onclick = () => {
-      goToSlide(slide.index);
+    const thumb = document.createElement('div');
+    thumb.className = `slide-thumb-card ${slide.id === PresentationState.currentSlide ? 'active' : ''}`;
+    thumb.onclick = () => {
+      goToSlide(slide.id);
       closeAllModals();
     };
-    grid.appendChild(card);
+
+    thumb.innerHTML = `
+      <span class="thumb-num">Slide ${slide.id < 10 ? '0' + slide.id : slide.id}</span>
+      <h4 class="thumb-title">${slide.heading}</h4>
+      <span class="thumb-speaker"><i class="fa-solid fa-user"></i> ${slide.speaker} (${slide.targetTime})</span>
+    `;
+
+    grid.appendChild(thumb);
   });
 }
 
-/* ====================================================================
-   MODAL CONTROLS
-   ==================================================================== */
-function toggleModal(modalId) {
+function updateGridOverviewHighlight() {
+  const cards = document.querySelectorAll('.slide-thumb-card');
+  cards.forEach((card, index) => {
+    if (index + 1 === PresentationState.currentSlide) {
+      card.classList.add('active');
+    } else {
+      card.classList.remove('active');
+    }
+  });
+}
+
+/* =========================================================
+   MODALS MANAGER
+   ========================================================= */
+
+function openModal(modalId) {
   Sound.playClick();
   const modal = document.getElementById(modalId);
-  if (!modal) return;
-
-  if (modal.classList.contains('hidden')) {
-    closeAllModals();
+  if (modal) {
     modal.classList.remove('hidden');
-    if (modalId === 'modal-presenter') {
+    if (modalId === 'modal-presenter' && !PresentationState.timerIsRunning && PresentationState.timerSeconds === 0) {
       startPresenterTimer();
-      updatePresenterModalContent();
-    } else if (modalId === 'modal-grid-overview') {
-      buildGridOverview();
     }
-  } else {
-    modal.classList.add('hidden');
+    if (modalId === 'modal-grid-overview') {
+      renderGridThumbnails();
+    }
   }
 }
 
 function closeAllModals() {
+  Sound.playClick();
   document.querySelectorAll('.modal-backdrop').forEach((m) => m.classList.add('hidden'));
 }
 
-/* ====================================================================
-   THEME & AUDIO TOGGLES
-   ==================================================================== */
+/* =========================================================
+   AUTOPLAY & THEME TOGGLES
+   ========================================================= */
+
+function toggleAutoplay() {
+  const btn = document.getElementById('btn-autoplay-toggle');
+  if (!PresentationState.isAutoplay) {
+    PresentationState.isAutoplay = true;
+    if (btn) {
+      btn.classList.add('playing');
+      btn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Pausar</span>';
+    }
+    PresentationState.autoplayInterval = setInterval(() => {
+      nextSlide();
+    }, PresentationState.autoplayDelay);
+  } else {
+    PresentationState.isAutoplay = false;
+    if (btn) {
+      btn.classList.remove('playing');
+      btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Apresentar</span>';
+    }
+    clearInterval(PresentationState.autoplayInterval);
+  }
+}
+
 function toggleTheme() {
   Sound.playClick();
   const html = document.documentElement;
-  const current = html.getAttribute('data-theme') || 'light';
-  const next = current === 'light' ? 'dark' : 'light';
-  html.setAttribute('data-theme', next);
-  PresentationState.theme = next;
-
-  const themeBtn = document.getElementById('btn-theme-toggle');
-  if (themeBtn) {
-    themeBtn.innerHTML = next === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+  const btn = document.getElementById('btn-theme-toggle');
+  if (PresentationState.currentTheme === 'light') {
+    html.setAttribute('data-theme', 'dark');
+    PresentationState.currentTheme = 'dark';
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  } else {
+    html.setAttribute('data-theme', 'light');
+    PresentationState.currentTheme = 'light';
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-moon"></i>';
   }
 }
 
 function toggleAudio() {
-  PresentationState.audioEnabled = !PresentationState.audioEnabled;
-  Sound.playClick();
-
-  const audioBtn = document.getElementById('btn-audio-toggle');
+  PresentationState.isMuted = !PresentationState.isMuted;
+  const btn = document.getElementById('btn-audio-toggle');
   const toast = document.getElementById('audio-toast');
 
-  if (audioBtn) {
-    audioBtn.innerHTML = PresentationState.audioEnabled
-      ? '<i class="fa-solid fa-volume-high"></i>'
-      : '<i class="fa-solid fa-volume-xmark"></i>';
+  if (btn) {
+    btn.innerHTML = PresentationState.isMuted
+      ? '<i class="fa-solid fa-volume-xmark"></i>'
+      : '<i class="fa-solid fa-volume-high"></i>';
   }
 
   if (toast) {
-    toast.innerHTML = PresentationState.audioEnabled
-      ? '<i class="fa-solid fa-volume-high"></i> <span>Áudio Ativado</span>'
-      : '<i class="fa-solid fa-volume-xmark"></i> <span>Áudio Desativado</span>';
+    toast.innerHTML = PresentationState.isMuted
+      ? '<i class="fa-solid fa-volume-xmark"></i> <span>Áudio Desativado</span>'
+      : '<i class="fa-solid fa-volume-high"></i> <span>Áudio Ativado</span>';
     toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 2000);
+    setTimeout(() => toast.classList.add('hidden'), 1800);
   }
 }
 
@@ -929,176 +813,137 @@ function toggleFullscreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen().catch(() => {});
   } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
+    if (document.exitFullscreen) document.exitFullscreen();
   }
 }
 
-function toggleAutoplay() {
-  Sound.playClick();
-  const btn = document.getElementById('btn-autoplay-toggle');
+/* =========================================================
+   EVENT LISTENERS & TOUCH NAVIGATION
+   ========================================================= */
 
-  if (PresentationState.isAutoplay) {
-    clearInterval(PresentationState.autoplayInterval);
-    PresentationState.isAutoplay = false;
-    if (btn) {
-      btn.classList.remove('playing');
-      btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Apresentar</span>';
-    }
-  } else {
-    PresentationState.isAutoplay = true;
-    PresentationState.autoplayInterval = setInterval(() => {
-      nextSlide();
-    }, PresentationState.autoplayDuration);
-    if (btn) {
-      btn.classList.add('playing');
-      btn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Pausar</span>';
-    }
-  }
-}
-
-/* ====================================================================
-   KEYBOARD SHORTCUTS & EVENT LISTENERS
-   ==================================================================== */
 function setupEventListeners() {
-  // Start button on Hero
-  const startBtn = document.getElementById('btn-start-presentation');
-  if (startBtn) {
-    startBtn.onclick = () => goToSlide(2);
+  // Navigation Buttons
+  const btnPrev = document.getElementById('btn-prev-slide');
+  const btnNext = document.getElementById('btn-next-slide');
+  if (btnPrev) btnPrev.addEventListener('click', prevSlide);
+  if (btnNext) btnNext.addEventListener('click', nextSlide);
+
+  // Top Bar Actions
+  const btnTheme = document.getElementById('btn-theme-toggle');
+  const btnAudio = document.getElementById('btn-audio-toggle');
+  const btnQrModal = document.getElementById('btn-qr-modal');
+  const btnGrid = document.getElementById('btn-grid-overview');
+  const btnPresenter = document.getElementById('btn-presenter-mode');
+  const btnShortcuts = document.getElementById('btn-shortcuts');
+  const btnFullscreen = document.getElementById('btn-fullscreen');
+  const btnAutoplay = document.getElementById('btn-autoplay-toggle');
+
+  if (btnTheme) btnTheme.addEventListener('click', toggleTheme);
+  if (btnAudio) btnAudio.addEventListener('click', toggleAudio);
+  if (btnQrModal) btnQrModal.addEventListener('click', () => openModal('modal-qr-zoom'));
+  if (btnGrid) btnGrid.addEventListener('click', () => openModal('modal-grid-overview'));
+  if (btnPresenter) btnPresenter.addEventListener('click', () => openModal('modal-presenter'));
+  if (btnShortcuts) btnShortcuts.addEventListener('click', () => openModal('modal-shortcuts'));
+  if (btnFullscreen) btnFullscreen.addEventListener('click', toggleFullscreen);
+  if (btnAutoplay) btnAutoplay.addEventListener('click', toggleAutoplay);
+
+  // Presenter Timer controls
+  const btnTimerToggle = document.getElementById('btn-timer-toggle');
+  const btnTimerReset = document.getElementById('btn-timer-reset');
+  if (btnTimerToggle) {
+    btnTimerToggle.addEventListener('click', () => {
+      if (PresentationState.timerIsRunning) pausePresenterTimer();
+      else startPresenterTimer();
+    });
   }
+  if (btnTimerReset) btnTimerReset.addEventListener('click', resetPresenterTimer);
 
-  // Navigation dock buttons
-  const prevBtn = document.getElementById('btn-prev-slide');
-  const nextBtn = document.getElementById('btn-next-slide');
-  if (prevBtn) prevBtn.onclick = () => prevSlide();
-  if (nextBtn) nextBtn.onclick = () => nextSlide();
-
-  // Dots
+  // Dock dots click
   const dots = document.querySelectorAll('.dot-btn');
   dots.forEach((dot) => {
-    dot.onclick = () => {
-      const target = parseInt(dot.getAttribute('data-slide'), 10);
-      goToSlide(target);
-    };
+    dot.addEventListener('click', () => {
+      const slideNum = parseInt(dot.getAttribute('data-slide'), 10);
+      if (slideNum) goToSlide(slideNum);
+    });
   });
 
-  // Top Action Buttons
-  const themeBtn = document.getElementById('btn-theme-toggle');
-  if (themeBtn) themeBtn.onclick = toggleTheme;
-
-  const audioBtn = document.getElementById('btn-audio-toggle');
-  if (audioBtn) audioBtn.onclick = toggleAudio;
-
-  const gridBtn = document.getElementById('btn-grid-overview');
-  if (gridBtn) gridBtn.onclick = () => toggleModal('modal-grid-overview');
-
-  const presBtn = document.getElementById('btn-presenter-mode');
-  if (presBtn) presBtn.onclick = () => toggleModal('modal-presenter');
-
-  const shortBtn = document.getElementById('btn-shortcuts');
-  if (shortBtn) shortBtn.onclick = () => toggleModal('modal-shortcuts');
-
-  const fullBtn = document.getElementById('btn-fullscreen');
-  if (fullBtn) fullBtn.onclick = toggleFullscreen;
-
-  const autoBtn = document.getElementById('btn-autoplay-toggle');
-  if (autoBtn) autoBtn.onclick = toggleAutoplay;
-
-  // Modal close buttons
-  const closeGrid = document.getElementById('btn-close-grid-modal');
-  if (closeGrid) closeGrid.onclick = closeAllModals;
-
-  const closePres = document.getElementById('btn-close-presenter-modal');
-  if (closePres) closePres.onclick = closeAllModals;
-
-  const closeShort = document.getElementById('btn-close-shortcuts-modal');
-  if (closeShort) closeShort.onclick = closeAllModals;
-
-  // Presenter Timer actions
-  const timerToggle = document.getElementById('btn-timer-toggle');
-  if (timerToggle) {
-    timerToggle.onclick = () => {
-      if (PresentationState.presenterTimerRunning) {
-        pausePresenterTimer();
-        timerToggle.innerHTML = '<i class="fa-solid fa-play"></i>';
-      } else {
-        startPresenterTimer();
-        timerToggle.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      }
-    };
-  }
-  const timerReset = document.getElementById('btn-timer-reset');
-  if (timerReset) timerReset.onclick = resetPresenterTimer;
-
-  // Keyboard navigation
+  // Keyboard Shortcuts
   window.addEventListener('keydown', (e) => {
-    // Ignore when inside input
-    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+    // If typing in an input field, do not trigger presentation shortcuts
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
     switch (e.key) {
       case 'ArrowRight':
-      case 'Space':
+      case ' ':
+      case 'PageDown':
       case 'd':
       case 'D':
-      case 'PageDown':
         e.preventDefault();
         nextSlide();
         break;
 
       case 'ArrowLeft':
+      case 'PageUp':
       case 'a':
       case 'A':
-      case 'PageUp':
-        e.preventDefault();
-        prevSlide();
-        break;
-
-      case 'Home':
-        e.preventDefault();
-        goToSlide(1);
-        break;
-
-      case 'End':
-        e.preventDefault();
-        goToSlide(PresentationState.totalSlides);
-        break;
-
-      case 'f':
-      case 'F':
-        toggleFullscreen();
+        if (!e.ctrlKey && !e.metaKey) {
+          e.preventDefault();
+          prevSlide();
+        }
         break;
 
       case 'p':
       case 'P':
-        toggleModal('modal-presenter');
+        e.preventDefault();
+        openModal('modal-presenter');
+        break;
+
+      case 'q':
+      case 'Q':
+        e.preventDefault();
+        openModal('modal-qr-zoom');
         break;
 
       case 'g':
       case 'G':
-        toggleModal('modal-grid-overview');
+        e.preventDefault();
+        openModal('modal-grid-overview');
+        break;
+
+      case 'f':
+      case 'F':
+        e.preventDefault();
+        toggleFullscreen();
         break;
 
       case 't':
       case 'T':
+        e.preventDefault();
         toggleTheme();
         break;
 
       case 'm':
       case 'M':
+        e.preventDefault();
         toggleAudio();
         break;
 
       case '?':
-        toggleModal('modal-shortcuts');
+        e.preventDefault();
+        openModal('modal-shortcuts');
         break;
 
       case 'Escape':
         closeAllModals();
         break;
 
+      case '0':
+        e.preventDefault();
+        goToSlide(10);
+        break;
+
       default:
-        // Number keys 1-9
+        // Number keys 1-9 for direct slide navigation
         if (e.key >= '1' && e.key <= '9') {
           const num = parseInt(e.key, 10);
           if (num <= PresentationState.totalSlides) {
@@ -1109,7 +954,7 @@ function setupEventListeners() {
     }
   });
 
-  // Touch Swipe Navigation (Horizontal Swipe Only)
+  // Mobile Touch Swipe Navigation
   let touchStartX = 0;
   let touchStartY = 0;
   let touchEndX = 0;
@@ -1129,46 +974,36 @@ function setupEventListeners() {
       const deltaX = touchEndX - touchStartX;
       const deltaY = touchEndY - touchStartY;
 
-      // Only navigate if horizontal movement is dominant and meets threshold
+      // Only navigate if horizontal swipe is dominant
       if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
-        if (deltaX < 0) {
-          nextSlide();
-        } else {
-          prevSlide();
-        }
+        if (deltaX < 0) nextSlide();
+        else prevSlide();
       }
     }
   }, { passive: true });
 }
 
-/* ====================================================================
-   INITIALIZATION ON DOM LOAD
-   ==================================================================== */
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
 window.addEventListener('DOMContentLoaded', () => {
-  // Initialize 3D Systems
+  // Initialize 3D WebGL Background
   new Global3DBackground();
-  new Ecosystem3DVisualizer();
-
-  // Initialize QR Code
-  initQRCode();
-
-  // Initialize YouTube Video Player if URL is saved
-  initYouTubePlayer();
 
   // Setup Event Listeners
   setupEventListeners();
 
-  // Update UI to initial slide
+  // Initial State Update
   updateUIState();
-  triggerSlideAnimations(1);
 
-  // Initialize Vanilla Tilt on premium cards if available
-  if (typeof VanillaTilt !== 'undefined') {
+  // Initialize Vanilla Tilt on desktop
+  if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768) {
     VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
-      max: 6,
+      max: 5,
       speed: 400,
       glare: true,
-      'max-glare': 0.15
+      "max-glare": 0.12
     });
   }
 });
