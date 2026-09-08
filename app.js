@@ -26,209 +26,212 @@ const PresentationState = {
 const SlideData = [
   {
     id: 1,
-    title: "Slide 01 — Abertura Épica",
+    title: "Slide 01 — Abertura Institucional",
     heading: "CONNECT SENAC — Transformando o atendimento prático em uma experiência digital fluida.",
     category: "Abertura",
     speaker: "Apresentador 1",
     targetTime: "1:30 min",
-    keyQuote: "Mais do que agendar. Conectar pessoas, transformar aprendizado e eliminar o caos operacional.",
+    keyQuote: "Mais do que agendar. Conectar pessoas, transformar aprendizado e orquestrar a operação pedagógica.",
     script: `
       <div class="script-section-tag">FALA DE ABERTURA — APRESENTADOR 1</div>
       <p>"Bom dia / Boa noite aos ilustres professores, membros da banca examinadora e a todos os presentes.</p>
-      <p>Nós somos a equipe de desenvolvimento do <strong>Connect Senac</strong>. Estamos aqui hoje não apenas para apresentar mais um software acadêmico, mas para defender um produto desenhado para solucionar uma das maiores dores operacionais e pedagógicas das instituições de ensino técnico e profissionalizante.</p>
-      <p>Nosso projeto durou meses de pesquisa, validação e desenvolvimento em equipe composta por 4 pessoas, e nossa apresentação está estruturada para demonstrar como identificamos uma dor real, concebemos uma arquitetura escalável e entregamos uma solução pronta para o uso diário."</p>
+      <p>Nós somos a equipe de desenvolvimento do <strong>Connect Senac</strong>. Estamos aqui hoje não apenas para apresentar mais um software acadêmico, mas para defender um produto desenhado para solucionar uma das maiores dores operacionais e pedagógicas das instituições de ensino profissionalizante.</p>
+      <p>Desenvolvido como Projeto Integrador no <strong>SENAC Santo Antônio de Jesus - BA</strong> por uma equipe de 4 integrantes, o Connect Senac nasceu para substituir a fragmentação da comunicação por uma governança digital completa."</p>
       <div class="script-section-tag">TRANSIÇÃO DRAMÁTICA</div>
-      <p><em>"E para que vocês sintam o real valor do que construímos, convido a banca a mergulhar no cenário que encontramos antes de criarmos a plataforma."</em></p>
+      <p><em>"E para que a banca sinta o impacto real da nossa solução, convido todos a mergulharem no cenário tradicional que encontramos na rotina prática."</em></p>
     `
   },
   {
     id: 2,
-    title: "Slide 02 — O Drama do Cenário Atual",
-    heading: "O Drama do Cenário Tradicional — Três personagens reais enfrentando o vilão invisível: o caos manual.",
-    category: "O Problema",
+    title: "Slide 02 — O Desafio da Rotina Real",
+    heading: "O Desafio da Rotina Real — Três personagens reais enfrentando o gargalo da comunicação fragmentada.",
+    category: "O Desafio",
     speaker: "Apresentador 1",
     targetTime: "2:30 min",
-    keyQuote: "O custo da desorganização: Ana com medo de perder a viagem, Lucas sem modelo para treinar e a Gestão afundada em papéis.",
+    keyQuote: "Mensagens dispersas em múltiplos celulares, planilhas desincronizadas, no-show sem aviso prévio e perda de horas práticas.",
     script: `
       <div class="script-section-tag">NARRATIVA HUMANA (PERSONAS) — APRESENTADOR 1</div>
-      <p>"Imaginem três pessoas na rotina do Senac:</p>
+      <p>"Imaginem três pessoas no dia a dia da unidade:</p>
       <ul>
-        <li>Primeiro, a <strong>Ana</strong>: uma cliente da comunidade que deseja fazer um design de sobrancelhas ou um corte de cabelo. Ela manda mensagem no WhatsApp oficial, espera horas ou dias por uma resposta sem saber se sua vaga está garantida e tem medo de ir até a unidade e perder a viagem.</li>
-        <li>Em segundo lugar, o <strong>Lucas</strong>: nosso aluno de curso prático. Ele chegou cedo, esterilizou seus instrumentos, montou sua bancada com todo o cuidado... mas a modelo que estava agendada informalmente desmarcou 10 minutos antes. O resultado? Horas de aula prática perdidas olhando para uma cadeira vazia.</li>
-        <li>E, no centro de tudo, a <strong>Coordenação e os Docentes</strong>: sobrecarregados por pilhas de pranchetas de papel, conversas perdidas em celulares e zero visibilidade em tempo real sobre quem realmente compareceu."</li>
+        <li>Primeiro, a <strong>Ana</strong> (Cliente/Modelo): quer fazer um procedimento de beleza, manda mensagem no WhatsApp oficial e aguarda dias sem saber se sua vaga foi confirmada, com medo de perder a viagem até o Senac.</li>
+        <li>Em segundo lugar, o <strong>Lucas</strong> (Aluno/Prático): preparou a bancada, esterilizou seus instrumentos e chegou com 30 minutos de antecedência... mas a modelo desmarcou em cima da hora sem aviso prévio (<em>no-show</em>). Ele fica sem atendimento prático naquele dia.</li>
+        <li>E, no centro, a <strong>Coordenação e o Corpo Docente</strong>: sobrecarregados por mensagens soltas, planilhas desincronizadas e sem garantia de conformidade com termos de imagem e LGPD."</li>
       </ul>
       <div class="script-highlight-quote">
-        "O problema não é apenas marcar um horário no relógio. É o atrito, o estresse e a falta de comunicação que desgastam todas as pessoas envolvidas."
+        "O problema não é apenas marcar um horário. É o atrito, o estresse e a falta de sincronização que corroem o tempo de aprendizado."
       </div>
-      <div class="script-section-tag">TRANSIÇÃO</div>
-      <p><em>"E o pior: esse atrito não gera apenas atraso operacional. Ele atinge diretamente o coração do Senac: a pedagogia."</em></p>
     `
   },
   {
     id: 3,
     title: "Slide 03 — A Pedagogia em Risco",
     heading: "A Pedagogia em Risco — Quando a operação falha, o aprendizado prático é o maior prejudicado.",
-    category: "O Problema",
+    category: "O Desafio",
     speaker: "Apresentador 1",
     targetTime: "2:00 min",
-    keyQuote: "Cada bancada vazia representa uma competência prática que o aluno deixou de exercitar para o mercado.",
+    keyQuote: "Cada bancada vazia representa uma competência prática que o aluno deixou de exercitar para o mercado de trabalho.",
     script: `
       <div class="script-section-tag">IMPACTO EDUCACIONAL — APRESENTADOR 1</div>
-      <p>"Vejam a gravidade da cadeia de ruptura:</p>
-      <p>1. O agendamento é feito de forma descentralizada e manual;<br>
-      2. Sem lembretes automáticos e sem confirmação digital, a taxa de <em>no-show</em> (falta sem aviso) explode;<br>
-      3. Quando a modelo falta, o aluno não tem como treinar as competências curriculares daquela aula."</p>
+      <p>"Vejam a cadeia de ruptura quando a comunicação falha:</p>
+      <p>1. O agendamento ocorre de forma fragmentada e descentralizada;<br>
+      2. Sem lembretes e sem protocolo digital, ocorrem desistências de última hora sem aviso;<br>
+      3. Sem modelo na bancada, o aluno perde a oportunidade prática e os critérios formativos do Senac são comprometidos."</p>
       <div class="script-highlight-quote">
-        "O verdadeiro custo do caos manual não é financeiro. É pedagógico: cada cadeira vazia é uma oportunidade de aprendizado que nunca mais volta."
+        "O verdadeiro custo da desorganização não é financeiro. É pedagógico: cada bancada vazia é uma oportunidade formativa que não volta mais."
       </div>
       <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 2</div>
-      <p><em>"E para estancar essa sangria e devolver a previsibilidade para o laboratório, nós criamos o Connect Senac. Passo a palavra para o Apresentador 2 nos guiar pela solução."</em></p>
+      <p><em>"E para devolver a previsibilidade e o foco ao ensino prático, nós concebemos o Connect Senac. Passo a palavra para o Apresentador 2."</em></p>
     `
   },
   {
     id: 4,
-    title: "Slide 04 — A Revelação da Solução",
-    heading: "A Revelação: Connect Senac — A ponte digital que une a demanda da comunidade com o aprendizado do aluno.",
+    title: "Slide 04 — A Experiência do Modelo",
+    heading: "A Experiência do Modelo: Autoatendimento sem Atrito — Do primeiro clique no smartphone ao atendimento confirmado.",
     category: "A Solução",
     speaker: "Apresentador 2",
     targetTime: "2:30 min",
-    keyQuote: "Não é apenas digitalizar um horário. É orquestrar o processo humano de ponta a ponta com previsibilidade.",
+    keyQuote: "De horas de espera e incerteza no WhatsApp para uma experiência simples, transparente e acolhedora.",
     script: `
-      <div class="script-section-tag">A REVELAÇÃO DO PRODUTO — APRESENTADOR 2</div>
-      <p>"Obrigado, Apresentador 1. O <strong>Connect Senac</strong> nasce exatamente como o herói libertador dessa jornada.</p>
-      <p>Ele não é um simples formulário web; ele é uma tríade integrada onde cada ponta alimenta a outra em tempo real:</p>
-      <ul>
-        <li><strong>A Cliente (Ana)</strong> entra no pilar <em>AGENDAR</em>: descobre os cursos práticos abertos, escolhe a data e recebe confirmação com protocolo na hora.</li>
-        <li><strong>O Aluno (Lucas)</strong> atua no pilar <em>ACOMPANHAR</em>: abre a pauta da sua aula no celular ou tablet, sabe exatamente quem vai atender e valida a presença em um clique.</li>
-        <li><strong>A Coordenação</strong> governa no pilar <em>GERENCIAR</em>: abre turmas, distribui vagas e monitora a ocupação com dados 100% íntegros."</li>
-      </ul>
+      <div class="script-section-tag">JORNADA SEM FRICÇÃO — APRESENTADOR 2</div>
+      <p>"Obrigado, Apresentador 1. No Connect Senac, desenhamos uma jornada 100% mobile-first para a comunidade:</p>
+      <ol>
+        <li><strong>Descoberta Ágil</strong>: Pelo navegador do celular, sem baixar aplicativos pesados, a comunidade visualiza os procedimentos abertos na unidade.</li>
+        <li><strong>Escolha Transparente</strong>: Escolhe data, horário e visualiza as orientações prévias de saúde com vagas sincronizadas em tempo real.</li>
+        <li><strong>Protocolo Seguro</strong>: Recebe na hora o comprovante digital com código de atendimento e QR Code.</li>
+        <li><strong>Atendimento & Avaliação</strong>: No laboratório, o aluno já a aguardava com bancada pronta. Atendimento realizado e avaliação 5 estrelas registrada!"</li>
+      </ol>
       <div class="script-highlight-quote">
-        "Com o Connect Senac, uma única ação de um usuário gera clareza e previsibilidade instantânea para todos os demais."
+        "Uma experiência acolhedora que aproxima a comunidade da instituição com total transparência."
       </div>
     `
   },
   {
     id: 5,
-    title: "Slide 05 — A Jornada da Ana",
-    heading: "A Jornada da Ana: Experiência Sem Atrito — Do primeiro clique no celular ao atendimento com nota máxima.",
-    category: "A Solução",
+    title: "Slide 05 — Central de Operações",
+    heading: "A Central de Operações da Gestão — O coração administrativo: cursos, pautas, moderação e governança em tempo real.",
+    category: "Produto & Gestão",
     speaker: "Apresentador 2",
-    targetTime: "2:30 min",
-    keyQuote: "De horas de espera e incerteza para uma experiência simples, transparente e acolhedora.",
+    targetTime: "3:00 min",
+    keyQuote: "O modelo agenda. O aluno e docente acompanham na pauta. A coordenação governa a capacidade da unidade.",
     script: `
-      <div class="script-section-tag">A JORNADA DO ALÍVIO — APRESENTADOR 2</div>
-      <p>"Vejamos como a vida da Ana se transformou:</p>
-      <ol>
-        <li><strong>Descoberta Ágil</strong>: Pelo navegador do celular, sem precisar baixar apps pesados, a Ana acessa o catálogo do Senac e vê os procedimentos de estética disponíveis.</li>
-        <li><strong>Escolha Transparente</strong>: Ela escolhe a data e o horário com vagas reais sincronizadas em tempo real.</li>
-        <li><strong>Protocolo Seguro</strong>: Recebe na hora seu comprovante digital com instruções de chegada e orientações do procedimento.</li>
-        <li><strong>Atendimento & Avaliação</strong>: Ao chegar no laboratório, Lucas já a esperava com tudo pronto. Ao final, Ana avalia o atendimento com 5 estrelas!"</li>
-      </ol>
+      <div class="script-section-tag">DEMONSTRAÇÃO DO MÓDULO ADMINISTRATIVO — APRESENTADOR 2</div>
+      <p>"Convido a banca a observar o nosso Painel de Gestão Operacional, estruturado em 5 abas integradas:</p>
+      <ul>
+        <li><strong>1. Visão Geral</strong>: KPIs de ocupação em 100%, 14/14 alunos com modelos confirmados, zero conflito de salas e abertura rápida de grade.</li>
+        <li><strong>2. Gestão de Cursos</strong>: Catálogo ativo da unidade (Pintura Capilar, Manicure, Sobrancelhas, Massoterapia, Tranças, Corte Masculino).</li>
+        <li><strong>3. Usuários & Moderação</strong>: Base com badges de conformidade <code>LGPD OK</code> e <code>Uso de Imagem OK</code>, histórico de presença e integração com WhatsApp oficial.</li>
+        <li><strong>4. Pautas Globais</strong>: Visão organizada por docente (Prof. Deyson Santana e Profa. Tais) com validação de presença em 1 clique.</li>
+        <li><strong>5. Criar Colaborador</strong>: Controle de acesso institucional por papéis (RBAC)."</li>
+      </ul>
       <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 3</div>
-      <p><em>"E agora o Apresentador 3 vai mostrar o que acontece no lado da gestão e o salto qualitativo que conquistamos."</em></p>
+      <p><em>"E agora o Apresentador 3 vai detalhar a governança de dados e o salto qualitativo alcançado."</em></p>
     `
   },
   {
     id: 6,
-    title: "Slide 06 — O Painel de Controle da Gestão",
-    heading: "O Painel de Controle da Gestão — A pauta do docente e o dashboard da coordenação em tempo real.",
-    category: "Produto & Gestão",
+    title: "Slide 06 — Segurança & Governança",
+    heading: "Segurança, LGPD & Governança em Saúde — Proteção jurídica, termo de imagem e triagem clínica preventiva.",
+    category: "Governança",
     speaker: "Apresentador 3",
     targetTime: "2:30 min",
-    keyQuote: "O modelo agenda. O aluno/docente acompanha. A coordenação gerencia.",
+    keyQuote: "Alunos e professores amparados por protocolos claros, com conformidade jurídica e segurança total de dados.",
     script: `
-      <div class="script-section-tag">ORQUESTRAÇÃO & CONTROLE — APRESENTADOR 3</div>
-      <p>"Obrigado, Apresentador 2. Do ponto de vista operacional, o Connect Senac resolve o pesadelo das pranchetas:</p>
-      <p>Para o <strong>Docente e o Aluno</strong>, a tela de Pauta substitui as anotações manuais. O professor visualiza a fila da turma, vê o status 'Confirmada' da Ana e clica em 'Validar Presença' em menos de 3 segundos.</p>
-      <p>Para a <strong>Coordenação</strong>, o dashboard apresenta métricas de ocupação em tempo real, garantia de zero conflito de salas físicas e segurança por controle de papéis (RBAC)."</p>
+      <div class="script-section-tag">BLINDAGEM INSTITUCIONAL — APRESENTADOR 3</div>
+      <p>"Obrigado, Apresentador 2. Para garantir segurança jurídica à instituição, o Connect Senac foi construído sobre 4 pilares:</p>
+      <ul>
+        <li><strong>1. Conformidade Rigorosa com a LGPD</strong>: Dados pessoais sensíveis armazenados de forma criptografada em banco relacional seguro (PostgreSQL/Supabase) com consentimento digital registrado.</li>
+        <li><strong>2. Termo Digital de Uso de Imagem</strong>: Aceite formal gravado com carimbo de data/hora para fotos pedagógicas de 'Antes e Depois'.</li>
+        <li><strong>3. Triagem Preventiva de Saúde</strong>: Questionário obrigatório para rastrear alergias a tinturas capilares, henna e contraindicações dermatológicas.</li>
+        <li><strong>4. Controle de Acesso RBAC</strong>: Perfis isolados com tokens JWT e rastreabilidade total de logs de auditoria."</li>
+      </ul>
       <div class="script-highlight-quote">
-        "O modelo agenda. O aluno acompanha. A coordenação gerencia. Cada perfil tem exatamente a ferramenta necessária, sem ruídos."
+        "Com o Connect Senac, professores e alunos operam protegidos por governança e conformidade absolutas."
       </div>
     `
   },
   {
     id: 7,
     title: "Slide 07 — Antes vs Depois",
-    heading: "Antes vs. Depois: O Salto Qualitativo — O contraste dramático entre o modelo arcaico e a eficiência integrada.",
-    category: "O Salto Qualitativo",
+    heading: "Antes vs. Depois: O Salto de Maturidade Operacional — Da fragmentação à sincronização digital em tempo real.",
+    category: "Transformação",
     speaker: "Apresentador 3",
     targetTime: "2:30 min",
-    keyQuote: "Não estamos apenas digitalizando um agendamento. Estamos resgatando o tempo pedagógico de alunos e professores.",
+    keyQuote: "Não estamos apenas digitalizando um agendamento. Estamos resgatando o tempo pedagógico e a governança institucional da unidade.",
     script: `
       <div class="script-section-tag">O SALTO QUALITATIVO — APRESENTADOR 3</div>
-      <p>"Vejam o impacto no dia a dia da instituição quando colocamos os dois mundos lado a lado:</p>
+      <p>"Vejam o impacto comparativo direto na rotina da unidade:</p>
       <ul>
-        <li><strong>No Passado (Manual)</strong>: Esperas de horas ou dias por mensagem, alto índice de faltas surpresa, bancadas ociosas e pilhas de folhas de papel sujeitas a extravio.</li>
-        <li><strong>Com o Connect Senac</strong>: Confirmação em segundos com protocolo digital, agenda previsível com turmas 100% cheias e histórico acadêmico centralizado no banco de dados.</li>
+        <li><strong>No Passado (Fragmentado)</strong>: Mensagens soltas no WhatsApp sem garantia de vaga, faltas sem aviso gerando bancadas vazias, planilhas desincronizadas e professores sobrecarregados com logística manual.</li>
+        <li><strong>Com o Connect Senac (Sincronizado)</strong>: Autoatendimento digital instantâneo 24/7 com protocolo oficial, turmas com 100% de ocupação, pauta centralizada em tempo real e conformidade LGPD automática."</li>
       </ul>
       <div class="script-highlight-quote">
-        "Não eliminamos apenas o papel; devolvemos o foco dos professores e alunos para o que realmente importa: a excelência do aprendizado."
+        "Devolvemos o foco dos professores e alunos para o que realmente importa: a excelência do aprendizado prático."
       </div>
       <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 4</div>
-      <p><em>"E para provar que tudo isso é real e funcional, passo a palavra ao Apresentador 4 para a demonstração ao vivo com a banca."</em></p>
+      <p><em>"E para comprovar que essa tecnologia é real e funcional, passo a palavra ao Apresentador 4 para a demonstração prática com a banca."</em></p>
     `
   },
   {
     id: 8,
-    title: "Slide 08 — 📱 Teste ao Vivo & Simulador",
-    heading: "📱 Teste ao Vivo: Experimente Agora — A melhor forma de comprovar o produto é colocando-o nas mãos da banca e da plateia.",
+    title: "Slide 08 — Teste ao Vivo",
+    heading: "📱 Teste ao Vivo: Experimente Agora — QR Code interativo e credenciais de teste para a banca examinadora.",
     category: "Demonstração Prática",
     speaker: "Apresentador 4",
     targetTime: "3:30 min",
-    keyQuote: "Peguem seus celulares agora e façam um agendamento teste em 30 segundos pelo QR Code!",
+    keyQuote: "Peguem seus celulares agora e realizem um agendamento teste em 30 segundos! Login: teste@gmail.com | Senha: 123456",
     script: `
-      <div class="script-section-tag">CHAMADA AO VIVO PARA A BANCA — APRESENTADOR 4</div>
-      <p>"Obrigado, Apresentador 3. Senhores avaliadores e presentes: acreditamos tanto na robustez e facilidade do Connect Senac que <strong>queremos convidar todos vocês a pegarem seus smartphones agora</strong>.</p>
-      <p>1. Apontem a câmera do celular para o QR Code exibido na tela (pressionem [Q] no telão para ampliar se necessário);<br>
+      <div class="script-section-tag">DESAFIO AO VIVO PARA A BANCA — APRESENTADOR 4</div>
+      <p>"Obrigado, Apresentador 3. Senhores avaliadores e presentes: acreditamos tanto na usabilidade do Connect Senac que <strong>convidamos todos a pegarem seus smartphones agora</strong>.</p>
+      <p>1. Apontem a câmera do celular para o QR Code exibido no telão (pressione [Q] para ampliar);<br>
       2. O sistema abrirá diretamente no navegador do seu smartphone, sem instalar nada;<br>
       3. <strong>Para acessar a aplicação, utilizem a conta de teste exibida na tela:</strong><br>
       &nbsp;&nbsp;• <strong>Login:</strong> <code>teste@gmail.com</code><br>
       &nbsp;&nbsp;• <strong>Senha:</strong> <code>123456</code><br>
-      4. Escolham uma aula prática de Estética ou Beleza e realizem um agendamento teste em menos de 30 segundos!</p>
-      <p>Vocês verão na palma da mão a geração imediata do protocolo digital e a facilidade de navegação mobile-first que projetamos."</p>
-      <div class="script-section-tag">SIMULADOR GUIADO DE 6 PASSOS</div>
-      <p><em>(O apresentador pode alternar para a aba '2. A Jornada da Ana' e navegar pelos 6 passos reais na tela para demonstrar o fluxo completo em sincronia).</em></p>
+      4. Escolham um procedimento de estética e concluam um agendamento teste em menos de 30 segundos!</p>
+      <p>Vocês verão a geração instantânea do protocolo digital e a facilidade mobile-first que projetamos."</p>
+      <div class="script-section-tag">SIMULADOR GUIADO DE 6 ETAPAS</div>
+      <p><em>(O apresentador pode alternar para a aba '2. A Jornada da Ana' e guiar os 6 passos reais na tela para a banca).</em></p>
     `
   },
   {
     id: 9,
     title: "Slide 09 — Adoção & Escala",
-    heading: "Estratégia de Adoção & Escala — Integração fluida na rotina da unidade com arquitetura pronta para crescer.",
+    heading: "Estratégia de Adoção & Escalabilidade — Implantação no SENAC Santo Antônio de Jesus e expansão em rede.",
     category: "Visão de Futuro",
     speaker: "Apresentador 4",
     targetTime: "2:00 min",
-    keyQuote: "Do laboratório de estética da nossa unidade para todos os cursos práticos do ecossistema Senac.",
+    keyQuote: "Do laboratório de práticas da nossa unidade para todo o ecossistema de cursos técnicos do Senac.",
     script: `
       <div class="script-section-tag">VIABILIDADE TÉCNICA E FUTURO — APRESENTADOR 4</div>
-      <p>"Para garantir que essa solução seja viável e perene na instituição, baseamos o projeto em três pilares:</p>
+      <p>"Para assegurar que o Connect Senac seja perene e sustentável, estruturamos o projeto em três pilares de escala:</p>
       <ul>
-        <li><strong>Zero Fricção de Treinamento</strong>: Interface autoexplicativa que não exige cursos complexos de capacitação para professores ou alunos.</li>
-        <li><strong>Arquitetura Web Escalável</strong>: Backend em Node.js/Express com API REST desacoplada e PostgreSQL/Supabase, permitindo integrar novos cursos com facilidade.</li>
-        <li><strong>Segurança e Governança</strong>: Autenticação segura JWT, senhas com hash bcrypt e controle de perfis RBAC, protegendo dados de clientes e da unidade."</li>
+        <li><strong>Zero Fricção de Treinamento</strong>: Interface autoexplicativa desenhada para a rotina de alunos e professores, permitindo adoção imediata sem cursos complexos.</li>
+        <li><strong>Arquitetura Web Moderna</strong>: API REST Node.js/Express desacoplada e banco PostgreSQL (Supabase) com alta integridade referencial.</li>
+        <li><strong>Multiunidade e Multicurso</strong>: Pronto para expandir de Estética e Beleza para Gastronomia, Saúde, TI e outras unidades do Senac Bahia."</li>
       </ul>
       <div class="script-highlight-quote">
-        "O Connect Senac foi concebido para começar na nossa unidade e escalar com segurança para toda a rede Senac."
+        "O Connect Senac foi concebido para transformar a nossa unidade e escalar com segurança para toda a rede Senac."
       </div>
     `
   },
   {
     id: 10,
-    title: "Slide 10 — Fechamento & Impacto",
-    heading: "Mais do que agendar. Conectar — Uma experiência integrada para todos os envolvidos no processo pedagógico.",
+    title: "Slide 10 — Fechamento & Conexão",
+    heading: "Mais do que agendar. Conectar — Uma experiência integrada com reconhecimento especial aos mestres orientadores.",
     category: "Conclusão",
     speaker: "Apresentador 4",
     targetTime: "2:00 min",
-    keyQuote: "Connect Senac — A ponte que une pessoas e tecnologia para elevar a qualidade do ensino prático. Muito obrigado!",
+    keyQuote: "Connect Senac — Conectando pessoas e elevando o padrão pedagógico. Agradecimento especial a Deyson Santana e Tais!",
     script: `
-      <div class="script-section-tag">FECHAMENTO TRIUNFAL — APRESENTADOR 4</div>
-      <p>"Para encerrar nossa apresentação:</p>
-      <p>A Cliente participa com facilidade e segurança.<br>
-      O Aluno pratica com bancadas cheias e aproveitamento total.<br>
-      A Gestão gerencia com dados claros e sem papelada.<br>
+      <div class="script-section-tag">FECHAMENTO TRIUNFAL & GRATIDÃO — APRESENTADOR 4</div>
+      <p>"Para encerrar a nossa defesa:</p>
+      <p>A Cliente participa com dignidade e transparência.<br>
+      O Aluno pratica com bancadas cheias e formação plena.<br>
+      A Gestão gerencia com pauta em tempo real e governança.<br>
       E o <strong>Connect Senac conecta todas essas pontas em uma experiência fluida e moderna</strong>.</p>
-      <p>Agradecemos profundamente aos nossos professores, orientadores e a cada um dos membros da banca examinadora pelo tempo e pela atenção.</p>
+      <p>Nosso agradecimento mais que especial aos nossos professores e mentores <strong>Deyson Santana</strong> e <strong>Tais</strong>, cuja orientação técnica e pedagógica foi indispensável para transformar essa ideia em realidade.</p>
       <div class="script-highlight-quote">
-        "Connect Senac — Mais do que agendar. Conectar. Muito obrigado e abrimos agora para as considerações da banca!"
+        "Connect Senac — Mais do que agendar. Conectar. Muito obrigado a todos e abrimos agora para as considerações da banca examinadora!"
       </div>
     `
   }
@@ -306,7 +309,7 @@ const Sound = {
 };
 
 /* =========================================================
-   3D WEBGL GLOBAL BACKGROUND ENGINE (THREE.JS)
+   3D WEBGL GLOBAL BACKGROUND ENGINE (THREE.JS - CALM AUDITORIUM MODE)
    ========================================================= */
 class Global3DBackground {
   constructor() {
@@ -332,8 +335,8 @@ class Global3DBackground {
   }
 
   initObjects() {
-    // Floating Connected Nodes Grid
-    const particleCount = 140;
+    // Floating Connected Nodes Grid (Gentle, calm particles for projector readability)
+    const particleCount = 120;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -356,22 +359,22 @@ class Global3DBackground {
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 2.8,
+      size: 2.2,
       vertexColors: true,
       transparent: true,
-      opacity: 0.75
+      opacity: 0.35
     });
 
     this.particles = new THREE.Points(geometry, material);
     this.scene.add(this.particles);
 
     // Subtle Torus Wireframe (Digital Ecosystem)
-    const torusGeo = new THREE.TorusGeometry(38, 1.2, 16, 100);
+    const torusGeo = new THREE.TorusGeometry(38, 1.0, 16, 80);
     const torusMat = new THREE.MeshBasicMaterial({
       color: 0x004580,
       wireframe: true,
       transparent: true,
-      opacity: 0.12
+      opacity: 0.08
     });
     this.torus = new THREE.Mesh(torusGeo, torusMat);
     this.scene.add(this.torus);
@@ -391,8 +394,8 @@ class Global3DBackground {
       mouseX = (e.clientX / window.innerWidth) * 2 - 1;
       mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
       if (this.camera) {
-        this.camera.position.x += (mouseX * 5 - this.camera.position.x) * 0.05;
-        this.camera.position.y += (mouseY * 5 - this.camera.position.y) * 0.05;
+        this.camera.position.x += (mouseX * 3 - this.camera.position.x) * 0.03;
+        this.camera.position.y += (mouseY * 3 - this.camera.position.y) * 0.03;
       }
     });
   }
@@ -400,15 +403,29 @@ class Global3DBackground {
   animate() {
     requestAnimationFrame(this.animate);
     if (this.particles) {
-      this.particles.rotation.y += 0.0012;
-      this.particles.rotation.x += 0.0006;
+      this.particles.rotation.y += 0.0003;
+      this.particles.rotation.x += 0.00015;
     }
     if (this.torus) {
-      this.torus.rotation.z += 0.002;
-      this.torus.rotation.x += 0.001;
+      this.torus.rotation.z += 0.0005;
+      this.torus.rotation.x += 0.00025;
     }
     this.renderer.render(this.scene, this.camera);
   }
+}
+
+/* =========================================================
+   ADMIN OPERATIONS HUB TABS SWITCHER (SLIDE 05)
+   ========================================================= */
+function switchAdminTab(tabName) {
+  Sound.playClick();
+  const tabs = ['visao', 'cursos', 'usuarios', 'pautas', 'colaborador'];
+  tabs.forEach((t) => {
+    const btn = document.getElementById(`atab-btn-${t}`);
+    const panel = document.getElementById(`admin-panel-${t}`);
+    if (btn) btn.classList.toggle('active', t === tabName);
+    if (panel) panel.classList.toggle('active', t === tabName);
+  });
 }
 
 /* =========================================================
