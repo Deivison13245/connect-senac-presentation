@@ -1,220 +1,266 @@
 /* =========================================================
-   CONNECT SENAC — INTERACTIVE PRESENTATION ENGINE (9 SLIDES)
-   WebGL 3D Engine, Audio FX, Presenter Mode & Power Script
+   CONNECT SENAC — INTERACTIVE ENGINE (11 MINIMALIST SLIDES)
+   Three.js 3D Subtle Particle Mesh • Sound FX • Presenter Pitch
    ========================================================= */
 
 const PresentationState = {
   currentSlide: 1,
-  totalSlides: 9,
+  totalSlides: 11,
   isAutoplay: false,
   autoplayInterval: null,
-  autoplayDelay: 9000,
+  autoplayDelay: 10000,
   isMuted: false,
-  currentTheme: 'light',
+  currentTheme: 'dark',
   timerSeconds: 0,
   timerInterval: null,
-  timerIsRunning: false,
-  currentDemoStep: 1,
-  currentDemoRole: 'modelo'
+  timerIsRunning: false
 };
 
 /* =========================================================
-   POWER SCRIPT & SLIDES METADATA (9 SLIDES)
-   Storytelling & Pitch de Vendas (Y Combinator Style)
-   4 Integrantes | Meta de Tempo: 26 min (25-30 min)
+   POWER SCRIPT & SLIDES METADATA (11 SLIDES FIÉIS)
    ========================================================= */
 const SlideData = [
   {
     id: 1,
-    title: "Slide 01 — Abertura Institucional",
-    heading: "CONNECT SENAC — Transformando o atendimento prático em uma experiência digital fluida.",
+    title: "Slide 01 — Capa: Connect Senac",
+    heading: "Connect Senac",
     category: "Abertura",
-    speaker: "Apresentador 1",
-    targetTime: "1:30 min",
-    keyQuote: "Mais do que agendar. Conectar pessoas, transformar aprendizado e orquestrar a operação pedagógica.",
+    speaker: "Equipe ADS",
+    targetTime: "2:00 min",
+    keyQuote: "Projeto Integrador • Tecnologia em Análise e Desenvolvimento de Sistemas.",
     script: `
-      <div class="script-section-tag">FALA DE ABERTURA — APRESENTADOR 1</div>
-      <p>"Bom dia a todos os presentes.</p>
-      <p>Nós somos a <strong>Turma de Desenvolvimento de Sistemas</strong>.</p>
-      <p>Estamos aqui hoje não apenas para apresentar um software acadêmico, mas para defender um produto desenhado para solucionar uma das maiores dores operacionais e pedagógicas da instituição que fazemos parte.</p>
-      <p>Nosso projeto durou meses de pesquisa, validação e desenvolvimento. A apresentação tem como objetivo demonstrar como identificamos uma dor real, desenvolvemos uma aplicação escalável e entregamos uma solução pronta para o uso diário."</p>
-      <div class="script-section-tag">TRANSIÇÃO DRAMÁTICA</div>
-      <p><em>"E para que vocês sintam o real valor do que construímos, convido todos a mergulhar no cenário que encontramos antes de criarmos a plataforma."</em></p>
+      <div class="script-section-tag">ABERTURA OFICIAL</div>
+      <p>"Bom dia a todos os presentes, professores e banca examinadora!</p>
+      <p>Nós somos a <strong>2ª Turma de Análise e Desenvolvimento de Sistemas</strong> do Senac Santo Antônio de Jesus.</p>
+      <p>Estamos aqui hoje para defender o nosso Projeto Integrador: o <strong>Connect Senac</strong>, desenvolvido sob a orientação do professor <strong>Deyson Santana</strong>.</p>
+      <p>Não se trata apenas de um software acadêmico, mas de uma ferramenta construída para atender a uma necessidade real de gestão da nossa instituição."</p>
     `
   },
   {
     id: 2,
-    title: "Slide 02 — O Desafio da Rotina Real",
-    heading: "O Desafio da Rotina Real — Três personagens reais enfrentando o gargalo da comunicação fragmentada.",
-    category: "O Desafio",
-    speaker: "Apresentador 1",
+    title: "Slide 02 — 🎯 O Desafio do Projeto",
+    heading: "🎯 O desafio do projeto",
+    category: "Desafio",
+    speaker: "Equipe ADS",
     targetTime: "2:30 min",
-    keyQuote: "O problema não é apenas marcar um horário. É o atrito, o estresse e a falta de sincronização que corroem o tempo de aprendizado.",
+    keyQuote: "Criar uma ferramenta de gestão para os cursos de beleza do Senac.",
     script: `
-      <div class="script-section-tag">NARRATIVA HUMANA (PERSONAS) — APRESENTADOR 1</div>
-      <p>"Imaginem três pessoas no dia a dia da unidade:</p>
-      <ul>
-        <li>Primeiro, a <strong>Ana</strong> (Cliente/Modelo): quer fazer um procedimento de beleza, manda mensagem no WhatsApp oficial e aguarda dias sem saber se sua vaga foi confirmada, com medo de perder a viagem até o Senac.</li>
-        <li>Em segundo lugar, o <strong>Lucas</strong> (Aluno/Prático): preparou a bancada, esterilizou seus instrumentos e chegou com 30 minutos de antecedência... mas a modelo desmarcou em cima da hora sem aviso prévio (<em>no-show</em>). Ele fica sem atendimento prático naquele dia.</li>
-        <li>E, no centro, a <strong>Coordenação e o Corpo Docente</strong>: sobrecarregados por mensagens soltas, planilhas desincronizadas e sem garantia de conformidade com termos de imagem e LGPD."</li>
-      </ul>
-      <div class="script-highlight-quote">
-        "O problema não é apenas marcar um horário. É o atrito, o estresse e a falta de sincronização que corroem o tempo de aprendizado."
-      </div>
+      <div class="script-section-tag">O DESAFIO</div>
+      <p>"Tudo começou com um desafio claro: <strong>Criar uma ferramenta de gestão para os cursos de beleza do Senac</strong>.</p>
+      <p>Os laboratórios de estética e beleza demandam um tripé operacional diário: <strong>Gestão</strong> dos dados, <strong>Organização</strong> das bancadas e turmas, e <strong>Agendamento</strong> ágil dos modelos.</p>
+      <p>Nosso propósito foi entregar <em>uma nova solução para uma necessidade real</em>."</p>
     `
   },
   {
     id: 3,
-    title: "Slide 03 — A Pedagogia em Risco",
-    heading: "A Pedagogia em Risco — Quando a operação falha, o aprendizado prático é o maior prejudicado.",
-    category: "O Desafio",
-    speaker: "Apresentador 1",
-    targetTime: "2:00 min",
-    keyQuote: "O verdadeiro custo da desorganização não é financeiro. É pedagógico: cada bancada vazia é uma oportunidade formativa que não volta mais.",
+    title: "Slide 03 — 🤝 Entendendo o Problema",
+    heading: "🤝 Entendendo o problema",
+    category: "Diagnóstico",
+    speaker: "Equipe ADS",
+    targetTime: "3:00 min",
+    keyQuote: "Briefing com a coordenadora Professora Zeneide — Ouvir quem vive o problema para criar uma solução que faça sentido.",
     script: `
-      <div class="script-section-tag">IMPACTO EDUCACIONAL — APRESENTADOR 1</div>
-      <p>"Vejam a cadeia de ruptura quando a comunicação falha:</p>
-      <p>1. O agendamento ocorre de forma fragmentada e descentralizada;<br>
-      2. Sem lembretes e sem protocolo digital, ocorrem desistências de última hora sem aviso;<br>
-      3. Sem modelo na bancada, o aluno perde a oportunidade prática e os critérios formativos do Senac são comprometidos."</p>
-      <div class="script-highlight-quote">
-        "O verdadeiro custo da desorganização não é financeiro. É pedagógico: cada bancada vazia é uma oportunidade formativa que não volta mais."
-      </div>
-      <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 2</div>
-      <p><em>"E para devolver a previsibilidade e o foco ao ensino prático, nós concebemos o Connect Senac. Passo a palavra para o Apresentador 2."</em></p>
+      <div class="script-section-tag">ENTENDENDO O PROBLEMA</div>
+      <p>"Para construir algo com propósito, realizamos um briefing presencial com a coordenadora dos cursos de beleza, a <strong>Professora Zeneide</strong>.</p>
+      <p>Mapeamos os 4 públicos fundamentais: <strong>Gestão, Professores, Alunos e Modelos</strong>.</p>
+      <p>O problema real não era o uso de papel, mas a fragmentação em canais soltos (WhatsApp), desorganização de horários e a falta de modelos confirmados, o que deixava alunos sem atividade prática."</p>
     `
   },
   {
     id: 4,
-    title: "Slide 04 — A Experiência do Modelo",
-    heading: "A Experiência do Modelo: Autoatendimento sem Atrito — Do primeiro clique no smartphone ao atendimento confirmado.",
-    category: "A Solução",
-    speaker: "Apresentador 2",
+    title: "Slide 04 — 🤝 Do Problema ao Planejamento",
+    heading: "🤝 Do problema ao planejamento",
+    category: "Planejamento",
+    speaker: "Equipe ADS",
     targetTime: "2:30 min",
-    keyQuote: "Uma experiência acolhedora que aproxima a comunidade da instituição com total transparência.",
+    keyQuote: "Cada equipe, uma responsabilidade. Um projeto em conjunto.",
     script: `
-      <div class="script-section-tag">JORNADA SEM FRICÇÃO — APRESENTADOR 2</div>
-      <p>"Obrigado, Apresentador 1. No Connect Senac, desenhamos uma jornada 100% mobile-first para a comunidade:</p>
-      <ol>
-        <li><strong>Descoberta Ágil</strong>: Pelo navegador do celular, sem baixar aplicativos pesados, a comunidade visualiza os procedimentos abertos na unidade.</li>
-        <li><strong>Escolha Transparente</strong>: Escolhe data, horário e visualiza as orientações prévias de saúde com vagas sincronizadas em tempo real.</li>
-        <li><strong>Protocolo Seguro</strong>: Recebe na hora o comprovante digital com código de atendimento e QR Code.</li>
-        <li><strong>Atendimento & Avaliação</strong>: No laboratório, o aluno já a aguardava com bancada pronta. Atendimento realizado e avaliação 5 estrelas registrada!"</li>
-      </ol>
-      <div class="script-highlight-quote">
-        "Uma experiência acolhedora que aproxima a comunidade da instituição com total transparência."
-      </div>
+      <div class="script-section-tag">PLANEJAMENTO ÁGIL</div>
+      <p>"Com as dores diagnosticadas, estruturamos um pipeline metodológico ágil:</p>
+      <p>1º <strong>Informações:</strong> Coleta e síntese das necessidades reais.<br>
+      2º <strong>Requisitos:</strong> Definição das regras de negócio, conformidade LGPD e fluxos.<br>
+      3º <strong>Divisão de Tarefas:</strong> Separação em frentes coordenadas de trabalho em equipe."</p>
     `
   },
   {
     id: 5,
-    title: "Slide 05 — Central de Operações",
-    heading: "A Central de Operações da Gestão — O coração administrativo: cursos, pautas, moderação e governança em tempo real.",
-    category: "Produto & Gestão",
-    speaker: "Apresentador 2",
+    title: "Slide 05 — 🎨⚙️ Do Design à Funcionalidade",
+    heading: "🎨⚙️ Do design à funcionalidade",
+    category: "Construção",
+    speaker: "Equipe ADS",
     targetTime: "3:00 min",
-    keyQuote: "O modelo agenda. O aluno e docente acompanham na pauta. A coordenação governa a capacidade da unidade.",
+    keyQuote: "Duas frentes trabalhando juntas para criar uma boa experiência.",
     script: `
-      <div class="script-section-tag">DEMONSTRAÇÃO DO MÓDULO ADMINISTRATIVO — APRESENTADOR 2</div>
-      <p>"Convido a banca a observar o nosso Painel de Gestão Operacional, estruturado em 5 abas integradas:</p>
-      <ul>
-        <li><strong>1. Visão Geral</strong>: KPIs de ocupação em 100%, 14/14 alunos com modelos confirmados, zero conflito de salas e abertura rápida de grade.</li>
-        <li><strong>2. Gestão de Cursos</strong>: Catálogo ativo da unidade (Pintura Capilar, Manicure, Sobrancelhas, Massoterapia, Tranças, Corte Masculino).</li>
-        <li><strong>3. Usuários & Moderação</strong>: Base com badges de conformidade <code>LGPD OK</code> e <code>Uso de Imagem OK</code>, histórico de presença e integração com WhatsApp oficial.</li>
-        <li><strong>4. Pautas Globais</strong>: Visão organizada por docente (Prof. Deyson Santana e Profa. Tais) com validação de presença em 1 clique.</li>
-        <li><strong>5. Criar Colaborador</strong>: Controle de acesso institucional por papéis (RBAC)."</li>
-      </ul>
-      <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 3</div>
-      <p><em>"E agora o Apresentador 3 vai detalhar a evolução da rotina e o salto qualitativo alcançado com a plataforma."</em></p>
+      <div class="script-section-tag">DESIGN × FUNCIONALIDADE</div>
+      <p>"Dividimos nossa atuação técnica em duas frentes complementares:</p>
+      <p>• <strong>🎨 EXPERIÊNCIA:</strong> Criação de Personas, Layouts intuitivos, Usabilidade em 3 cliques e respeito às necessidades de cada perfil de usuário.<br>
+      • <strong>⚙️ FUNCIONALIDADE:</strong> Conexão segura entre telas, execução das regras de negócio, 100% responsivo e disponibilizado via web sem precisar baixar app.</p>
+      <p>Uma aplicação pensada tanto para quem usa no celular quanto para quem gerencia no painel!"</p>
     `
   },
   {
     id: 6,
-    title: "Slide 06 — Antes vs Depois",
-    heading: "Antes vs. Depois: O Salto de Maturidade Operacional — Da fragmentação à sincronização digital em tempo real.",
-    category: "Transformação",
-    speaker: "Apresentador 3",
+    title: "Slide 06 — 🚀 Aprendizado e Desenvolvimento",
+    heading: "🚀 Aprendizado e desenvolvimento",
+    category: "Pedagogia",
+    speaker: "Equipe ADS",
     targetTime: "2:30 min",
-    keyQuote: "Devolvemos o foco dos professores e alunos para o que realmente importa: a excelência do aprendizado prático.",
+    keyQuote: "Mais do que desenvolver um sistema, desenvolvemos nossas próprias competências!",
     script: `
-      <div class="script-section-tag">O SALTO QUALITATIVO — APRESENTADOR 3</div>
-      <p>"Vejam o impacto comparativo direto na rotina da unidade:</p>
-      <ul>
-        <li><strong>No Passado (Fragmentado)</strong>: Mensagens soltas no WhatsApp sem garantia de vaga, faltas sem aviso gerando bancadas vazias, planilhas desincronizadas e professores sobrecarregados com logística manual.</li>
-        <li><strong>Com o Connect Senac (Sincronizado)</strong>: Autoatendimento digital instantâneo 24/7 com protocolo oficial, turmas com 100% de ocupação, pauta centralizada em tempo real e conformidade LGPD automática."</li>
-      </ul>
-      <div class="script-highlight-quote">
-        "Devolvemos o foco dos professores e alunos para o que realmente importa: a excelência do aprendizado prático."
-      </div>
-      <div class="script-section-tag">PASSO DE BASTÃO PARA O APRESENTADOR 4</div>
-      <p><em>"E para comprovar que essa tecnologia é real e funcional, passo a palavra ao Apresentador 4 para a demonstração prática com a banca."</em></p>
+      <div class="script-section-tag">MARCAS FORMATIVAS</div>
+      <p>"Durante esses meses de imersão, exercitamos na prática as <strong>Marcas Formativas do Senac</strong>:</p>
+      <p>• <strong>Trabalho em equipe:</strong> Comunicação e alinhamento interdisciplinar.<br>
+      • <strong>Conhecimento técnico:</strong> Arquitetura de software, banco relacional e segurança.<br>
+      • <strong>Habilidades:</strong> Resolução de problemas práticos sob mentoria do professor Deyson Santana.<br>
+      • <strong>Ética e responsabilidade:</strong> Tratamento correto de dados da comunidade."</p>
     `
   },
   {
     id: 7,
-    title: "Slide 07 — Teste ao Vivo",
-    heading: "📱 Teste ao Vivo: Experimente Agora — QR Code interativo e credenciais de teste para a banca examinadora.",
-    category: "Demonstração Prática",
-    speaker: "Apresentador 4",
-    targetTime: "3:30 min",
-    keyQuote: "Peguem seus celulares agora e realizem um agendamento teste em 30 segundos! Login: teste@gmail.com | Senha: 123456",
+    title: "Slide 07 — 🚀 Evolução até o Produto Final",
+    heading: "🚀 Evolução até o produto final",
+    category: "Jornada",
+    speaker: "Equipe ADS",
+    targetTime: "2:30 min",
+    keyQuote: "Desenvolver, testar, ajustar e evoluir!",
     script: `
-      <div class="script-section-tag">DESAFIO AO VIVO PARA A BANCA — APRESENTADOR 4</div>
-      <p>"Obrigado, Apresentador 3. Senhores avaliadores e presentes: acreditamos tanto na usabilidade do Connect Senac que <strong>convidamos todos a pegarem seus smartphones agora</strong>.</p>
-      <p>1. Apontem a câmera do celular para o QR Code exibido no telão (pressione [Q] para ampliar);<br>
-      2. O sistema abrirá diretamente no navegador do seu smartphone, sem instalar nada;<br>
-      3. <strong>Para acessar a aplicação, utilizem a conta de teste exibida na tela:</strong><br>
-      &nbsp;&nbsp;• <strong>Login:</strong> <code>teste@gmail.com</code><br>
-      &nbsp;&nbsp;• <strong>Senha:</strong> <code>123456</code><br>
-      4. Escolham um procedimento de estética e concluam um agendamento teste em menos de 30 segundos!</p>
-      <p>Vocês verão a geração instantânea do protocolo digital e a facilidade mobile-first que projetamos."</p>
-      <div class="script-section-tag">SIMULADOR GUIADO DE 6 ETAPAS</div>
-      <p><em>(O apresentador pode alternar para a aba '2. A Jornada da Ana' e guiar os 6 passos reais na tela para a banca).</em></p>
+      <div class="script-section-tag">CICLO DE EVOLUÇÃO</div>
+      <p>"Nossa jornada seguiu um ciclo iterativo contínuo:</p>
+      <p><strong>Orientação ➔ Desenvolvimento ➔ Validação ➔ Produto Final</strong>.</p>
+      <p>Contamos com o apoio constante de instrutores, geramos múltiplas versões, fizemos testes de usabilidade e documentamos cada etapa até chegar ao software pronto para operação."</p>
     `
   },
   {
     id: 8,
-    title: "Slide 08 — Adoção & Escala",
-    heading: "Estratégia de Adoção & Escalabilidade — Implantação no SENAC Santo Antônio de Jesus e expansão em rede.",
-    category: "Visão de Futuro",
-    speaker: "Apresentador 4",
-    targetTime: "2:00 min",
-    keyQuote: "O Connect Senac foi concebido para transformar a nossa unidade e escalar com segurança para toda a rede Senac.",
+    title: "Slide 08 — ✨ O Resultado: Central de Operações",
+    heading: "✨ O resultado: Connect Senac",
+    category: "Painel Real",
+    speaker: "Equipe ADS",
+    targetTime: "3:30 min",
+    keyQuote: "Da necessidade apresentada pela cliente a uma solução funcional!",
     script: `
-      <div class="script-section-tag">VIABILIDADE TÉCNICA E FUTURO — APRESENTADOR 4</div>
-      <p>"Para assegurar que o Connect Senac seja perene e sustentável, estruturamos o projeto em três pilares de escala:</p>
-      <ul>
-        <li><strong>Zero Fricção de Treinamento</strong>: Interface autoexplicativa desenhada para a rotina de alunos e professores, permitindo adoção imediata sem cursos complexos.</li>
-        <li><strong>Arquitetura Web Moderna</strong>: API REST Node.js/Express desacoplada e banco PostgreSQL (Supabase) com alta integridade referencial.</li>
-        <li><strong>Multiunidade e Multicurso</strong>: Pronto para expandir de Estética e Beleza para Gastronomia, Saúde, TI e outras unidades do Senac Bahia."</li>
-      </ul>
-      <div class="script-highlight-quote">
-        "O Connect Senac foi concebido para transformar a nossa unidade e escalar com segurança para toda a rede Senac."
-      </div>
+      <div class="script-section-tag">CENTRAL DE OPERAÇÕES REAL</div>
+      <p>"O Connect Senac entrega uma solução completa ancorada em uma tríade: <strong>Interface Intuitiva, Funcionalidades Reais e Gestão de Dados</strong>.</p>
+      <p>A Central Administrativa opera 5 módulos fundamentais:<br>
+      1. <strong>Visão Geral & Operação:</strong> Abertura instantânea de grade e contraindicações.<br>
+      2. <strong>Gestão de Cursos:</strong> Catálogo de 8 procedimentos estéticos.<br>
+      3. <strong>Usuários & Moderação:</strong> Conformidade legal com LGPD e Termos de Imagem.<br>
+      4. <strong>Pautas Globais:</strong> Ocupação em tempo real de bancadas por turma.<br>
+      5. <strong>Criar Colaborador:</strong> Perfis e níveis de permissão institucional."</p>
     `
   },
   {
     id: 9,
-    title: "Slide 09 — Fechamento & Conexão",
-    heading: "Mais do que agendar. Conectar — Uma experiência integrada com reconhecimento especial aos mestres orientadores.",
-    category: "Conclusão",
-    speaker: "Apresentador 4",
+    title: "Slide 09 — 🎭 DO PROBLEMA À SOLUÇÃO",
+    heading: "🎭 DO PROBLEMA À SOLUÇÃO",
+    category: "Transição",
+    speaker: "Equipe ADS",
     targetTime: "2:00 min",
-    keyQuote: "Connect Senac — Mais do que agendar. Conectar. Muito obrigado a todos e abrimos agora para as considerações da banca examinadora!",
+    keyQuote: "🎬 Agora vamos mostrar na prática.",
     script: `
-      <div class="script-section-tag">FECHAMENTO TRIUNFAL & GRATIDÃO — APRESENTADOR 4</div>
-      <p>"Para encerrar a nossa defesa:</p>
-      <p>A Cliente participa com dignidade e transparência.<br>
-      O Aluno pratica com bancadas cheias e formação plena.<br>
-      A Gestão gerencia com pauta em tempo real e governança.<br>
-      E o <strong>Connect Senac conecta todas essas pontas em uma experiência fluida e moderna</strong>.</p>
-      <p>Nosso agradecimento mais que especial aos nossos professores e mentores <strong>Deyson Santana</strong> e <strong>Tais</strong>, cuja orientação técnica e pedagógica foi indispensável para transformar essa ideia em realidade."</p>
-      <div class="script-highlight-quote">
-        "Connect Senac — Mais do que agendar. Conectar. Muito obrigado a todos e abrimos agora para as considerações da banca examinadora!"
-      </div>
+      <div class="script-section-tag">TRANSIÇÃO DRAMÁTICA</div>
+      <p>"Para que todos sintam o real impacto dessa transformação, sintetizamos o contraste:</p>
+      <p>• <strong>❌ ANTES:</strong> Agendamento fragmentado, escassez de modelos, informações dispersas e acompanhamento difícil.<br>
+      • <strong>✅ DEPOIS:</strong> Organização total, conexão direta, gestão em tempo real e controle completo.</p>
+      <p><em>Agora, convidamos a todos para verem essa diferença na prática!</em>"</p>
+    `
+  },
+  {
+    id: 10,
+    title: "Slide 10 — 🔄 Antes × Depois",
+    heading: "🔄 Antes × Depois",
+    category: "Impacto",
+    speaker: "Equipe ADS",
+    targetTime: "3:00 min",
+    keyQuote: "MAIS PRATICIDADE | ORGANIZAÇÃO | ACESSIBILIDADE",
+    script: `
+      <div class="script-section-tag">IMPACTO & EFICIÊNCIA</div>
+      <p>"O contraste é nítido:</p>
+      <p>Enquanto antes a falta de modelos gerava frustração, bancadas vazias e dados perdidos em mensagens soltas, hoje o <strong>Connect Senac</strong> proporciona maior alcance com captação web contínua, acessibilidade móvel, dados organizados e conformidade legal.</p>
+      <p>Transformamos a incerteza em garantia de prática pedagógica para os nossos alunos."</p>
+    `
+  },
+  {
+    id: 11,
+    title: "Slide 11 — 📱 DO PROJETO À SOLUÇÃO (TESTE AO VIVO)",
+    heading: "✨ DO PROJETO À SOLUÇÃO",
+    category: "Demonstração",
+    speaker: "Equipe ADS",
+    targetTime: "4:00 min",
+    keyQuote: "Chegamos ao momento mais importante: ver a solução em ação!",
+    script: `
+      <div class="script-section-tag">PITCH DE DEMONSTRAÇÃO AO VIVO</div>
+      <p><strong>Fala Oficial para a Banca Examinadora:</strong></p>
+      <p>"Chegamos ao momento mais importante: ver a solução em ação. O Connect Senac não é apenas um conceito, é uma aplicação funcional pronta para o uso.</p>
+      <p>Convidamos todos da banca e da plateia a apontarem suas câmeras para o <strong>QR Code agora mesmo na tela</strong>.</p>
+      <p>Em menos de 30 segundos, vocês poderão navegar pelas vagas abertas, simular um agendamento e vivenciar a mesma facilidade que os clientes e a coordenação do Senac terão todos os dias.</p>
+      <p><strong>Credenciais Oficiais de Teste:</strong><br>
+      • <strong>Login:</strong> <code>teste@gmail.com</code><br>
+      • <strong>Senha:</strong> <code>123456</code></p>
+      <p>Agradecemos à coordenadora <strong>Professora Zeneide</strong>, ao professor e orientador <strong>Deyson Santana</strong> e a toda a banca examinadora. Ficamos à disposição para as perguntas!"</p>
     `
   }
 ];
+
+/* =========================================================
+   THREE.JS 3D PARTICLE MESH (DEEP TEAL SLOW TEXTURE)
+   ========================================================= */
+let scene, camera, renderer, particleMesh;
+
+function initThreeBackground() {
+  const canvas = document.getElementById('bg-canvas-3d');
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+  camera.position.z = 400;
+
+  renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Create delicate geometry
+  const particleCount = 120;
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(particleCount * 3);
+
+  for (let i = 0; i < particleCount * 3; i += 3) {
+    positions[i] = (Math.random() - 0.5) * 800;
+    positions[i + 1] = (Math.random() - 0.5) * 600;
+    positions[i + 2] = (Math.random() - 0.5) * 400;
+  }
+
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  const material = new THREE.PointsMaterial({
+    color: 0x00b4d8,
+    size: 4,
+    transparent: true,
+    opacity: 0.45,
+    blending: THREE.AdditiveBlending
+  });
+
+  particleMesh = new THREE.Points(geometry, material);
+  scene.add(particleMesh);
+
+  // Gentle animation loop
+  function animateThree() {
+    requestAnimationFrame(animateThree);
+    if (particleMesh) {
+      particleMesh.rotation.y += 0.0004;
+      particleMesh.rotation.x += 0.0002;
+    }
+    renderer.render(scene, camera);
+  }
+  animateThree();
+
+  window.addEventListener('resize', () => {
+    if (!camera || !renderer) return;
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
 
 /* =========================================================
    AUDIO FX SYNTHESIZER (WEB AUDIO API)
@@ -231,186 +277,45 @@ const Sound = {
     if (PresentationState.isMuted) return;
     this.init();
     if (!this.ctx) return;
-
     try {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(320, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(140, this.ctx.currentTime + 0.18);
-      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.18);
+      osc.frequency.exponentialRampToValueAtTime(140, this.ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.18);
-    } catch (e) {}
-  },
-  playClick() {
-    if (PresentationState.isMuted) return;
-    this.init();
-    if (!this.ctx) return;
-
-    try {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(600, this.ctx.currentTime);
-      gain.gain.setValueAtTime(0.06, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.08);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + 0.08);
+      osc.stop(this.ctx.currentTime + 0.15);
     } catch (e) {}
   },
   playCelebration() {
     if (PresentationState.isMuted) return;
     this.init();
     if (!this.ctx) return;
-
     try {
       const notes = [523.25, 659.25, 783.99, 1046.50];
       notes.forEach((freq, idx) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.09);
-        gain.gain.setValueAtTime(0.08, this.ctx.currentTime + idx * 0.09);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.09 + 0.3);
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.08);
+        gain.gain.setValueAtTime(0.07, this.ctx.currentTime + idx * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.08 + 0.25);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
-        osc.start(this.ctx.currentTime + idx * 0.09);
-        osc.stop(this.ctx.currentTime + idx * 0.09 + 0.3);
+        osc.start(this.ctx.currentTime + idx * 0.08);
+        osc.stop(this.ctx.currentTime + idx * 0.08 + 0.25);
       });
     } catch (e) {}
   }
 };
 
 /* =========================================================
-   3D WEBGL GLOBAL BACKGROUND ENGINE (THREE.JS - CALM AUDITORIUM MODE)
+   NAVIGATION & SLIDES ENGINE (11 SLIDES)
    ========================================================= */
-class Global3DBackground {
-  constructor() {
-    this.canvas = document.getElementById('bg-canvas-3d');
-    if (!this.canvas || typeof THREE === 'undefined') return;
-
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.z = 80;
-
-    this.renderer = new THREE.WebGLRenderer({
-      canvas: this.canvas,
-      alpha: true,
-      antialias: true
-    });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    this.initObjects();
-    this.bindEvents();
-    this.animate = this.animate.bind(this);
-    this.animate();
-  }
-
-  initObjects() {
-    // Floating Connected Nodes Grid (Gentle, calm particles for projector readability)
-    const particleCount = 120;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-
-    const color1 = new THREE.Color(0x004580); // Senac Blue
-    const color2 = new THREE.Color(0xf37021); // Senac Orange
-
-    for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 160;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 120;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
-
-      const mixedColor = color1.clone().lerp(color2, Math.random());
-      colors[i * 3] = mixedColor.r;
-      colors[i * 3 + 1] = mixedColor.g;
-      colors[i * 3 + 2] = mixedColor.b;
-    }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    const material = new THREE.PointsMaterial({
-      size: 2.2,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.35
-    });
-
-    this.particles = new THREE.Points(geometry, material);
-    this.scene.add(this.particles);
-
-    // Subtle Torus Wireframe (Digital Ecosystem)
-    const torusGeo = new THREE.TorusGeometry(38, 1.0, 16, 80);
-    const torusMat = new THREE.MeshBasicMaterial({
-      color: 0x004580,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.08
-    });
-    this.torus = new THREE.Mesh(torusGeo, torusMat);
-    this.scene.add(this.torus);
-  }
-
-  bindEvents() {
-    window.addEventListener('resize', () => {
-      if (!this.renderer || !this.camera) return;
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    let mouseX = 0;
-    let mouseY = 0;
-    window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-      if (this.camera) {
-        this.camera.position.x += (mouseX * 3 - this.camera.position.x) * 0.03;
-        this.camera.position.y += (mouseY * 3 - this.camera.position.y) * 0.03;
-      }
-    });
-  }
-
-  animate() {
-    requestAnimationFrame(this.animate);
-    if (this.particles) {
-      this.particles.rotation.y += 0.0003;
-      this.particles.rotation.x += 0.00015;
-    }
-    if (this.torus) {
-      this.torus.rotation.z += 0.0005;
-      this.torus.rotation.x += 0.00025;
-    }
-    this.renderer.render(this.scene, this.camera);
-  }
-}
-
-/* =========================================================
-   ADMIN OPERATIONS HUB TABS SWITCHER (SLIDE 05)
-   ========================================================= */
-function switchAdminTab(tabName) {
-  Sound.playClick();
-  const tabs = ['visao', 'cursos', 'usuarios', 'pautas', 'colaborador'];
-  tabs.forEach((t) => {
-    const btn = document.getElementById(`atab-btn-${t}`);
-    const panel = document.getElementById(`admin-panel-${t}`);
-    if (btn) btn.classList.toggle('active', t === tabName);
-    if (panel) panel.classList.toggle('active', t === tabName);
-  });
-}
-
-/* =========================================================
-   NAVIGATION & SLIDES ENGINE (10 SLIDES)
-   ========================================================= */
-
 function goToSlide(targetSlide) {
   if (targetSlide < 1 || targetSlide > PresentationState.totalSlides) return;
   if (targetSlide === PresentationState.currentSlide) return;
@@ -423,7 +328,7 @@ function goToSlide(targetSlide) {
   if (prevSlideEl) {
     prevSlideEl.classList.remove('active');
     prevSlideEl.classList.add('prev');
-    setTimeout(() => prevSlideEl.classList.remove('prev'), 450);
+    setTimeout(() => prevSlideEl.classList.remove('prev'), 400);
   }
 
   if (nextSlideEl) {
@@ -439,7 +344,7 @@ function nextSlide() {
   if (PresentationState.currentSlide < PresentationState.totalSlides) {
     goToSlide(PresentationState.currentSlide + 1);
   } else {
-    goToSlide(1); // loop back
+    goToSlide(1);
   }
 }
 
@@ -456,16 +361,14 @@ function updateUIState() {
   const total = PresentationState.totalSlides;
   const slideInfo = SlideData[current - 1] || SlideData[0];
 
-  // Update Top Navigation Bar Labels
+  // Top header labels
   const headerTitle = document.getElementById('slide-header-title');
   const badgeCategory = document.getElementById('slide-badge-category');
-  const speakerPill = document.getElementById('slide-speaker-pill');
 
   if (headerTitle) headerTitle.textContent = slideInfo.title;
   if (badgeCategory) badgeCategory.textContent = slideInfo.category;
-  if (speakerPill) speakerPill.innerHTML = `<i class="fa-solid fa-user"></i> ${slideInfo.speaker}`;
 
-  // Update Bottom Dock Counter and Progress
+  // Bottom dock counter & progress
   const counterEl = document.getElementById('dock-counter');
   const progressFill = document.getElementById('dock-progress-fill');
 
@@ -480,7 +383,7 @@ function updateUIState() {
     progressFill.style.width = `${percentage}%`;
   }
 
-  // Update Dock Navigation Dots
+  // Dots navigation (11 dots)
   const dots = document.querySelectorAll('.dot-btn');
   dots.forEach((dot, index) => {
     if (index + 1 === current) {
@@ -490,98 +393,9 @@ function updateUIState() {
     }
   });
 
-  // Update Modals Content if open
+  // Modals sync
   updatePresenterModal();
   updateGridOverviewHighlight();
-}
-
-/* =========================================================
-   INTERACTIVE DEMO SIMULATOR & AUDIENCE MODE (SLIDE 8)
-   ========================================================= */
-
-function switchDemoMainMode(mode) {
-  Sound.playClick();
-  const btnStory = document.getElementById('btn-mode-story');
-  const btnAudience = document.getElementById('btn-mode-audience');
-  const panelStory = document.getElementById('demo-panel-story');
-  const panelAudience = document.getElementById('demo-panel-audience');
-
-  if (mode === 'story') {
-    if (btnStory) btnStory.classList.add('active');
-    if (btnAudience) btnAudience.classList.remove('active');
-    if (panelStory) panelStory.classList.add('active');
-    if (panelAudience) panelAudience.classList.remove('active');
-  } else {
-    if (btnAudience) btnAudience.classList.add('active');
-    if (btnStory) btnStory.classList.remove('active');
-    if (panelAudience) panelAudience.classList.add('active');
-    if (panelStory) panelStory.classList.remove('active');
-  }
-}
-
-function goToDemoStep(stepNumber) {
-  PresentationState.currentDemoStep = stepNumber;
-  Sound.playClick();
-
-  // Update step sequence tabs
-  for (let i = 1; i <= 6; i++) {
-    const tab = document.getElementById(`d-seq-${i}`);
-    const screen = document.getElementById(`demo-screen-${i}`);
-    if (tab) {
-      if (i === stepNumber) tab.classList.add('active');
-      else tab.classList.remove('active');
-    }
-    if (screen) {
-      if (i === stepNumber) screen.classList.add('active');
-      else screen.classList.remove('active');
-    }
-  }
-
-  // Update address bar text
-  const addr = document.getElementById('demo-address-bar');
-  if (addr) {
-    switch (stepNumber) {
-      case 1: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/catalogo'; break;
-      case 2: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/procedimento/sobrancelhas'; break;
-      case 3: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/confirmacao/ANA-2026'; break;
-      case 4: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/profissional/pauta-do-dia'; break;
-      case 5: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/coordenacao/dashboard'; break;
-      case 6: addr.innerHTML = '<i class="fa-solid fa-lock text-green"></i> connect.senac.br/avaliacao/concluido'; break;
-    }
-  }
-
-  // Update Role Switcher button active state
-  if (stepNumber <= 3) setDemoRole('modelo', false);
-  else if (stepNumber === 4) setDemoRole('prof', false);
-  else if (stepNumber >= 5) setDemoRole('coord', false);
-}
-
-function setDemoRole(role, changeScreen = true) {
-  PresentationState.currentDemoRole = role;
-  const btnModelo = document.getElementById('role-btn-modelo');
-  const btnProf = document.getElementById('role-btn-prof');
-  const btnCoord = document.getElementById('role-btn-coord');
-
-  if (btnModelo) btnModelo.classList.toggle('active', role === 'modelo');
-  if (btnProf) btnProf.classList.toggle('active', role === 'prof');
-  if (btnCoord) btnCoord.classList.toggle('active', role === 'coord');
-
-  if (changeScreen) {
-    if (role === 'modelo') goToDemoStep(1);
-    else if (role === 'prof') goToDemoStep(4);
-    else if (role === 'coord') goToDemoStep(5);
-  }
-}
-
-function triggerConfettiReward() {
-  Sound.playCelebration();
-  if (typeof confetti === 'function') {
-    confetti({
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
-  }
 }
 
 function triggerGrandFinaleConfetti() {
@@ -589,13 +403,11 @@ function triggerGrandFinaleConfetti() {
   if (typeof confetti === 'function') {
     const duration = 3.5 * 1000;
     const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 3000 };
 
     const interval = setInterval(() => {
       const timeLeft = animationEnd - Date.now();
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
+      if (timeLeft <= 0) return clearInterval(interval);
       const particleCount = 50 * (timeLeft / duration);
       confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
       confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
@@ -610,7 +422,6 @@ function randomInRange(min, max) {
 /* =========================================================
    PRESENTER MODE & STOPWATCH TIMER
    ========================================================= */
-
 function updatePresenterModal() {
   const current = PresentationState.currentSlide;
   const total = PresentationState.totalSlides;
@@ -633,7 +444,7 @@ function updatePresenterModal() {
   if (nextBox) {
     nextBox.innerHTML = `
       <strong>${nextSlideInfo.title}</strong>
-      <span>${nextSlideInfo.speaker} • Tempo: ${nextSlideInfo.targetTime}</span>
+      <span style="color: #94a3b8; font-size: 0.85rem; display: block; margin-top: 2px;">Tempo Estimado: ${nextSlideInfo.targetTime}</span>
     `;
   }
 }
@@ -665,31 +476,21 @@ function renderPresenterTimer() {
   const hrs = Math.floor(totalSec / 3600);
   const mins = Math.floor((totalSec % 3600) / 60);
   const secs = totalSec % 60;
-
   const pad = (n) => (n < 10 ? `0${n}` : n);
-  const formatted = `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
-
   const timerEl = document.getElementById('presenter-timer');
-  if (timerEl) timerEl.textContent = formatted;
+  if (timerEl) timerEl.textContent = `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
 }
 
 function updateTimerButton() {
   const btn = document.getElementById('btn-timer-toggle');
   if (btn) {
-    if (PresentationState.timerIsRunning) {
-      btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      btn.title = 'Pausar Cronômetro';
-    } else {
-      btn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      btn.title = 'Iniciar / Retomar Cronômetro';
-    }
+    btn.innerHTML = PresentationState.timerIsRunning ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
   }
 }
 
 /* =========================================================
-   GRID OVERVIEW THUMBNAILS (10 SLIDES)
+   GRID OVERVIEW THUMBNAILS (11 SLIDES)
    ========================================================= */
-
 function renderGridThumbnails() {
   const grid = document.getElementById('slides-thumbnail-grid');
   if (!grid) return;
@@ -702,89 +503,76 @@ function renderGridThumbnails() {
       goToSlide(slide.id);
       closeAllModals();
     };
-
     thumb.innerHTML = `
-      <span class="thumb-num">Slide ${slide.id < 10 ? '0' + slide.id : slide.id}</span>
-      <h4 class="thumb-title">${slide.heading}</h4>
-      <span class="thumb-speaker"><i class="fa-solid fa-user"></i> ${slide.speaker} (${slide.targetTime})</span>
+      <div class="thumb-num">SLIDE ${slide.id < 10 ? '0' + slide.id : slide.id} • ${slide.category}</div>
+      <div class="thumb-title">${slide.heading}</div>
     `;
-
     grid.appendChild(thumb);
   });
 }
 
 function updateGridOverviewHighlight() {
   const cards = document.querySelectorAll('.slide-thumb-card');
-  cards.forEach((card, index) => {
-    if (index + 1 === PresentationState.currentSlide) {
-      card.classList.add('active');
-    } else {
-      card.classList.remove('active');
-    }
+  cards.forEach((c, idx) => {
+    if (idx + 1 === PresentationState.currentSlide) c.classList.add('active');
+    else c.classList.remove('active');
   });
 }
 
 /* =========================================================
-   MODALS MANAGER
+   MODAL CONTROLLERS & SHORTCUTS
    ========================================================= */
-
 function openModal(modalId) {
-  Sound.playClick();
+  closeAllModals();
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.classList.remove('hidden');
-    if (modalId === 'modal-presenter' && !PresentationState.timerIsRunning && PresentationState.timerSeconds === 0) {
-      startPresenterTimer();
+    if (modalId === 'modal-grid-overview') renderGridThumbnails();
+    if (modalId === 'modal-presenter') {
+      updatePresenterModal();
+      if (!PresentationState.timerIsRunning && PresentationState.timerSeconds === 0) startPresenterTimer();
     }
-    if (modalId === 'modal-grid-overview') {
-      renderGridThumbnails();
-    }
+  }
+}
+
+function openQrZoomModal() {
+  openModal('modal-qr-zoom');
+}
+
+function triggerGrandFinaleConfetti() {
+  playSound('slide');
+  if (typeof confetti === 'function') {
+    // Explosao Central
+    confetti({
+      particleCount: 120,
+      spread: 90,
+      origin: { y: 0.6 },
+      colors: ['#f05a28', '#004a80', '#00b4d8', '#ffffff', '#ffd166']
+    });
+    // Canhoes laterais
+    setTimeout(() => {
+      confetti({
+        particleCount: 60,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.7 },
+        colors: ['#f05a28', '#004a80', '#ffffff']
+      });
+      confetti({
+        particleCount: 60,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.7 },
+        colors: ['#00b4d8', '#ffd166', '#ffffff']
+      });
+    }, 250);
+  } else {
+    console.log('🎉 Parabéns Connect Senac!');
   }
 }
 
 function closeAllModals() {
-  Sound.playClick();
   document.querySelectorAll('.modal-backdrop').forEach((m) => m.classList.add('hidden'));
-}
-
-/* =========================================================
-   AUTOPLAY & THEME TOGGLES
-   ========================================================= */
-
-function toggleAutoplay() {
-  const btn = document.getElementById('btn-autoplay-toggle');
-  if (!PresentationState.isAutoplay) {
-    PresentationState.isAutoplay = true;
-    if (btn) {
-      btn.classList.add('playing');
-      btn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Pausar</span>';
-    }
-    PresentationState.autoplayInterval = setInterval(() => {
-      nextSlide();
-    }, PresentationState.autoplayDelay);
-  } else {
-    PresentationState.isAutoplay = false;
-    if (btn) {
-      btn.classList.remove('playing');
-      btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Apresentar</span>';
-    }
-    clearInterval(PresentationState.autoplayInterval);
-  }
-}
-
-function toggleTheme() {
-  Sound.playClick();
-  const html = document.documentElement;
-  const btn = document.getElementById('btn-theme-toggle');
-  if (PresentationState.currentTheme === 'light') {
-    html.setAttribute('data-theme', 'dark');
-    PresentationState.currentTheme = 'dark';
-    if (btn) btn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-  } else {
-    html.setAttribute('data-theme', 'light');
-    PresentationState.currentTheme = 'light';
-    if (btn) btn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-  }
 }
 
 function toggleAudio() {
@@ -793,60 +581,77 @@ function toggleAudio() {
   const toast = document.getElementById('audio-toast');
 
   if (btn) {
-    btn.innerHTML = PresentationState.isMuted
-      ? '<i class="fa-solid fa-volume-xmark"></i>'
-      : '<i class="fa-solid fa-volume-high"></i>';
+    btn.innerHTML = PresentationState.isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
   }
-
   if (toast) {
-    toast.innerHTML = PresentationState.isMuted
-      ? '<i class="fa-solid fa-volume-xmark"></i> <span>Áudio Desativado</span>'
-      : '<i class="fa-solid fa-volume-high"></i> <span>Áudio Ativado</span>';
+    toast.querySelector('span').textContent = PresentationState.isMuted ? 'Áudio Mutado' : 'Áudio Ativado';
+    toast.querySelector('i').className = PresentationState.isMuted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
     toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 1800);
+    setTimeout(() => toast.classList.add('hidden'), 2000);
   }
 }
 
 function toggleFullscreen() {
-  Sound.playClick();
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen().catch(() => {});
   } else {
-    if (document.exitFullscreen) document.exitFullscreen();
+    document.exitFullscreen().catch(() => {});
   }
 }
 
-/* =========================================================
-   EVENT LISTENERS & TOUCH NAVIGATION
-   ========================================================= */
+function toggleAutoplay() {
+  PresentationState.isAutoplay = !PresentationState.isAutoplay;
+  const btn = document.getElementById('btn-autoplay-toggle');
 
+  if (PresentationState.isAutoplay) {
+    if (btn) {
+      btn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Pausar</span>';
+      btn.classList.add('active');
+    }
+    PresentationState.autoplayInterval = setInterval(() => nextSlide(), PresentationState.autoplayDelay);
+  } else {
+    if (btn) {
+      btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Apresentar</span>';
+      btn.classList.remove('active');
+    }
+    clearInterval(PresentationState.autoplayInterval);
+  }
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  PresentationState.currentTheme = next;
+}
+
+/* =========================================================
+   EVENT LISTENERS & KEYBOARD SHORTCUTS
+   ========================================================= */
 function setupEventListeners() {
-  // Navigation Buttons
   const btnPrev = document.getElementById('btn-prev-slide');
   const btnNext = document.getElementById('btn-next-slide');
-  if (btnPrev) btnPrev.addEventListener('click', prevSlide);
-  if (btnNext) btnNext.addEventListener('click', nextSlide);
-
-  // Top Bar Actions
+  const btnPresenter = document.getElementById('btn-presenter-mode');
+  const btnQr = document.getElementById('btn-qr-modal');
+  const btnGrid = document.getElementById('btn-grid-overview');
   const btnTheme = document.getElementById('btn-theme-toggle');
   const btnAudio = document.getElementById('btn-audio-toggle');
-  const btnQrModal = document.getElementById('btn-qr-modal');
-  const btnGrid = document.getElementById('btn-grid-overview');
-  const btnPresenter = document.getElementById('btn-presenter-mode');
   const btnShortcuts = document.getElementById('btn-shortcuts');
   const btnFullscreen = document.getElementById('btn-fullscreen');
   const btnAutoplay = document.getElementById('btn-autoplay-toggle');
 
+  if (btnPrev) btnPrev.addEventListener('click', prevSlide);
+  if (btnNext) btnNext.addEventListener('click', nextSlide);
+  if (btnPresenter) btnPresenter.addEventListener('click', () => openModal('modal-presenter'));
+  if (btnQr) btnQr.addEventListener('click', () => openModal('modal-qr-zoom'));
+  if (btnGrid) btnGrid.addEventListener('click', () => openModal('modal-grid-overview'));
   if (btnTheme) btnTheme.addEventListener('click', toggleTheme);
   if (btnAudio) btnAudio.addEventListener('click', toggleAudio);
-  if (btnQrModal) btnQrModal.addEventListener('click', () => openModal('modal-qr-zoom'));
-  if (btnGrid) btnGrid.addEventListener('click', () => openModal('modal-grid-overview'));
-  if (btnPresenter) btnPresenter.addEventListener('click', () => openModal('modal-presenter'));
   if (btnShortcuts) btnShortcuts.addEventListener('click', () => openModal('modal-shortcuts'));
   if (btnFullscreen) btnFullscreen.addEventListener('click', toggleFullscreen);
   if (btnAutoplay) btnAutoplay.addEventListener('click', toggleAutoplay);
 
-  // Presenter Timer controls
+  // Timer controls
   const btnTimerToggle = document.getElementById('btn-timer-toggle');
   const btnTimerReset = document.getElementById('btn-timer-reset');
   if (btnTimerToggle) {
@@ -857,9 +662,8 @@ function setupEventListeners() {
   }
   if (btnTimerReset) btnTimerReset.addEventListener('click', resetPresenterTimer);
 
-  // Dock dots click
-  const dots = document.querySelectorAll('.dot-btn');
-  dots.forEach((dot) => {
+  // Dots click
+  document.querySelectorAll('.dot-btn').forEach((dot) => {
     dot.addEventListener('click', () => {
       const slideNum = parseInt(dot.getAttribute('data-slide'), 10);
       if (slideNum) goToSlide(slideNum);
@@ -868,7 +672,6 @@ function setupEventListeners() {
 
   // Keyboard Shortcuts
   window.addEventListener('keydown', (e) => {
-    // If typing in an input field, do not trigger presentation shortcuts
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
     switch (e.key) {
@@ -940,19 +743,15 @@ function setupEventListeners() {
         // Number keys 1-9 for direct slide navigation
         if (e.key >= '1' && e.key <= '9') {
           const num = parseInt(e.key, 10);
-          if (num <= PresentationState.totalSlides) {
-            goToSlide(num);
-          }
+          if (num <= PresentationState.totalSlides) goToSlide(num);
         }
         break;
     }
   });
 
-  // Mobile Touch Swipe Navigation
+  // Mobile Touch Swipe
   let touchStartX = 0;
   let touchStartY = 0;
-  let touchEndX = 0;
-  let touchEndY = 0;
 
   window.addEventListener('touchstart', (e) => {
     if (e.touches.length === 1) {
@@ -963,12 +762,8 @@ function setupEventListeners() {
 
   window.addEventListener('touchend', (e) => {
     if (e.changedTouches.length === 1) {
-      touchEndX = e.changedTouches[0].clientX;
-      touchEndY = e.changedTouches[0].clientY;
-      const deltaX = touchEndX - touchStartX;
-      const deltaY = touchEndY - touchStartY;
-
-      // Only navigate if horizontal swipe is dominant
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      const deltaY = e.changedTouches[0].clientY - touchStartY;
       if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
         if (deltaX < 0) nextSlide();
         else prevSlide();
@@ -980,24 +775,8 @@ function setupEventListeners() {
 /* =========================================================
    INITIALIZATION
    ========================================================= */
-
 window.addEventListener('DOMContentLoaded', () => {
-  // Initialize 3D WebGL Background
-  new Global3DBackground();
-
-  // Setup Event Listeners
+  initThreeBackground();
   setupEventListeners();
-
-  // Initial State Update
   updateUIState();
-
-  // Initialize Vanilla Tilt on desktop
-  if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768) {
-    VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
-      max: 5,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.12
-    });
-  }
 });
