@@ -522,16 +522,16 @@ html, body {
   gap: 16px;
 }
 .min-checklist-item {
-  font-size: clamp(1.2rem, 1.45vw, 1.55rem);
+  font-size: clamp(1rem, 1.20vw, 1.55rem);
   color: var(--text-ice);
-  line-height: 1.5;
+  line-height: 2;
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 8px;
 }
 .min-checklist-item i {
-  font-size: 1.4rem;
-  margin-top: 4px;
+  font-size: 1.5rem;
+  margin-top: 8px;
   flex-shrink: 0;
 }
 
