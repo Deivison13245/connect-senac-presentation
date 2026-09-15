@@ -1,11 +1,11 @@
 /* =========================================================
-   CONNECT SENAC — INTERACTIVE ENGINE (11 MINIMALIST SLIDES)
+   CONNECT SENAC — INTERACTIVE ENGINE (13 MINIMALIST SLIDES)
    Three.js 3D Subtle Particle Mesh • Sound FX • Presenter Pitch
    ========================================================= */
 
 const PresentationState = {
   currentSlide: 1,
-  totalSlides: 11,
+  totalSlides: 13,
   isAutoplay: false,
   autoplayInterval: null,
   autoplayDelay: 10000,
@@ -17,7 +17,7 @@ const PresentationState = {
 };
 
 /* =========================================================
-   POWER SCRIPT & SLIDES METADATA (11 SLIDES FIÉIS)
+   POWER SCRIPT & SLIDES METADATA (13 SLIDES OFICIAIS)
    ========================================================= */
 const SlideData = [
   {
@@ -31,7 +31,7 @@ const SlideData = [
     script: `
       <div class="script-section-tag">ABERTURA OFICIAL</div>
       <p>"Bom dia a todos os presentes, professores e banca examinadora!</p>
-      <p>Nós somos a <strong>2ª Turma de Análise e Desenvolvimento de Sistemas</strong> do Senac Santo Antônio de Jesus.</p>
+      <p>Nós somos a <strong>2ª Turma de TDS (Tecnologia em Análise e Desenvolvimento de Sistemas)</strong> do Senac Santo Antônio de Jesus.</p>
       <p>Estamos aqui hoje para defender o nosso Projeto Integrador: o <strong>Connect Senac</strong>, desenvolvido sob a orientação do professor <strong>Deyson Santana</strong>.</p>
       <p>Não se trata apenas de um software acadêmico, mas de uma ferramenta construída para atender a uma necessidade real de gestão da nossa instituição."</p>
     `
@@ -84,7 +84,42 @@ const SlideData = [
   },
   {
     id: 5,
-    title: "Slide 05 — 🎨⚙️ Do Design à Funcionalidade",
+    title: "Slide 05 — 🔎 O Que Precisava Ser Resolvido?",
+    heading: "🔎 O que precisava ser resolvido?",
+    category: "Necessidades",
+    speaker: "Equipe ADS",
+    targetTime: "2:30 min",
+    keyQuote: "Agendamento • Aulas práticas • Acompanhamento • Avaliações • Modelos",
+    script: `
+      <div class="script-section-tag">NECESSIDADES IDENTIFICADAS</div>
+      <p>"Ao detalharmos os desafios da rotina escolar, identificamos 5 necessidades essenciais que a aplicação precisaria atender:</p>
+      <p>• <strong>📅 Agendamento:</strong> Organização ágil e segura dos serviços e horários.<br>
+      • <strong>✂️ Aulas Práticas:</strong> Viabilização das atividades de bancada indispensáveis para a formação.<br>
+      • <strong>📈 Acompanhamento:</strong> Visibilidade da evolução técnica individual de cada discente.<br>
+      • <strong>📝 Avaliações:</strong> Registro pedagógico de notas e critérios.<br>
+      • <strong>👤 Modelos:</strong> Captação contínua e confirmação de voluntários.</p>
+      <p><em>Entre essas dificuldades, estavam o agendamento dos serviços, a realização das aulas práticas, o acompanhamento da evolução dos alunos, as avaliações e, principalmente, a disponibilidade de modelos para que essas aulas pudessem acontecer.</em>"</p>
+    `
+  },
+  {
+    id: 6,
+    title: "Slide 06 — 🔄 Do Briefing ao Protótipo",
+    heading: "🔄 Do briefing ao protótipo",
+    category: "Validação",
+    speaker: "Equipe ADS",
+    targetTime: "2:30 min",
+    keyQuote: "Problema ➔ Protótipo ➔ Feedback",
+    script: `
+      <div class="script-section-tag">VALIDAÇÃO COM A CLIENTE</div>
+      <p>"Nós tivemos dois momentos com a coordenadora Zeneide:</p>
+      <p>1. <strong>1º ENCONTRO — BRIEFING:</strong> Ela nos apresentou o problema, explicou o cenário real e detalhou o que precisava ser resolvido.<br>
+      2. <strong>2º ENCONTRO — PROTÓTIPO:</strong> Nós desenvolvemos e apresentamos um protótipo funcional da aplicação para que ela pudesse avaliar e nos dar um retorno imediato.</p>
+      <p>Esse processo contínuo de <strong>Problema ➔ Protótipo ➔ Feedback</strong> garantiu que a ferramenta fosse validada diretamente por quem vive o desafio no dia a dia!"</p>
+    `
+  },
+  {
+    id: 7,
+    title: "Slide 07 — 🎨⚙️ Do Design à Funcionalidade",
     heading: "🎨⚙️ Do design à funcionalidade",
     category: "Construção",
     speaker: "Equipe ADS",
@@ -99,8 +134,8 @@ const SlideData = [
     `
   },
   {
-    id: 6,
-    title: "Slide 06 — 🚀 Aprendizado e Desenvolvimento",
+    id: 8,
+    title: "Slide 08 — 🚀 Aprendizado e Desenvolvimento",
     heading: "🚀 Aprendizado e desenvolvimento",
     category: "Pedagogia",
     speaker: "Equipe ADS",
@@ -116,8 +151,8 @@ const SlideData = [
     `
   },
   {
-    id: 7,
-    title: "Slide 07 — 🚀 Evolução até o Produto Final",
+    id: 9,
+    title: "Slide 09 — 🚀 Evolução até o Produto Final",
     heading: "🚀 Evolução até o produto final",
     category: "Jornada",
     speaker: "Equipe ADS",
@@ -131,8 +166,8 @@ const SlideData = [
     `
   },
   {
-    id: 8,
-    title: "Slide 08 — ✨ O Resultado: Central de Operações",
+    id: 10,
+    title: "Slide 10 — ✨ O Resultado: Central de Operações",
     heading: "✨ O resultado: Connect Senac",
     category: "Painel Real",
     speaker: "Equipe ADS",
@@ -150,8 +185,8 @@ const SlideData = [
     `
   },
   {
-    id: 9,
-    title: "Slide 09 — 🎭 DO PROBLEMA À SOLUÇÃO",
+    id: 11,
+    title: "Slide 11 — 🎭 DO PROBLEMA À SOLUÇÃO",
     heading: "🎭 DO PROBLEMA À SOLUÇÃO",
     category: "Transição",
     speaker: "Equipe ADS",
@@ -166,8 +201,8 @@ const SlideData = [
     `
   },
   {
-    id: 10,
-    title: "Slide 10 — 🔄 Antes × Depois",
+    id: 12,
+    title: "Slide 12 — 🔄 Antes × Depois",
     heading: "🔄 Antes × Depois",
     category: "Impacto",
     speaker: "Equipe ADS",
@@ -181,8 +216,8 @@ const SlideData = [
     `
   },
   {
-    id: 11,
-    title: "Slide 11 — 📱 DO PROJETO À SOLUÇÃO (TESTE AO VIVO)",
+    id: 13,
+    title: "Slide 13 — 📱 DO PROJETO À SOLUÇÃO (TESTE AO VIVO)",
     heading: "✨ DO PROJETO À SOLUÇÃO",
     category: "Demonstração",
     speaker: "Equipe ADS",
@@ -255,7 +290,6 @@ function initThreeBackground() {
   animateThree();
 
   window.addEventListener('resize', () => {
-    if (!camera || !renderer) return;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -263,67 +297,67 @@ function initThreeBackground() {
 }
 
 /* =========================================================
-   AUDIO FX SYNTHESIZER (WEB AUDIO API)
+   AUDIO & SOUND FX ENGINE
    ========================================================= */
 const Sound = {
   ctx: null,
   init() {
-    if (!this.ctx) {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) this.ctx = new AudioCtx();
+    if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
+      this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     }
   },
-  playWhoosh() {
+  playTone(freq = 440, type = 'sine', duration = 0.15, gain = 0.08) {
     if (PresentationState.isMuted) return;
-    this.init();
-    if (!this.ctx) return;
     try {
+      this.init();
+      if (!this.ctx) return;
+      if (this.ctx.state === 'suspended') this.ctx.resume();
+
       const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(320, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(140, this.ctx.currentTime + 0.15);
-      gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
+      const g = this.ctx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+
+      g.gain.setValueAtTime(gain, this.ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+
+      osc.connect(g);
+      g.connect(this.ctx.destination);
+
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.15);
+      osc.stop(this.ctx.currentTime + duration);
     } catch (e) {}
   },
+  playSlideChange() {
+    this.playTone(320, 'triangle', 0.12, 0.05);
+    setTimeout(() => this.playTone(480, 'sine', 0.18, 0.06), 60);
+  },
+  playModalOpen() {
+    this.playTone(520, 'sine', 0.15, 0.07);
+  },
   playCelebration() {
-    if (PresentationState.isMuted) return;
-    this.init();
-    if (!this.ctx) return;
-    try {
-      const notes = [523.25, 659.25, 783.99, 1046.50];
-      notes.forEach((freq, idx) => {
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.08);
-        gain.gain.setValueAtTime(0.07, this.ctx.currentTime + idx * 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.08 + 0.25);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(this.ctx.currentTime + idx * 0.08);
-        osc.stop(this.ctx.currentTime + idx * 0.08 + 0.25);
-      });
-    } catch (e) {}
+    [400, 520, 660, 880, 1050].forEach((freq, idx) => {
+      setTimeout(() => this.playTone(freq, 'triangle', 0.35, 0.09), idx * 110);
+    });
   }
 };
 
-/* =========================================================
-   NAVIGATION & SLIDES ENGINE (11 SLIDES)
-   ========================================================= */
-function goToSlide(targetSlide) {
-  if (targetSlide < 1 || targetSlide > PresentationState.totalSlides) return;
-  if (targetSlide === PresentationState.currentSlide) return;
+function playSound(type) {
+  if (type === 'slide') Sound.playSlideChange();
+  else if (type === 'modal') Sound.playModalOpen();
+  else if (type === 'celebration') Sound.playCelebration();
+}
 
-  Sound.playWhoosh();
+/* =========================================================
+   SLIDE NAVIGATION CONTROLLER
+   ========================================================= */
+function goToSlide(slideNumber) {
+  if (slideNumber < 1 || slideNumber > PresentationState.totalSlides) return;
+  if (slideNumber === PresentationState.currentSlide) return;
 
   const prevSlideEl = document.getElementById(`slide-${PresentationState.currentSlide}`);
-  const nextSlideEl = document.getElementById(`slide-${targetSlide}`);
+  const nextSlideEl = document.getElementById(`slide-${slideNumber}`);
 
   if (prevSlideEl) {
     prevSlideEl.classList.remove('active');
@@ -332,11 +366,11 @@ function goToSlide(targetSlide) {
   }
 
   if (nextSlideEl) {
-    nextSlideEl.scrollTop = 0;
     nextSlideEl.classList.add('active');
   }
 
-  PresentationState.currentSlide = targetSlide;
+  PresentationState.currentSlide = slideNumber;
+  Sound.playSlideChange();
   updateUIState();
 }
 
@@ -368,22 +402,7 @@ function updateUIState() {
   if (headerTitle) headerTitle.textContent = slideInfo.title;
   if (badgeCategory) badgeCategory.textContent = slideInfo.category;
 
-  // Bottom dock counter & progress
-  const counterEl = document.getElementById('dock-counter');
-  const progressFill = document.getElementById('dock-progress-fill');
-
-  if (counterEl) {
-    const padCurrent = current < 10 ? `0${current}` : current;
-    const padTotal = total < 10 ? `0${total}` : total;
-    counterEl.textContent = `${padCurrent} / ${padTotal}`;
-  }
-
-  if (progressFill) {
-    const percentage = (current / total) * 100;
-    progressFill.style.width = `${percentage}%`;
-  }
-
-  // Dots navigation (11 dots)
+  // Dots navigation
   const dots = document.querySelectorAll('.dot-btn');
   dots.forEach((dot, index) => {
     if (index + 1 === current) {
@@ -401,22 +420,33 @@ function updateUIState() {
 function triggerGrandFinaleConfetti() {
   Sound.playCelebration();
   if (typeof confetti === 'function') {
-    const duration = 3.5 * 1000;
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 3000 };
-
-    const interval = setInterval(() => {
-      const timeLeft = animationEnd - Date.now();
-      if (timeLeft <= 0) return clearInterval(interval);
-      const particleCount = 50 * (timeLeft / duration);
-      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+    // Center blast
+    confetti({
+      particleCount: 130,
+      spread: 90,
+      origin: { y: 0.6 },
+      colors: ['#f05a28', '#004a80', '#00b4d8', '#ffffff', '#ffd166']
+    });
+    // Side cannons
+    setTimeout(() => {
+      confetti({
+        particleCount: 70,
+        angle: 60,
+        spread: 60,
+        origin: { x: 0, y: 0.7 },
+        colors: ['#f05a28', '#004a80', '#ffffff']
+      });
+      confetti({
+        particleCount: 70,
+        angle: 120,
+        spread: 60,
+        origin: { x: 1, y: 0.7 },
+        colors: ['#00b4d8', '#ffd166', '#ffffff']
+      });
     }, 250);
+  } else {
+    console.log('🎉 Parabéns Connect Senac!');
   }
-}
-
-function randomInRange(min, max) {
-  return Math.random() * (max - min) + min;
 }
 
 /* =========================================================
@@ -478,7 +508,9 @@ function renderPresenterTimer() {
   const secs = totalSec % 60;
   const pad = (n) => (n < 10 ? `0${n}` : n);
   const timerEl = document.getElementById('presenter-timer');
-  if (timerEl) timerEl.textContent = `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
+  if (timerEl) {
+    timerEl.textContent = `${pad(hrs)}:${pad(mins)}:${pad(secs)}`;
+  }
 }
 
 function updateTimerButton() {
@@ -489,13 +521,13 @@ function updateTimerButton() {
 }
 
 /* =========================================================
-   GRID OVERVIEW THUMBNAILS (11 SLIDES)
+   GRID OVERVIEW THUMBNAILS (13 SLIDES)
    ========================================================= */
 function renderGridThumbnails() {
   const grid = document.getElementById('slides-thumbnail-grid');
   if (!grid) return;
-
   grid.innerHTML = '';
+
   SlideData.forEach((slide) => {
     const thumb = document.createElement('div');
     thumb.className = `slide-thumb-card ${slide.id === PresentationState.currentSlide ? 'active' : ''}`;
@@ -532,42 +564,6 @@ function openModal(modalId) {
       updatePresenterModal();
       if (!PresentationState.timerIsRunning && PresentationState.timerSeconds === 0) startPresenterTimer();
     }
-  }
-}
-
-function openQrZoomModal() {
-  openModal('modal-qr-zoom');
-}
-
-function triggerGrandFinaleConfetti() {
-  playSound('slide');
-  if (typeof confetti === 'function') {
-    // Explosao Central
-    confetti({
-      particleCount: 120,
-      spread: 90,
-      origin: { y: 0.6 },
-      colors: ['#f05a28', '#004a80', '#00b4d8', '#ffffff', '#ffd166']
-    });
-    // Canhoes laterais
-    setTimeout(() => {
-      confetti({
-        particleCount: 60,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0, y: 0.7 },
-        colors: ['#f05a28', '#004a80', '#ffffff']
-      });
-      confetti({
-        particleCount: 60,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1, y: 0.7 },
-        colors: ['#00b4d8', '#ffd166', '#ffffff']
-      });
-    }, 250);
-  } else {
-    console.log('🎉 Parabéns Connect Senac!');
   }
 }
 
@@ -740,7 +736,7 @@ function setupEventListeners() {
         break;
 
       default:
-        // Number keys 1-9 for direct slide navigation
+        // Direct slide numbers 1 to 9
         if (e.key >= '1' && e.key <= '9') {
           const num = parseInt(e.key, 10);
           if (num <= PresentationState.totalSlides) goToSlide(num);
